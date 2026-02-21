@@ -1,0 +1,46 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Zoom/Zoom.munki.recipe
+# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
+# Downloaded at: 2025-11-27 22:32:34 UTC
+
+Description: Downloads the latest version of Zoom and imports it into Munki.
+Identifier: com.github.homebysix.munki.Zoom
+Input:
+  MUNKI_REPO_SUBDIR: apps/Zoom
+  NAME: Zoom
+  pkginfo:
+    blocking_applications:
+    - zoom.us
+    catalogs:
+    - testing
+    description: The Zoom app provides cloud-hosted video conferencing, plus online meetings and group messaging.
+    developer: Zoom Video Communications, Inc.
+    display_name: Zoom
+    minimum_os_version: '10.7'
+    name: '%NAME%'
+    postuninstall_script: "#!/bin/sh\nrm -rf /Applications/zoom.us.app\n"
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: '1.1'
+ParentRecipe: com.github.homebysix.pkg.Zoom
+Process:
+- Processor: MunkiInstallsItemsCreator
+  Arguments:
+    faux_root: '%RECIPE_CACHE_DIR%/PkgPayloadUnpacker'
+    installs_item_paths:
+    - /Applications/zoom.us.app
+    version_comparison_key: CFBundleVersion
+- Processor: MunkiPkginfoMerger
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      minimum_os_version: '%min_os_version%'
+      version: '%version%'
+- Processor: MunkiImporter
+  Arguments:
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+    version_comparison_key: CFBundleVersion
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/PkgPayloadUnpacker'
+  Comment: Cleans up resources from PkgPayloadUnpacker processor run in Zoom.pkg.recipe.

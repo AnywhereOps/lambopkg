@@ -1,0 +1,9 @@
+# Downloaded from https://github.com/autopkg/grahampugh-recipes/blob/efb3512b57ba07bdf23c9f7f800236911a81b295/CommonProcessors/CommonProcessors.recipe.yaml
+# Commit: efb3512b57ba07bdf23c9f7f800236911a81b295
+# Downloaded at: 2025-11-27 22:30:21 UTC
+
+Description: "Recipe stub for any Processors in this directory.\n    "
+Identifier: com.github.grahampugh.recipes.commonprocessors
+Input: {}
+MinimumVersion: 0.4.0
+Process: []

@@ -1,0 +1,34 @@
+Identifier: local.munki.GoToMeeting
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: GoToMeeting
+  pkginfo:
+    catalogs:
+    - testing
+    description: Online meeting, desktop sharing, and video conferencing software.
+    developer: LogMeIn
+    display_name: GoToMeeting
+    name: '%NAME%'
+    preinstall_script: "#!/bin/bash\n\necho \"Removing old copies of GoToMeeting from\
+      \ the /Applications folder...\"\n\nrm -rf /Applications/GoToMeeting\\ \\(*\\\
+      ).app\n\nif [[ -d \"/Applications/GoToMeeting\" ]]; then\n    rm -rf \"/Applications/GoToMeeting\"\
+      \nfi\n\nif [[ -f \"/Applications/GoToMeeting.app/Contents/Info.plist\" ]]; then\n\
+      \    rm -rf \"/Applications/GoToMeeting.app\"\nfi\n\nexit 0\n            "
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.GoToMeeting
+ParentRecipeTrustInfo:
+  non_core_processors:
+    GoToMeetingURLProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/GoToMeeting/GoToMeetingURLProvider.py
+      sha256_hash: 6919cce299f67a823aaa7fd4049f40a65a151a3fbe0f6499d932f910a362bcec
+  parent_recipes:
+    com.github.homebysix.download.GoToMeeting:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/GoToMeeting/GoToMeeting.download.recipe.yaml
+      sha256_hash: 3344724be96c39255d9f1407fa1085d58c96fcaf7eab4ba783a9a4909cfdf4f9
+    com.github.homebysix.munki.GoToMeeting:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/GoToMeeting/GoToMeeting.munki.recipe.yaml
+      sha256_hash: c0d2d9e4728df5428dcf98be471daa007e8d1d3fe65fd57aa2cf01360e27cfd0

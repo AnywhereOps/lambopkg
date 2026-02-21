@@ -1,0 +1,30 @@
+Identifier: local.munki.ClickShare
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: ClickShare
+  pkginfo:
+    catalogs:
+    - testing
+    category: Applications
+    description: ClickShare, wireless presentation and conferencing technology, creates
+      understanding between people by freeing them to interact easily and naturally.
+    developer: Barco
+    display_name: ClickShare
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.dataJAR-recipes.munki.ClickShare
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.smithjw.processors/FriendlyPathDeleter:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-smithjw/FriendlyPathDeleter.py
+      sha256_hash: 65396b5a4869547a729e8b53de43ad87cbff9c75bf3e8c66a4a0bdefad581861
+  parent_recipes:
+    com.github.dataJAR-recipes.munki.ClickShare:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/ClickShare/ClickShare.munki.recipe.yaml
+      sha256_hash: d97847d98af8258c040f9b0194caa8704aadae460fbb3293e1327a74ad540c9f
+    com.github.moofit-recipes.download.ClickShare:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Barco/ClickShare.download.recipe.yaml
+      sha256_hash: cd3df7aa673740ddce00c890488717a41aa95fcd3e65daa3676a91a651020beb

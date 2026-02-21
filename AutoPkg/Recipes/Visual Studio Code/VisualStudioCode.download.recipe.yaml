@@ -1,0 +1,31 @@
+# Downloaded from https://github.com/autopkg/valdore86-recipes/blob/ac8cd106a30988731d5b41424d2751b293755f15/Visual Studio Code/VisualStudioCode.download.recipe
+# Commit: ac8cd106a30988731d5b41424d2751b293755f15
+# Downloaded at: 2025-11-27 22:28:33 UTC
+
+Description: Downloads the current release version of Visual Studio Code.
+Identifier: com.github.valdore86.download.visualstudiocode
+Input:
+  NAME: Visual Studio Code
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10
+MinimumVersion: 1.0.4
+Process:
+- Processor: URLDownloader
+  Arguments:
+    filename: vscode.zip
+    url: https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal
+    request_headers:
+      user-agent: '%USER_AGENT%'
+- Processor: EndOfCheckPhase
+- Processor: Unarchiver
+  Arguments:
+    archive_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/%NAME%'
+    purge_destination: true
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%RECIPE_CACHE_DIR%/%NAME%/Visual Studio Code.app'
+    requirement: identifier "com.microsoft.VSCode" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%RECIPE_CACHE_DIR%/%NAME%/Visual Studio Code.app/Contents/Info.plist'
+    plist_version_key: CFBundleShortVersionString

@@ -1,0 +1,39 @@
+Identifier: local.munki.Microsoft Defender
+Input:
+  DOWNLOADURL: https://go.microsoft.com/fwlink/?linkid=%PRODUCTID%
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: MicrosoftDefender
+  PRODUCTID: '2097502'
+  SOFTWARETITLE: Defender
+  VENDOR: Microsoft
+  VERSIONTYPE: CFBundleShortVersionString
+  pkginfo:
+    blocking_applications:
+    - Microsoft Auto Update
+    - Microsoft Defender
+    catalogs:
+    - testing
+    description: Microsoft Defender Advanced Threat Protection is a platform designed
+      to help enterprise networks prevent, detect, investigate, and respond to advanced
+      threats.
+    developer: Microsoft
+    display_name: Microsoft Defender
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.dataJAR-recipes.munki.MicrosoftDefender
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.munki.MicrosoftDefender:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Microsoft Defender/Microsoft Defender.munki.recipe.yaml
+      sha256_hash: 7f560e6cd4fbe27e44d7c6216c2b3834cda81a170c68d7981387dca301fe349b
+    com.github.rtrouton.download.microsoftdefender:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/MicrosoftDefender/MicrosoftDefender.download.recipe.yaml
+      sha256_hash: 1221d8ba97807067dc493878ec04f5d22312e1aa9db37af8061ecd1949793676
+    com.github.rtrouton.pkg.microsoftdefender:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/MicrosoftDefender/MicrosoftDefender.pkg.recipe.yaml
+      sha256_hash: 7cea533093d2d215a06bf8f4778bacbd413740de9ad1fcf76955933fdf0dfcbc

@@ -1,0 +1,15 @@
+Description: Obtain Shared Processors from hansen-m's repo
+
+Identifier: com.github.anywhereops.vendorer.SharedProcessorshansen-m
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/hansen-m-recipes
+      folder_path: SharedProcessors
+      commit_sha: de17d7db2537ffa00c27281a392f37fe599efdca
+      destination_path: SharedProcessors-hansen-m

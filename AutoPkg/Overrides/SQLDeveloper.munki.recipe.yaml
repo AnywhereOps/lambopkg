@@ -1,0 +1,48 @@
+Identifier: local.munki.SQLDeveloper
+Input:
+  DOWNLOAD_ARCH: aarch64
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: SQLDeveloper
+  SUPPORTED_ARCH: arm64
+  pkginfo:
+    catalogs:
+    - testing
+    description: 'Oracle SQLDeveloper is a free, integrated development environment
+      that simplifies the development and management of Oracle Database in both traditional
+      and Cloud deployments.
+
+
+      SQLDeveloper offers complete end-to-end development of your PL/SQL applications,
+      a worksheet for running queries and scripts, a DBA console for managing the
+      database, a reports interface, a complete data modeling solution, and a migration
+      platform for moving your 3rd party databases to Oracle.'
+    developer: Oracle
+    display_name: SQLDeveloper
+    name: '%NAME%'
+    supported_architectures:
+    - '%SUPPORTED_ARCH%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: "#!/bin/bash\n\nif [ -d \"/Applications/SQLDeveloper.app\" ];\
+      \ then\n    rm -rf \"/Applications/SQLDeveloper.app\"\n\n    if [ ! -d \"/Applications/SQLDeveloper.app\"\
+      \ ]; then\n        echo \"Successfully removed SQLDeveloper.app\"\n        exit\
+      \ 0\n    else\n        echo \"Error: Failed to remove SQLDeveloper.app\"\n \
+      \       exit 1\n    fi\nelse\n    echo \"SQLDeveloper.app not found in /Applications\"\
+      \n    exit 0\nfi"
+ParentRecipe: com.github.dataJAR-recipes.munki.SQLDeveloper
+ParentRecipeTrustInfo:
+  non_core_processors:
+    SQLDeveloperVersioner:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SQLDeveloper/SQLDeveloperVersioner.py
+      sha256_hash: 5eb9e1df75f5b44048bf57fec4113414944e789e8b4b24a86a3ea5e39a6267d4
+  parent_recipes:
+    com.github.dataJAR-recipes.download.SQLDeveloper:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SQLDeveloper/SQLDeveloper.download.recipe.yaml
+      sha256_hash: 9bfcbe405fc4b7f8f0611fec2a836f3dfa78ee426abff32dfc6ada03071c6ef6
+    com.github.dataJAR-recipes.munki.SQLDeveloper:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SQLDeveloper/SQLDeveloper.munki.recipe.yaml
+      sha256_hash: 0102b430218c32577006ace7017f8e0bef537948867e2818feaba3ea19225ddd

@@ -1,0 +1,39 @@
+Identifier: local.munki.SentinelOne
+Input:
+  MUNKI_CATEGORY: Utilities
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: SentinelOne
+  S1_API_TOKEN: ''
+  S1_CONSOLE_HOSTNAME: ''
+  S1_PACKAGE_STATUS: ''
+  S1_PACKAGE_VERSION: ''
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: A cybersecurity platform that uses AI to protect networks, devices,
+      and identities from threats. It can detect, remove, and prevent malware and
+      other security risks.
+    developer: SentinelOne, Inc.
+    display_name: SentinelOne
+    name: '%NAME%'
+ParentRecipe: com.github.n8felton.munki.SentinelOne
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.n8felton.shared/SHA1Checksum:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-n8felton/SHA1Checksum.py
+      sha256_hash: 25a281c0022c3d2930a06abb8af9a9022ceab9b45140cd49da08c0502fcc81ed
+    com.github.n8felton.shared/SentinelOneInfoProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-n8felton/SentinelOneInfoProvider.py
+      sha256_hash: a0017e0d2b0aa5ce2d749727172813c5bd0c93ad500f34346a838249d3482ba7
+  parent_recipes:
+    com.github.n8felton.download.SentinelOne:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SentinelOne/SentinelOne.download.recipe.yaml
+      sha256_hash: 3ecf5672398ed6854da602ccc6ace14464be2b2695f003c4414e087c0a2d365f
+    com.github.n8felton.munki.SentinelOne:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SentinelOne/SentinelOne.munki.recipe.yaml
+      sha256_hash: 8f4851d62bea7635f16e1b079a02b8e67cb3ca2ffd3442c89b8b768a4e5a78d0

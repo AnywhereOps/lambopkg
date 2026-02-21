@@ -1,0 +1,14 @@
+Identifier: local.download.EndNote2025
+Input:
+  DOWNLOAD_URL: https://download.endnote.com/downloads/2025/EndNote2025Installer.dmg
+  NAME: EndNote 2025
+  SOFTWARETITLE1: EndNote
+  SOFTWARETITLE2: '2025'
+ParentRecipe: com.github.rtrouton.download.EndNote2025
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.rtrouton.download.EndNote2025:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/EndNote/EndNote2025.download.recipe.yaml
+      sha256_hash: b7160f19ee56cde4413f4721e1c36d394a26c31100ee2402788bee081ab98738

@@ -1,0 +1,11 @@
+Identifier: local.download.Mersive Solstice
+Input:
+  NAME: Mersive Solstice
+ParentRecipe: com.github.ahousseini-recipes.download.MersiveSolstice
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.ahousseini-recipes.download.MersiveSolstice:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Mersive Solstice/Mersive Solstice.download.recipe.yaml
+      sha256_hash: 8c1f96e87dc8900c3702167b82d9cd9cd74c8c7ff99275e0a76c0bba6f156b7a

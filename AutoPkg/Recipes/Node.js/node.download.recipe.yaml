@@ -1,0 +1,27 @@
+# Downloaded from https://github.com/autopkg/gerardkok-recipes/blob/fba95dd24e8408ba08f9d74cb5f82468883691fa/Node.js/node.download.recipe
+# Commit: fba95dd24e8408ba08f9d74cb5f82468883691fa
+# Downloaded at: 2025-11-27 22:28:38 UTC
+
+Description: Downloads the latest version of Node.js.
+Identifier: com.github.gerardkok.download.node
+Input:
+  NAME: node
+  RELEASE: latest
+MinimumVersion: 0.6.0
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    url: https://nodejs.org/dist/%RELEASE%
+    re_pattern: node-v([0-9]+(\.[0-9]+)+)\.pkg
+    result_output_var_name: version
+- Processor: URLDownloader
+  Arguments:
+    url: '%url%/node-v%version%.pkg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%'
+    expected_authority_names:
+    - 'Developer ID Installer: Node.js Foundation (HX7739G8FX)'
+    - Developer ID Certification Authority
+    - Apple Root CA

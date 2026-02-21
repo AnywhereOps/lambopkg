@@ -1,0 +1,42 @@
+Identifier: local.munki.IntelliJ-IDEA-CE
+Input:
+  ARCH_TYPE: mac
+  CSV_REQ: identifier "com.jetbrains.intellij.ce" and anchor apple generic and certificate
+    1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13]
+    /* exists */ and certificate leaf[subject.OU] = "2ZEFAR8TH3"
+  MUNKI_REPO_SUBDIR: apps/jetbrains
+  NAME: IntelliJ IDEA Community Edition
+  PROD_CODE: IIC
+  SUPPORTED_ARCH: x86_64
+  pkginfo:
+    catalogs:
+    - testing
+    category: Developer Tools
+    description: 'Capable and ergonomic Java IDE
+
+
+      https://www.jetbrains.com/idea'
+    developer: JetBrains
+    display_name: IntelliJ IDEA Community Edition
+    name: '%NAME%'
+    supported_architectures:
+    - '%SUPPORTED_ARCH%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstallable: true
+ParentRecipe: com.github.bnpl.autopkg.munki.intellijideace
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.bnpl.autopkg.download.intellijideace:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/JetBrains/IntelliJ-IDEA-CE.download.recipe.yaml
+      sha256_hash: a97a59ee72590f4c30bcbfc894e813fb972b445894a69b2b26a8521eccea1573
+    com.github.bnpl.autopkg.download.jetbrains:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/JetBrains/JetBrains.download.recipe.yaml
+      sha256_hash: 5ab5a29b5a2282ff0a654c60f62d9fe68926f970364870475e48edad1d3fb2fe
+    com.github.bnpl.autopkg.munki.intellijideace:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/JetBrains/IntelliJ-IDEA-CE.munki.recipe.yaml
+      sha256_hash: 92d33ef8da437924071d3d8bb779ca48f89af5a94052989d67d76b310ecd7c6c

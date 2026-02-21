@@ -1,0 +1,24 @@
+Identifier: local.munki.googlechrome
+Input:
+  DOWNLOAD_URL: https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
+  MUNKI_REPO_SUBDIR: apps
+  NAME: GoogleChrome
+  pkginfo:
+    catalogs:
+    - testing
+    description: Chrome is a fast, simple, and secure web browser, built for the modern
+      web.
+    display_name: Google Chrome
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.autopkg.munki.google-chrome
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.autopkg.download.googlechrome:
+      git_hash: c41819bcad3639d28b7a51fa31abf80f733b1044
+      path: ~/cloud-autopkg-runner/AutoPkg/Recipes/GoogleChrome/GoogleChrome.download.recipe.yaml
+      sha256_hash: d5618ea09b8699fb9ade9d8bfd31fa24925d19d5d643d85d59aecb5e51146afc
+    com.github.autopkg.munki.google-chrome:
+      path: ~/cloud-autopkg-runner/AutoPkg/Recipes/GoogleChrome/googlechrome.munki.recipe.yaml
+      sha256_hash: 613e3b2c826ceee5aa49ead030b6b621bc97f0d3b023142a36295fe92e7c6998

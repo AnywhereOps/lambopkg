@@ -1,0 +1,17 @@
+Description: Obtain upstream Xcode recipe from autopkg/MLBZ521-recipes
+
+Identifier: com.github.anywhereops.vendorer.Xcode
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/MLBZ521-recipes
+      folder_path: Xcode
+      commit_sha: 8b7738eed4c2f8b6b32a897907ee3420fa0c74ef
+      destination_path: Xcode
+      recipe_type: pkg
+      required_license: MIT

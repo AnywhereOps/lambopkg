@@ -1,0 +1,12 @@
+Identifier: local.pkg.Smartsheet
+Input:
+  DOWNLOAD_URL: https://builds.desktopapp.smartsheet.com/public/darwin/Smartsheet-setup.dmg
+  NAME: Smartsheet
+ParentRecipe: com.github.moofit-recipes.pkg.Smartsheet
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.moofit-recipes.pkg.Smartsheet:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Smartsheet/Smartsheet.pkg.recipe.yaml
+      sha256_hash: 3a7fd1075bd8d40479a124e97ea0c5c94f4cb2ed18bdae33993976d220d090e2

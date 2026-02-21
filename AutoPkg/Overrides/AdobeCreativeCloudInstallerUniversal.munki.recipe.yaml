@@ -1,0 +1,44 @@
+Identifier: local.munki.AdobeCreativeCloudInstallerUniversal
+Input:
+  APPLE_SILICON_ARCHITECTURE: macarm64
+  APPLE_SILICON_SEARCH_PATTERN: (?P<url>http.*?://ccmdl.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/.*?/%APPLE_SILICON_ARCHITECTURE%/ACCC.*?.dmg)
+  INTEL_ARCHITECTURE: osx10
+  INTEL_SEARCH_PATTERN: (?P<url>http.*?://ccmdl.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/.*?/%INTEL_ARCHITECTURE%/ACCC.*?.dmg)
+  MUNKI_CATEGORY: Creative Cloud
+  MUNKI_DEVELOPER: Adobe Systems Inc.
+  MUNKI_REPO_SUBDIR: apps/adobe
+  NAME: Adobe Creative Cloud
+  NAMEWITHOUTSPACES: CreativeCloudInstaller
+  SEARCH_URL: https://helpx.adobe.com/download-install/apps/download-install-apps/creative-cloud-apps/download-creative-cloud-desktop-app-using-direct-links.html
+  SOFTWARETITLE: Creative Cloud Installer
+  VENDOR: Adobe
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: 'Adobe Creative Cloud gives you the world''s best creative apps and
+      services so you can make anything you can imagine, whereever you''re inspired. '
+    developer: '%MUNKI_DEVELOPER%'
+    display_name: '%NAME%'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.autopkg.munki.AdobeCreativeCloudInstallerUniversal
+ParentRecipeTrustInfo:
+  non_core_processors:
+    XMLReader:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/AdobeCreativeCloud/XMLReader.py
+      sha256_hash: e4398cdb6abd6e3fd0c6e339e83968b039d09e736475af83121158a04ae44dd2
+  parent_recipes:
+    com.github.joshua-d-miller.autopkg.munki.AdobeCreativeCloudInstallerUniversal:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Adobe/AdobeCreativeCloudInstallerUniversal.munki.recipe.yaml
+      sha256_hash: 5d3aa81cdd2a11584fa093f42916aeb6d8063f697b14b2ce2b17ccca8288003d
+    com.github.rtrouton.download.AdobeCreativeCloudInstallerUniversal:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/AdobeCreativeCloud/AdobeCreativeCloudInstallerUniversal.download.recipe.yaml
+      sha256_hash: 68ac5854bb8207a2102c23fed97d449828bd67a2b6f5f6b26f0b586451bbcfcf
+    com.github.rtrouton.pkg.AdobeCreativeCloudInstallerUniversal:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/AdobeCreativeCloud/AdobeCreativeCloudInstallerUniversal.pkg.recipe.yaml
+      sha256_hash: 3c0db6f2b6dc5b48199b4d7b12f0b26e1620a44d41f73d554c94bae4117c2677

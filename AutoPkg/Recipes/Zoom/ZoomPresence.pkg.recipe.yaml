@@ -1,0 +1,31 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Zoom/ZoomPresence.pkg.recipe
+# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
+# Downloaded at: 2025-11-27 22:32:34 UTC
+
+Description: Downloads the current release version of Zoom Rooms and builds a package.
+Identifier: com.github.homebysix.pkg.ZoomPresence
+Input:
+  NAME: ZoomPresence
+MinimumVersion: 1.0.1
+ParentRecipe: com.github.homebysix.download.ZoomPresence
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/expanded'
+    flat_pkg_path: '%pathname%'
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/expanded/ZoomPresence.app'
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/expanded/zp.pkg/Payload'
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%RECIPE_CACHE_DIR%/expanded/ZoomPresence.app/Contents/Info.plist'
+- Processor: com.github.homebysix.VersionSplitter/VersionSplitter
+- Processor: PkgCopier
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg'
+    source_pkg: '%pathname%'
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/expanded'

@@ -1,0 +1,30 @@
+Identifier: local.munki.GlobalProtectMac
+Input:
+  DOWNLOAD_URL: https://%HOSTNAME%/global-protect/getmsi.esp?platform=%PLATFORM%
+  HOSTNAME: vpn.example.com
+  NAME: GlobalProtect
+  PLATFORM: mac
+  fw_app_bundle_id: com.github.ygini.munki.GlobalProtect
+  pkginfo:
+    catalogs:
+    - testing
+    description: GlobalProtect delivers the protection of next-generation security
+      platform to the mobile workforce in order to stop targeted cyberattacks, evasive
+      application traffic, phishing, malicious websites, command-and-control traffic,
+      and known and unknown threats.
+    developer: PaloAlto
+    display_name: '%NAME%'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.ygini.munki.GlobalProtect
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.peshay.download.GlobalProtect:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/PaloAlto/GlobalProtect.download.recipe.yaml
+      sha256_hash: 4966101e2a4b8e662b564542f20d94e5c68df3fea223c0f4208cdf33afc7603a
+    com.github.ygini.munki.GlobalProtect:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/PaloAlto/GlobalProtectMac.munki.recipe.yaml
+      sha256_hash: 1f895b8e322f1c4ca92c20e028b8e42aee3f29344cefc518e6ee611d64305b08

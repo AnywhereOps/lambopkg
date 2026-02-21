@@ -1,0 +1,47 @@
+# Downloaded from https://github.com/autopkg/MLBZ521-recipes/blob/8b7738eed4c2f8b6b32a897907ee3420fa0c74ef/Xcode/XcodeCLITools.pkg.recipe
+# Commit: 8b7738eed4c2f8b6b32a897907ee3420fa0c74ef
+# Downloaded at: 2025-11-27 22:26:46 UTC
+
+Identifier: com.github.mlbz521.pkg.XcodeCLITools
+Description: "Download the Xcode Command Line Tools from the Apple dev portal and creates a .pkg.\n\nImportant Override Variables:\n\t* You must override APPLE_ID and one of PASSWORD_FILE or PASSWORD\n\t* BETA must either be empty for stable releases or set to \"Beta\" in order to match Xcode betas\n\nSee https://github.com/autopkg/nmcspadden-recipes/tree/master/Xcode for more information."
+Input:
+  NAME: Xcode Command Line Tools
+  PATTERN: ((?!.*beta).*\/Command_Line_Tools_for_Xcode_.*\/Command_Line_Tools_for_Xcode.*.dmg)
+ParentRecipe: com.github.nmcspadden.download.xcode
+Process:
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/*.pkg'
+    expected_authority_names:
+    - Software Update
+    - Apple Software Update Certification Authority
+    - Apple Root CA
+- Processor: Copier
+  Arguments:
+    source_path: '%pathname%/*.pkg'
+    destination_path: '%RECIPE_CACHE_DIR%/%NAME%.pkg'
+- Processor: com.github.mlbz521.SharedProcessors/XarExtractSingleFile
+  Arguments:
+    archive_path: '%RECIPE_CACHE_DIR%/%NAME%.pkg'
+    file_to_extract: Distribution
+- Processor: com.github.mlbz521.SharedProcessors/XPathParser
+  Arguments:
+    xml_file: '%extracted_file%'
+    xpath: .//pkg-ref[@id="com.apple.pkg.CLTools_macOS_SDK"][@version]
+    attribute_one: version
+    return_variable_attribute_one: version
+- Processor: com.github.mlbz521.SharedProcessors/RenamePath
+  Arguments:
+    source_path: '%RECIPE_CACHE_DIR%/%NAME%.pkg'
+    new_name: '%NAME%-%version%.pkg'
+- Processor: com.github.mlbz521.SharedProcessors/StringRightSplitter
+  Arguments:
+    string_to_split: '%version%'
+    split_on: .
+    occurrence: 5
+    index: 0
+    return_variable: major_version
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/extractedfile'

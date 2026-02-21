@@ -1,0 +1,27 @@
+Identifier: local.munki.PowerShell
+Input:
+  ARCH: x64
+  GITHUB_REPO: PowerShell/PowerShell
+  MAJOR_VERSION: '7.4'
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: PowerShell
+  pkginfo:
+    catalogs:
+    - testing
+    description: PowerShell for every system!
+    developer: PowerShell Team
+    display_name: PowerShell
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.vmiller.munki.PowerShell
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.vmiller.download.PowerShell:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/PowerShell/PowerShell.download.recipe.yaml
+      sha256_hash: 7003ce9143f5054877860ff847ceb35d006c529f2c06e67e2e57e4f1e1bc68c1
+    com.github.vmiller.munki.PowerShell:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/PowerShell/PowerShell.munki.recipe.yaml
+      sha256_hash: 9c94b1022f372d689eabc6283a9edd540f0f6285c891c0930bcfd5c14c831a04

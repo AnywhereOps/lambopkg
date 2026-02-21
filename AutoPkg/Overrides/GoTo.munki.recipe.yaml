@@ -1,0 +1,29 @@
+Identifier: local.munki.GoTo
+Input:
+  ARCH_TYPE: ''
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: GoTo
+  SUPPORTED_ARCH: ''
+  pkginfo:
+    catalogs:
+    - testing
+    description: Online meeting, desktop sharing, and video conferencing software.
+    developer: LogMeIn, Inc.
+    display_name: GoTo
+    name: '%NAME%'
+    supported_architectures:
+    - '%SUPPORTED_ARCH%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.dataJAR-recipes.munki.GoTo
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.download.GoTo:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/GoTo/GoTo.download.recipe.yaml
+      sha256_hash: d245f36446311bbb2d17858b3c80849c0c1088fa65c265a7891674c27dc0b2ce
+    com.github.dataJAR-recipes.munki.GoTo:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/GoTo/GoTo.munki.recipe.yaml
+      sha256_hash: 92659005dab50470bbff277aa72de86bec154ec8114021baf275eae4474876a8

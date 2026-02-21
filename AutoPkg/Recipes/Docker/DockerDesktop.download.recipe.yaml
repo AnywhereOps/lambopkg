@@ -1,0 +1,30 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Docker/DockerDesktop.download.recipe
+# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
+# Downloaded at: 2025-11-27 22:26:26 UTC
+
+Comment: Created with Recipe Robot v2.2.1 (https://github.com/homebysix/recipe-robot)
+Description: "Downloads the latest version of Docker Desktop.\n\nAcceptable values for PLATFORM_ARCH include:\n- 'amd64': Downloads the Intel version of Docker. (This is the default.)\n- 'arm64': Downloads the Apple Silicon version of Docker.\n\nNOTE: The Intel build does not function with Rosetta2, so separate packaging is\nrequired to support Apple Silicon Macs."
+Identifier: com.github.homebysix.download.DockerDesktop
+Input:
+  NAME: Docker
+  PLATFORM_ARCH: amd64
+MinimumVersion: 1.4.1
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: https://desktop\.docker\.com/mac/main/%PLATFORM_ARCH%/[A-Za-z0-9]+/Docker\.dmg
+    result_output_var_name: DOWNLOAD_URL
+    url: https://docs.docker.com/desktop/release-notes/
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%-%PLATFORM_ARCH%.dmg'
+    url: '%DOWNLOAD_URL%'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/Docker.app'
+    requirement: identifier "com.docker.docker" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "9BNSXJN65R"
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%pathname%/Docker.app/Contents/Info.plist'
+    plist_version_key: CFBundleShortVersionString

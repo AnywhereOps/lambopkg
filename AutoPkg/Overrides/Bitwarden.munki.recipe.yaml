@@ -1,0 +1,33 @@
+Identifier: local.munki.Bitwarden
+Input:
+  GITHUB_REPO: bitwarden/desktop
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Bitwarden
+  pkginfo:
+    blocking_applications:
+    - Bitwarden.app
+    - Bitwarden Login Helper.app
+    - Bitwarden Helper NP.app
+    - Bitwarden Helper.app
+    - Bitwarden Helper EH.app
+    catalogs:
+    - testing
+    description: Solve your password management problems. The easiest and safest way
+      for individuals, teams, and business organizations to store, share, and sync
+      sensitive data.
+    developer: 8bit Solutions LLC
+    display_name: Bitwarden
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.blackthroat.munki.Bitwarden
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.blackthroat.download.Bitwarden:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/8bit Solutions LLC/Bitwarden.download.recipe.yaml
+      sha256_hash: 48a4f804d20f3012f69f3d1a7eb30ebe9e5a4b25d544afd3040337f0194b7bf6
+    com.github.blackthroat.munki.Bitwarden:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/8bit Solutions LLC/Bitwarden.munki.recipe.yaml
+      sha256_hash: 227af74facf04be2d67bde799b695a27fb63ab6c963958ee51e78b3cb6697fc2

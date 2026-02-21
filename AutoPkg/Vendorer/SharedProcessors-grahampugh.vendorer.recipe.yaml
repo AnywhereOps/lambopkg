@@ -1,0 +1,16 @@
+Description: Obtain Shared Processors from grahampugh's repo
+
+Identifier: com.github.anywhereops.vendorer.SharedProcessorsgrahampugh
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/grahampugh-recipes
+      folder_path: CommonProcessors
+      commit_sha: efb3512b57ba07bdf23c9f7f800236911a81b295
+      destination_path: SharedProcessors-grahampugh
+      required_license: Apache-2.0

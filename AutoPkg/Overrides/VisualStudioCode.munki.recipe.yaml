@@ -1,0 +1,28 @@
+Identifier: local.munki.VisualStudioCode
+Input:
+  MUNKI_REPO_SUBDIR: apps/Visual Studio Code
+  NAME: Visual Studio Code
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10
+    (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10
+  pkginfo:
+    catalogs:
+    - testing
+    category: Text Editors
+    description: "Code combines the streamlined UI of a modern editor with rich code\
+      \ assistance and navigation, and an integrated debugging experience \u2013 without\
+      \ the need for a full IDE."
+    developer: Microsoft
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.valdore86.munki.visualstudiocode
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.valdore86.download.visualstudiocode:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Visual Studio Code/VisualStudioCode.download.recipe.yaml
+      sha256_hash: 7d68161fe89382959157fa9b5b455056561c4d81eaae1a69d1b3deba18388f74
+    com.github.valdore86.munki.visualstudiocode:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Visual Studio Code/VisualStudioCode.munki.recipe.yaml
+      sha256_hash: f35ca8bd096f691acf5ddf435f114bece2121bd15b448c3f12b783c850c61b73

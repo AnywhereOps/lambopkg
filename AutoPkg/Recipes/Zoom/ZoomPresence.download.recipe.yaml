@@ -1,0 +1,22 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Zoom/ZoomPresence.download.recipe
+# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
+# Downloaded at: 2025-11-27 22:32:34 UTC
+
+Comment: Created with Recipe Robot v0.0.4 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of the Zoom Rooms (Mac) application to setup your conference room for one-touch meeting and calendar integration.
+Identifier: com.github.homebysix.download.ZoomPresence
+Input:
+  NAME: ZoomPresence
+MinimumVersion: 1.0.1
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: https://zoom.us/client/latest/ZoomRooms.pkg
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Zoom Video Communications, Inc. (BJ4HAAB9B3)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%pathname%'

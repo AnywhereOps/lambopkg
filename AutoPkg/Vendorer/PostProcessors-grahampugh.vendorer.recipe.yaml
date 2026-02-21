@@ -1,0 +1,17 @@
+Description: Obtain upstream PostProcessors recipe from autopkg/grahampugh-recipes
+
+Identifier: com.github.anywhereops.vendorer.PostProcessors
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/grahampugh-recipes
+      folder_path: PostProcessors
+      commit_sha: efb3512b57ba07bdf23c9f7f800236911a81b295
+      destination_path: PostProcessors-grahampugh
+      recipe_type: munki
+      required_license: Apache-2.0

@@ -1,0 +1,17 @@
+Description: Obtain upstream Xcode recipe from autopkg/nmcspadden-recipes
+
+Identifier: com.github.anywhereops.vendorer.Xcode
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/nmcspadden-recipes
+      folder_path: Xcode
+      commit_sha: b43a0d0e955b08ac0ce61a92e026a893bec7234e
+      destination_path: Xcode
+      recipe_type: munki
+      required_license: Apache-2.0

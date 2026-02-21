@@ -1,0 +1,32 @@
+Identifier: local.munki.RStudio
+Input:
+  DOWNLOAD_MIRROR: https://download1.rstudio.org/electron/macos
+  MUNKI_REPO_SUBDIR: apps/rstudio
+  NAME: RStudio
+  SEARCH_PATTERN: (?P<dmg>RStudio-(?P<version>([0-9.]+){1,3}?.*).dmg)
+  SEARCH_URL: https://posit.co/download/rstudio-desktop/
+  pkginfo:
+    catalogs:
+    - testing
+    category: Mathematics
+    description: RStudio is the premier integrated development environment for R.
+      It is available in open source and commercial editions and runs on the desktop
+      (Windows, Mac, and Linux) or over the web with RStudio Server.
+    developer: RStudio
+    display_name: RStudio
+    name: '%NAME%'
+    requires:
+    - R
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.autopkg.munki.RStudio
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.hansen-m.download.RStudio:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/RStudio/RStudio.download.recipe.yaml
+      sha256_hash: a5aa0b7992e46e4f446e5b82bc459b9251f631380b0004ae03e2f2b4000fa9f9
+    com.github.joshua-d-miller.autopkg.munki.RStudio:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/RStudio/RStudio.munki.recipe.yaml
+      sha256_hash: 9499a0b625a8f302f126ad9e6242bf7cd61362ccfc70fefee85fa57f9296ac04

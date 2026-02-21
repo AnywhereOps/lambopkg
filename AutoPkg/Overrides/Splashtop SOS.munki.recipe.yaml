@@ -1,0 +1,27 @@
+Identifier: local.munki.Splashtop SOS
+Input:
+  DOWNLOAD_URL: https://download.splashtop.com/sos/SplashtopSOS.dmg
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Splashtop SOS
+  pkginfo:
+    catalogs:
+    - testing
+    description: Download and run the SOS app to give your IT Admin remote access
+      to this computer.
+    developer: Splashtop Inc
+    display_name: Splashtop SOS
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.dataJAR-recipes.munki.Splashtop SOS
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.munki.Splashtop SOS:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Splashtop SOS/Splashtop SOS.munki.recipe.yaml
+      sha256_hash: 2ea796c5e7c70866907c71d44bde7ec48a383e2258abceabde2e53250cb70cba
+    com.github.peetinc.download.SplashtopSOS:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SplashtopSOS/SplashtopSOS.download.recipe.yaml
+      sha256_hash: 9c8c0bf252d113354e697197db597d2f60859533658756db27bb2239041e80cb

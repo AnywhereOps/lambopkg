@@ -1,0 +1,40 @@
+Identifier: local.munki.Garmin Express
+Input:
+  DERIVE_MIN_OS: true
+  DOWNLOAD_URL: https://download.garmin.com/omt/express/GarminExpress.dmg
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: GarminExpress
+  pkginfo:
+    blocking_applications:
+    - Garmin Express.app
+    - Garmin Express Service.app
+    - crashreporter.app
+    - ApplicationUpdater.app
+    catalogs:
+    - testing
+    description: "Easily update maps and software, sync with Garmin Connect\u2122\
+      \ and register your device."
+    developer: Garmin International
+    display_name: Garmin Express
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: "#!/bin/sh\n\n# Uninstall script for Garmin Express\n# Based\
+      \ on:\n# - https://support.garmin.com/en-GB/?faq=6nBhfHhXik18XrRU6BfULA\n\n\
+      # Remove application\nif [ -d \"/Applications/Garmin Express.app\" ]; then\n\
+      \    echo \"Removing Garimn Express.app...\"\n    rm -rf \"/Applications/Garmin\
+      \ Express.app\"\nfi\n\n# Remove package receipt\necho \"Removing pkg receipt...\"\
+      \npkgutil --forget com.garmin.renu.client\n\nexit"
+ParentRecipe: com.github.dataJAR-recipes.munki.Garmin Express
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.andredb90.download.GarminExpress:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Garmin Express/GarminExpress.download.recipe.yaml
+      sha256_hash: af9d270fe6e62d2b0ac983bb53b5d9fe00b3f1e83dc61edb3ec47affac5a4458
+    com.github.dataJAR-recipes.munki.Garmin Express:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Garmin Express/Garmin Express.munki.recipe.yaml
+      sha256_hash: 2a4ed04c2922937dde2edd8c6cdd00badf5d838a84008044d006090dfaa183b9

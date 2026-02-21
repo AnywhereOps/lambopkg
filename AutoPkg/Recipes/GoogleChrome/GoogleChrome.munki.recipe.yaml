@@ -1,0 +1,23 @@
+# Downloaded from https://github.com/autopkg/recipes/blob/4aa2d9380d7f8ba54af95915c8c47a73fcf88acf/GoogleChrome/GoogleChrome.munki.recipe
+# Commit: 4aa2d9380d7f8ba54af95915c8c47a73fcf88acf
+# Downloaded at: 2025-11-27 22:27:43 UTC
+
+Description: Downloads the latest Google Chrome disk image and imports into Munki.
+Identifier: com.github.autopkg.munki.google-chrome
+Input:
+  NAME: GoogleChrome
+  MUNKI_REPO_SUBDIR: apps
+  pkginfo:
+    catalogs:
+    - testing
+    description: Chrome is a fast, simple, and secure web browser, built for the modern web.
+    display_name: Google Chrome
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: 0.2.0
+ParentRecipe: com.github.autopkg.download.googlechrome
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

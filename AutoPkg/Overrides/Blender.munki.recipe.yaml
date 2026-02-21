@@ -1,0 +1,28 @@
+Identifier: local.munki.Blender
+Input:
+  ARCHITECTURE: arm64
+  MUNKI_CATEGORY: Graphics & Rendering
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Blender
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: Blender is the open source, cross platform suite of tools for 3D
+      creation.
+    developer: The Blender Foundation
+    display_name: Blender
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: local.download.Blender
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    local.download.Blender:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Overrides/Blender.download.recipe.yaml
+      sha256_hash: bd35157cab694e8bcbd92ad23fe0e6f5966e06e2b59142fa0584bc5597434744
+    io.github.hjuutilainen.munki.Blender:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Blender/Blender.munki.recipe.yaml
+      sha256_hash: 8c3782563df8315feabda1b5b30d679aa6af03877d249b9354e5348b766cfe5c

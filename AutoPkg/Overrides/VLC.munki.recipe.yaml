@@ -1,0 +1,30 @@
+Identifier: local.munki.VLC
+Input:
+  ARCHITECTURE: universal
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: VLC
+  pkginfo:
+    catalogs:
+    - testing
+    description: VLC is a free and open source cross-platform multimedia player and
+      framework that plays most multimedia files as well as DVD, Audio CD, VCD, and
+      various streaming protocols.
+    developer: The VideoLAN Project
+    display_name: VLC Media Player
+    name: '%NAME%'
+    supported_architectures:
+    - arm64
+    - x86_64
+    unattended_install: true
+ParentRecipe: com.github.autopkg.munki.VLC
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.autopkg.download.VLC:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/VLC/VLC.download.recipe.yaml
+      sha256_hash: bd22d77b0d4907b02cc53c0b5ff8beffec82ddb0cb781d5ac5909fa3f116d56c
+    com.github.autopkg.munki.VLC:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/VLC/VLC.munki.recipe.yaml
+      sha256_hash: 75013bc9b63cbe816336d3f5342cf22921dbf871758017c179bd92f44f5c9d26

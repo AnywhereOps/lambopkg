@@ -1,0 +1,9 @@
+# Downloaded from https://github.com/autopkg/smithjw-recipes/blob/dba2fa9753a41b934855d0ef9c9bd0489b8b1636/SharedProcessors/FriendlyPathDeleter.recipe.yaml
+# Commit: dba2fa9753a41b934855d0ef9c9bd0489b8b1636
+# Downloaded at: 2025-11-27 22:32:56 UTC
+
+Description: Recipe stub for any Processors in this directory.
+Identifier: com.github.smithjw.processors
+Input: {}
+MinimumVersion: '2.3'
+Process: []

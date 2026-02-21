@@ -1,0 +1,66 @@
+Identifier: local.munki.Poly Lens Desktop
+Input:
+  CONTENT_TYPE_HEADER: application/json
+  DATA_BINARY_CONTENT: '{"query":"\n          query {\n            availableProductSoftwareByPid(pid:\"lens-desktop-mac\")
+    {\n              name\n              version\n              publishDate\n              productBuild
+    {\n                archiveUrl\n              }\n            }\n        }"}'
+  DERIVE_MIN_OS: true
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: PolyLensDesktop
+  SEARCH_PATTERN: https://swupdate\.lens\.poly\.com/lens-desktop-mac/.*?/.*?/LensDesktop-.*?.dmg
+  SOFTWARETITLE: Lens
+  VENDOR: Poly
+  pkginfo:
+    catalogs:
+    - testing
+    description: "Control at your fingertips\n\nA single app for customizing your\
+      \ personal devices to how you work, whether that\u2019s in the home or office."
+    developer: Polycom
+    display_name: Poly Lens Desktop
+    name: '%NAME%'
+    supported_architectures:
+    - arm64
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: "#!/bin/sh\n\n# Script for uninstalling Poly Lens Desktop\n\n\
+      # Function to check if we're at the login window\nis_at_login_window() {\n \
+      \   # Check if we can get a console user\n    local console_user\n    console_user=$(/usr/bin/stat\
+      \ -f%Su /dev/console)\n    [ \"$console_user\" = \"root\" ] || [ -z \"$console_user\"\
+      \ ]\n}\n\nHELPERS=\"LegacyHostApp LensControlService\"\n\nif is_at_login_window;\
+      \ then\n    echo \"Running in login window context\"\n    # At login window\
+      \ - just remove the files\n    for helper in $HELPERS; do\n        laplist=\"\
+      /Library/LaunchAgents/com.poly.${helper}.plist\"\n        if [ -r \"$laplist\"\
+      \ ]; then\n            echo \"Removing $laplist\"\n            sudo rm \"$laplist\"\
+      \n        fi\n    done\nelse\n    echo \"Running in user context\"\n    # Get\
+      \ the logged in user information\n    LOGGED_IN_USER=$(/usr/bin/stat -f%Su /dev/console)\n\
+      \    LOGGED_IN_UID=$(/usr/bin/id -u \"$LOGGED_IN_USER\")\n\n    # Unload LaunchAgents\
+      \ as the logged-in user\n    for helper in $HELPERS; do\n        laplist=\"\
+      /Library/LaunchAgents/com.poly.${helper}.plist\"\n        if [ -r \"$laplist\"\
+      \ ]; then\n            echo \"Unloading $laplist for user $LOGGED_IN_USER\"\n\
+      \            /bin/launchctl asuser \"$LOGGED_IN_UID\" /bin/launchctl unload\
+      \ \"$laplist\"\n            sudo rm \"$laplist\"\n        fi\n    done\nfi\n\
+      \necho \"Terminating any running Lens Desktop app instances\"\nif is_at_login_window;\
+      \ then\n    # At login window - simple kill\n    pkill -f \"/Applications/Lens\
+      \ Desktop.app/\" || true\n    sleep 3\n    pkill -9 -f \"/Applications/Lens\
+      \ Desktop.app/\" || true\nelse\n    # Kill processes as the logged-in user\n\
+      \    /bin/launchctl asuser \"$LOGGED_IN_UID\" pkill -f \"/Applications/Lens\
+      \ Desktop.app/\" || true\n    sleep 3\n    /bin/launchctl asuser \"$LOGGED_IN_UID\"\
+      \ pkill -9 -f \"/Applications/Lens Desktop.app/\" || true\nfi\n\nif [ -d \"\
+      /Applications/Lens Desktop.app\" ]; then\n    echo \"Removing Poly Lens Desktop\
+      \ app\"\n    sudo rm -rf \"/Applications/Lens Desktop.app\"\nfi\n\necho \"Removing\
+      \ old data and logs\"\nif [ -d \"/Library/Application Support/Poly\" ]; then\n\
+      \    echo \"Removing Poly Lens Desktop system data (registry)\"\n    sudo rm\
+      \ -rf \"/Library/Application Support/Poly\"\nfi\n\necho \"Done\""
+ParentRecipe: com.github.dataJAR-recipes.munki.Poly Lens Desktop
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.munki.Poly Lens Desktop:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Poly Lens Desktop/Poly Lens Desktop.munki.recipe.yaml
+      sha256_hash: 415d5fb42927ecc227e4f3f8f26dd3fc112f69537a583c1623aed4f0c368986f
+    com.github.rtrouton.download.polylens:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/PolyLens/PolyLens.download.recipe.yaml
+      sha256_hash: a9bc48060d51104cf6bca8e70974e4a1616ec788da7d3ff000a57353a3003c83

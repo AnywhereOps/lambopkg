@@ -1,0 +1,16 @@
+Description: Obtain upstream VirusTotalReporter recipe from autopkg/nstrauss-recipes
+
+Identifier: com.github.anywhereops.vendorer.VirusTotalReporter
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/nstrauss-recipes
+      folder_path: VirusTotalReporter
+      commit_sha: 643071ef97933c6824086e8ddab0474742411075
+      destination_path: PostProcessors-nstrauss
+      recipe_type: munki

@@ -1,0 +1,41 @@
+---
+name: Update Trust Info
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'AutoPkg/Overrides/**/*.recipe'
+      - 'AutoPkg/Overrides/**/*.recipe.yaml'
+      - 'AutoPkg/Recipes/**/*.recipe'
+      - 'AutoPkg/Recipes/**/*.recipe.yaml'
+
+  workflow_dispatch:
+
+jobs:
+  update-trust:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
+
+      - name: Update trust info
+        run: uv run python scripts/update_trust_info.py --all AutoPkg/Overrides
+
+      - name: Commit and push if changed
+        run: |
+          if ! git diff --quiet; then
+            git add -A
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "Update recipe trust info"
+            git push
+          fi

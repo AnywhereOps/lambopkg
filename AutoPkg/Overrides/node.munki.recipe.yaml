@@ -1,0 +1,32 @@
+Identifier: local.munki.node
+Input:
+  DISPLAY_NAME: Node.js
+  MUNKI_CATEGORY: Development
+  MUNKI_REPO_SUBDIR: apps/Node.js
+  NAME: node
+  RELEASE: latest-dubnium
+  pkginfo:
+    blocking_applications:
+    - node
+    - npm
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: "Node.js\xAE is a platform built on Chrome's JavaScript runtime for\
+      \ easily building fast, scalable network applications."
+    developer: Node.js Foundation
+    display_name: '%DISPLAY_NAME%'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.gerardkok.munki.node
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.gerardkok.download.node:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Node.js/node.download.recipe.yaml
+      sha256_hash: 8036e26754c957f2ae5246756496a582acdbce40ecd94031e320776901f8fcdc
+    com.github.gerardkok.munki.node:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Node.js/node.munki.recipe.yaml
+      sha256_hash: 34e294191b350d711ae897aac811c584e4500c9ed4336ff38b6e0712cfe7a7a6

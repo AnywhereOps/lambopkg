@@ -1,0 +1,9 @@
+# Downloaded from https://github.com/autopkg/n8felton-recipes/blob/646d469b0e6e964e0605774d8541ce29912b9207/SharedProcessors/SharedProcessors.recipe
+# Commit: 646d469b0e6e964e0605774d8541ce29912b9207
+# Downloaded at: 2025-11-27 22:31:54 UTC
+
+Description: Shared Processors for n8felton-recipes
+Identifier: com.github.n8felton.shared
+Input: {}
+MinimumVersion: 0.4.3
+Process: []

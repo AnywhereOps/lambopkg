@@ -1,0 +1,33 @@
+# Downloaded from https://github.com/autopkg/timsutton-recipes/blob/9193e16e06f78c6e9692955c13737c8b5e6e56a6/Blackmagic/Fusion8.munki.recipe
+# Commit: 9193e16e06f78c6e9692955c13737c8b5e6e56a6
+# Downloaded at: 2025-11-27 22:30:20 UTC
+
+Description: "Downloads the most recent version of DaVinci Fusion 8 and imports it into Munki.\n\nPlease see directions in the download recipe about additional Input variables required for this\nrecipe.\n"
+Identifier: com.github.timsutton.munki.fusion8
+Input:
+  NAME: Fusion8
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  pkginfo:
+    blocking_applications:
+    - Fusion 8.app
+    catalogs:
+    - testing
+    description: "Fusion is the world\u2019s most advanced compositing software for visual effects artists, broadcast and motion graphic designers and 3D animators."
+    display_name: Fusion 8
+    minimum_os_version: 10.10.0
+    name: '%NAME%'
+MinimumVersion: 0.2.9
+ParentRecipe: com.github.timsutton.download.fusion8
+Process:
+- Processor: Unarchiver
+  Arguments:
+    archive_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/unzip'
+    purge_destination: true
+- Processor: FileFinder
+  Arguments:
+    pattern: '%RECIPE_CACHE_DIR%/unzip/*.dmg'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%found_filename%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

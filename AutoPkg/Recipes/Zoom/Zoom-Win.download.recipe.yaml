@@ -1,0 +1,23 @@
+# Downloaded from https://github.com/autopkg/hansen-m-recipes/blob/de17d7db2537ffa00c27281a392f37fe599efdca/Zoom/Zoom-Win.download.recipe
+# Commit: de17d7db2537ffa00c27281a392f37fe599efdca
+# Downloaded at: 2025-11-27 22:32:35 UTC
+
+Description: Downloads the latest version of Zoom.
+Identifier: com.github.hansen-m.download.zoom-win
+Input:
+  NAME: Zoom
+  DOWNLOAD_URL: https://zoom.us/client/latest/ZoomInstallerFull.msi
+  USER_AGENT: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+MinimumVersion: 0.2.0
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: '%DOWNLOAD_URL%'
+    request_headers:
+      user-agent: '%USER_AGENT%'
+    filename: '%NAME%.msi'
+- Processor: EndOfCheckPhase
+- Processor: com.github.jgstew.SharedProcessors/FileMsiGetProperty
+  Arguments:
+    custom_msi_property: ARPCOMMENTS
+    msi_path: '%pathname%'

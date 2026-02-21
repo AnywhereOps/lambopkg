@@ -1,0 +1,31 @@
+Identifier: local.munki.PyCharm
+Input:
+  ARCHITECTURE: ''
+  CODESIGNATUREAPPNAME: PyCharm CE
+  CODESIGNATUREIDENTIFIER: com.jetbrains.pycharm.ce
+  EDITION: PCC
+  MUNKI_REPO_SUBDIR: apps/JetBrains/PyCharm
+  NAME: PyCharm
+  pkginfo:
+    catalogs:
+    - testing
+    category: Productivity
+    description: "PyCharm provides smart code completion, code inspections, on-the-fly\
+      \ error highlighting and\n                    quick-fixes, along with automated\
+      \ code refactorings and rich navigation capabilities.\n                "
+    developer: JetBrains
+    display_name: '%NAME%'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.its-unibas.munki.PyCharm
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.its-unibas.download.PyCharm:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/JetBrains/PyCharm.download.recipe.yaml
+      sha256_hash: fdcf5adffbca6ccb4da426d3f38b6579c3f2b6afe85ccf254e0fc457cac77002
+    com.github.its-unibas.munki.PyCharm:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/JetBrains/PyCharm.munki.recipe.yaml
+      sha256_hash: 953c4a4de83092b8ee2d56894a820afb7d26ae5e495324e844309d183ec797e6

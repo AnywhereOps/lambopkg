@@ -1,0 +1,25 @@
+Identifier: local.munki.Sublime Merge
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Sublime Merge
+  pkginfo:
+    catalogs:
+    - testing
+    description: Fast Git client from the makers of Sublime Text.
+    developer: Sublime HQ
+    display_name: Sublime Merge
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.SublimeMerge
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.homebysix.download.SublimeMerge:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Sublime HQ/Sublime Merge.download.recipe.yaml
+      sha256_hash: dd73be88e845259deebeeb6695532a05d53db6aedc85f4da048f9a060a45ae35
+    com.github.homebysix.munki.SublimeMerge:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Sublime HQ/Sublime Merge.munki.recipe.yaml
+      sha256_hash: df9273a18f7b64bae5005f293f64e33196c660854baa9d4f06900aef5f17d934

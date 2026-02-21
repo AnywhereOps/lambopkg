@@ -1,0 +1,70 @@
+Identifier: local.munki.Meta Quest Remote Desktop
+Input:
+  DERIVE_MIN_OS: true
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: MetaQuestRemoteDesktop
+  pkginfo:
+    catalogs:
+    - testing
+    description: Remote Desktop lets you pair your computer to your Meta Quest headset,
+      streaming what is on your computer screen into VR.
+    developer: Facebook Technologies, LLC
+    display_name: Meta Quest Remote Desktop
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: "#!/bin/bash\n\n# Uninstall script for Meta Quest Remote Desktop\n\
+      # System-level removal only - no user data affected\n# Based on the install\
+      \ package scripts\n\n# Exit on any error\nset -e\n\n# Define paths\nINSTALL_PATH=\"\
+      /Applications/Meta Quest Remote Desktop.app\"\nOLD_INSTALL_PATH=\"/Applications/VirtualDesktop.app\"\
+      \nDAEMON_DIR=\"/Library/PrivilegedHelperTools\"\nAUDIO_DRIVERS=(\n    \"/Library/Audio/Plug-Ins/HAL/NullAudio.driver\"\
+      \n    \"/Library/Audio/Plug-Ins/HAL/FbRemoteDesktop.driver\"\n    \"/Library/Audio/Plug-Ins/HAL/OculusRemoteDesktopASP.driver\"\
+      \n)\nLAUNCH_DAEMONS=(\n    \"/Library/LaunchDaemons/com.oculus.xr2dsd.auto.plist\"\
+      \n    \"/Library/LaunchDaemons/com.oculus.xr2dsd.plist\"\n)\n\necho \"Starting\
+      \ uninstall script...\"\n\n# Function to stop running processes\nstop_processes()\
+      \ {\n    echo \"Stopping running processes...\"\n    # Stop all related processes\n\
+      \    pkill -15 \"Meta Quest Remote Desktop\" 2>/dev/null || true\n    pkill\
+      \ -15 \"Meta Quest Remote Desktop Helper\" 2>/dev/null || true\n    pkill -15\
+      \ \"OrdServerMac\" 2>/dev/null || true\n    pkill -15 \"Oculus Remote Desktop\"\
+      \ 2>/dev/null || true\n    pkill -15 \"Oculus Remote Desktop Server\" 2>/dev/null\
+      \ || true\n    pkill -15 \"VirtualDesktop\" 2>/dev/null || true\n}\n\n# Function\
+      \ to clean launch daemons\nclean_launch_daemons() {\n    echo \"Cleaning launch\
+      \ daemons...\"\n\n    # Remove launch daemon entries\n    launchctl remove com.oculus.xr2dsd.autoload\
+      \ 2>/dev/null || true\n    launchctl remove com.oculus.xr2dsd.nonauto 2>/dev/null\
+      \ || true\n    launchctl remove com.oculus.xr2dsd 2>/dev/null || true\n    launchctl\
+      \ remove com.meta.mqrd.launcher 2>/dev/null || true\n\n    # Remove launch daemon\
+      \ files\n    for daemon in \"${LAUNCH_DAEMONS[@]}\"; do\n        if [ -f \"\
+      $daemon\" ]; then\n            echo \"Removing daemon: $daemon\"\n         \
+      \   launchctl unload \"$daemon\" 2>/dev/null || true\n            rm -f \"$daemon\"\
+      \n        fi\n    done\n}\n\n# Function to clean application packages\nclean_app_packages()\
+      \ {\n    echo \"Removing application packages...\"\n\n    # Remove current version\n\
+      \    if [ -d \"$INSTALL_PATH\" ]; then\n        echo \"Removing current version\
+      \ at $INSTALL_PATH\"\n        rm -rf \"$INSTALL_PATH\"\n    fi\n\n    # Remove\
+      \ old version\n    if [ -d \"$OLD_INSTALL_PATH\" ]; then\n        echo \"Removing\
+      \ old version at $OLD_INSTALL_PATH\"\n        rm -rf \"$OLD_INSTALL_PATH\"\n\
+      \    fi\n}\n\n# Function to clean audio drivers\nclean_audio_drivers() {\n \
+      \   echo \"Cleaning audio drivers...\"\n\n    for driver in \"${AUDIO_DRIVERS[@]}\"\
+      ; do\n        if [ -d \"$driver\" ]; then\n            echo \"Removing audio\
+      \ driver: $driver\"\n            rm -rf \"$driver\"\n        fi\n    done\n\
+      }\n\n# Function to clean system-level components\nclean_system_components()\
+      \ {\n    echo \"Cleaning system-level components...\"\n\n    # Remove daemon\
+      \ directory\n    if [ -d \"$DAEMON_DIR\" ]; then\n        rm -rf \"$DAEMON_DIR\"\
+      \n    fi\n\n    # Clear system-level registration\n    /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister\
+      \ -u \"$INSTALL_PATH\"\n}\n\n# Main execution\necho \"Starting system-level\
+      \ uninstall...\"\n\nstop_processes\nclean_launch_daemons\nclean_app_packages\n\
+      clean_audio_drivers\nclean_system_components\n\necho \"System-level uninstall\
+      \ completed successfully\"\necho \"Note: User-specific preferences and data\
+      \ were preserved\"\nexit"
+ParentRecipe: com.github.dataJAR-recipes.munki.Meta Quest Remote Desktop
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.download.Meta Quest Remote Desktop:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Meta Quest Remote Desktop/Meta Quest Remote Desktop.download.recipe.yaml
+      sha256_hash: bf846e67bf8532a119d8da5f6e5161e4336a360e4d1e4bcc2a16eb39a7bb0f87
+    com.github.dataJAR-recipes.munki.Meta Quest Remote Desktop:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Meta Quest Remote Desktop/Meta Quest Remote Desktop.munki.recipe.yaml
+      sha256_hash: 600d65f7c32697106472402f0063416d63e5a23779da4292506f0a6fc86d7c60

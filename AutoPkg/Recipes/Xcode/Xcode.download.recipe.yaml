@@ -1,0 +1,47 @@
+# Downloaded from https://github.com/autopkg/nmcspadden-recipes/blob/b43a0d0e955b08ac0ce61a92e026a893bec7234e/Xcode/Xcode.download.recipe
+# Commit: b43a0d0e955b08ac0ce61a92e026a893bec7234e
+# Downloaded at: 2025-11-27 22:26:48 UTC
+
+Description: Download Xcode from the Apple dev portal. You must override the APPLE_ID and one of PASSWORD or PASSWORD_FILE. BETA must either be empty for stable releases or set to "Beta" in order to match Xcode betas.
+Identifier: com.github.nmcspadden.download.xcode
+Input:
+  NAME: Xcode
+  APPLE_ID: dev@domain.com
+  PASSWORD_FILE: ''
+  NOSKIP: ''
+  PASSWORD: ''
+  BETA: ''
+  PATTERN: (.*\/Xcode_.*\/Xcode.*.xip)
+  VERSION_EMIT_PATH: xcode_tag
+MinimumVersion: 1.0.4
+Process:
+- Processor: AppleDataGatherer
+  Arguments:
+    apple_id: '%APPLE_ID%'
+    password_file: '%PASSWORD_FILE%'
+    password: '%PASSWORD%'
+    appID_key: 891bd3417a7776362562d2197f89480a8547b108fd934911bcbea0110d07f757
+- Processor: AppleCookieDownloader
+  Arguments:
+    login_data: '%RECIPE_CACHE_DIR%/downloads/login_data'
+- Processor: AppleURLSearcher
+  Arguments:
+    re_pattern: '%PATTERN%'
+- Processor: XcodeVersionEmitter
+  Arguments:
+    dont_skip: '%NOSKIP%'
+    url: '%match%'
+    output_filepath: '%VERSION_EMIT_PATH%'
+- Processor: EndOfCheckPhase
+- Processor: URLDownloader
+  Arguments:
+    url: '%match%'
+    curl_opts:
+    - --request
+    - GET
+    - --cookie
+    - '%download_cookies%'
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/downloads/login_data'

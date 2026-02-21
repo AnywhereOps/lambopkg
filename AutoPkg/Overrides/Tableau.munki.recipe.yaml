@@ -1,0 +1,57 @@
+Identifier: local.munki.Tableau
+Input:
+  DERIVE_MIN_OS: true
+  DOWNLOAD_URL: https://www.tableau.com/downloads/desktop/mac-arm64
+  MUNKI_REPO_SUBDIR: apps/Tableau
+  NAME: TableauDesktop
+  pkg_ids_set_optional_true:
+  - com.tableausoftware.desktopShortcut
+  pkginfo:
+    blocking_applications:
+    - Tableau
+    catalogs:
+    - testing
+    description: Tableau Desktop is data visualization software that lets you see
+      and understand data in minutes.
+    display_name: Tableau Desktop
+    installer_choices_xml:
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.tableausoftware.desktop.app
+    - attributeSetting: 0
+      choiceAttribute: selected
+      choiceIdentifier: com.tableausoftware.desktopShortcut
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.amazon.redshiftodbc
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.tableausoftware.mysql
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.tableausoftware.oracle
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.tableausoftware.postgresql
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.simba.sparkodbc
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.simba.sqlserverodbc
+    name: '%NAME%'
+    preinstall_script: "#!/bin/sh\necho \"Removing old copies of Tableau Desktop\"\
+      \nrm -rf /Applications/Tableau\\ Desktop\\ *.app\n\nexit $?\n\t\t        "
+    unattended_install: true
+ParentRecipe: com.github.gmarnin.munki.tableau-desktop
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.gmarnin.download.tableau-desktop:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Tableau/Tableau.download.recipe.yaml
+      sha256_hash: a671a489e2a8dbb63b3dab8d2593a05595b84b3af6c3d98452c4918890bde0a0
+    com.github.gmarnin.munki.tableau-desktop:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Tableau/Tableau.munki.recipe.yaml
+      sha256_hash: 9575a89dd8d1ca9274e57abca4e8ffdd7fcbb64bcb2cc190177f7bc32145de9d

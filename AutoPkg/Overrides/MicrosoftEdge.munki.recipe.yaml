@@ -1,0 +1,36 @@
+Identifier: local.munki.MicrosoftEdge
+Input:
+  CHANNEL: ''
+  DERIVE_MIN_OS: true
+  MUNKI_CATEGORY: Productivity
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: MicrosoftEdge
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: Microsoft's Chromium-based browser
+    developer: Microsoft
+    display_name: Microsoft Edge
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.n8felton.munki.MicrosoftEdge
+ParentRecipeTrustInfo:
+  non_core_processors:
+    MicrosoftEdgeURLProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Microsoft/MicrosoftEdgeURLProvider.py
+      sha256_hash: 6968038688c52bfefca17961f8c55dc574a021912d42bb5b3c8c797c46205a9b
+    com.github.n8felton.shared/RemoteFilenameFinder:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-n8felton/RemoteFilenameFinder.py
+      sha256_hash: 1aeca5a092ccae12faf9edc1c61082ffd340352dfac84e99e0a83614aaf8cc7c
+  parent_recipes:
+    com.github.n8felton.download.MicrosoftEdge:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Microsoft/MicrosoftEdge.download.recipe.yaml
+      sha256_hash: 0f416217cec36916bcb6b7581a885fd6da8f42faff23934b81db39ca890fa600
+    com.github.n8felton.munki.MicrosoftEdge:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Microsoft/MicrosoftEdge.munki.recipe.yaml
+      sha256_hash: a1eb9023e80364403749da880454fa98cb5748c9e360d9c3b9da2f081c241485

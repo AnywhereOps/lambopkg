@@ -1,0 +1,21 @@
+---
+name: Lint Changed Recipes
+
+on:
+  push:
+    paths:
+      - "AutoPkg/**/*.recipe.yaml"
+      - ".github/workflows/*.yaml"
+  pull_request:
+    paths:
+      - "AutoPkg/**/*.recipe.yaml"
+      - ".github/workflows/*.yaml"
+  workflow_dispatch:  # Enables manual triggering
+
+jobs:
+  validate-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
+      - name: Validate YAML Recipes
+        run: yamllint AutoPkg/**/*.recipe.yaml

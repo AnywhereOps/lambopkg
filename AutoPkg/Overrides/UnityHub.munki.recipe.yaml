@@ -1,0 +1,33 @@
+Identifier: local.munki.UnityHub
+Input:
+  BUILD: arm64
+  DOWNLOAD_URL: https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup.dmg
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: UnityHub
+  pkginfo:
+    catalogs:
+    - testing
+    description: The Unity Hub is a standalone application that streamlines the way
+      you find, download, and manage your Unity Projects and installations. In addition,
+      you can manually add versions of the Editor that you have already installed
+      on your machine to your Hub.
+    developer: Unity 3D
+    display_name: Unity Hub
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.dataJAR-recipes.munki.UnityHub
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.munki.UnityHub:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Unity3D/UnityHub.munki.recipe.yaml
+      sha256_hash: 02c0c7cb07527f07f480588e165efc558cda5abae987b521e4ede2bfb3567ded
+    com.github.dataJAR-recipes.pkg.UnityHub:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Unity3D/UnityHub.pkg.recipe.yaml
+      sha256_hash: b3372bd8535b4c7332bf2fda1905a05496c133dc7694d7fac6df85be27942e6d
+    com.github.hansen-m.download.UnityHub:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Unity3D/UnityHub.download.recipe.yaml
+      sha256_hash: ca3690cc3686a4b4c3faee17906f894959bc864a74e57d1d4122fdb3f32fd098

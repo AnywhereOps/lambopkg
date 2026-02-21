@@ -1,0 +1,22 @@
+Identifier: local.download.Bomgar Jump Client
+Input:
+  FILE_SHARE: /path/to/offline/repository
+  MAJOR_VERSION: ''
+  MAX_FOLDER_DEPTH: '1'
+  NAME: Bomgar Jump Client
+  NAME_EXCEPTION: testing
+  NAME_LIMITATION: ''
+  SEARCH_STRING: Bomgar Jump Client
+  VERSION_STRING_SEPARATOR: '-'
+ParentRecipe: com.github.mlbz521.download.BomgarJumpClient
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.mlbz521.SharedProcessors/OfflineApps:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-MLBZ521/OfflineApps.py
+      sha256_hash: c7ad0b8cef10bc0ab309af5db4cc7d6856557e6819535ffeb4692cf263007149
+  parent_recipes:
+    com.github.mlbz521.download.BomgarJumpClient:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/BeyondTrust_Bomgar/Bomgar Jump Client.download.recipe.yaml
+      sha256_hash: fab21e3955d25757163b1f9fd4277c2c82e7af99921ad857738059c4f360d12e

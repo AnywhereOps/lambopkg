@@ -1,0 +1,39 @@
+Identifier: local.munki.Dropbox
+Input:
+  BUILD: stable
+  DOWNLOADURL: https://www.dropbox.com/download?plat=mac&full=1&build=%BUILD%
+  MUNKI_REPO_SUBDIR: apps/Dropbox
+  NAME: Dropbox
+  pkginfo:
+    catalogs:
+    - testing
+    description: Dropbox is a free service that lets you bring all your photos, docs,
+      and videos anywhere. This means that any file you save to your Dropbox will
+      automatically save to all your computers, phones and even the Dropbox website.
+    display_name: Dropbox
+    name: '%NAME%'
+    postinstall_script: "#!/bin/sh\n# based on Ruby postinstall script by Riley Shott:\n\
+      # https://groups.google.com/group/munki-dev/browse_thread/thread/a2813e7f62535f13/63d127534541f863\n\
+      # modifications:\n# - always extract the helper tool with each install instead\
+      \ of skipping if it exists\n# - remove xattr com.apple.quarantine removal, as\
+      \ Munki will have already done this upon\n#   installation; normal autopkg runs\
+      \ also won't quarantine the download to begin with\n\nHELPER_SRC_PATH=/Applications/Dropbox.app/Contents/Resources/DropboxHelperInstaller.tgz\n\
+      HELPER_DST_DIR=/Library/DropboxHelperTools\nHELPER_DST_PATH=\"$HELPER_DST_DIR/DropboxHelperInstaller\"\
+      \n\nif [ -e \"$HELPER_SRC_PATH\" ]; then\n  [ -d \"$HELPER_DST_DIR\" ] || mkdir\
+      \ \"$HELPER_DST_DIR\"\n  /usr/bin/tar -C \"$HELPER_DST_DIR\" -xz -f \"$HELPER_SRC_PATH\"\
+      \n  /usr/sbin/chown root:wheel \"$HELPER_DST_PATH\" \"$HELPER_DST_DIR\"\n  /bin/chmod\
+      \ 04511 \"$HELPER_DST_PATH\"\nelse\n  echo \"Expected $HELPER_SRC_PATH, but\
+      \ it was not present in the Dropbox dmg.\"\n  exit 1\nfi\n"
+    unattended_install: true
+ParentRecipe: com.github.autopkg.munki.dropbox
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.autopkg.download.dropbox:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Dropbox/Dropbox.download.recipe.yaml
+      sha256_hash: 0b00cb5aa4184dc1f4f196392310034ba569116ee5393f42cd335d3c98a9029b
+    com.github.autopkg.munki.dropbox:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Dropbox/Dropbox.munki.recipe.yaml
+      sha256_hash: 1ce6171feae945d03a46a6b33572ab5b1b0721cc0ca4b200d4b3f4cf38bda08b

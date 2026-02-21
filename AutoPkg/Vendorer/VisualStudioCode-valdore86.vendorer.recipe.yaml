@@ -1,0 +1,16 @@
+Description: Obtain upstream Visual Studio Code recipe from autopkg/valdore86-recipes
+
+Identifier: com.github.anywhereops.vendorer.VisualStudioCode
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/valdore86-recipes
+      folder_path: Visual Studio Code
+      commit_sha: ac8cd106a30988731d5b41424d2751b293755f15
+      destination_path: Visual Studio Code
+      recipe_type: munki

@@ -1,0 +1,15 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Docker/DockerDesktop.pkg.recipe
+# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
+# Downloaded at: 2025-11-27 22:26:26 UTC
+
+Comment: Created with Recipe Robot v2.2.1 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of Docker Desktop and creates a package. See the download recipe description for information about using the PLATFORM_ARCH input variable to download the Intel/Apple Silicon version of Docker.
+Identifier: com.github.homebysix.pkg.DockerDesktop
+Input:
+  NAME: Docker
+MinimumVersion: 1.4.1
+ParentRecipe: com.github.homebysix.download.DockerDesktop
+Process:
+- Processor: AppPkgCreator
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%-%PLATFORM_ARCH%-%version%.pkg'

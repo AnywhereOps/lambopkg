@@ -1,0 +1,42 @@
+Identifier: local.munki.Zoom
+Input:
+  BUNDLE_ID: us.zoom.xos
+  DOWNLOAD_URL: https://zoom.us/client/latest/ZoomInstallerIT.pkg
+  MUNKI_REPO_SUBDIR: apps/Zoom
+  NAME: Zoom
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10
+    (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10
+  pkginfo:
+    blocking_applications:
+    - zoom.us
+    catalogs:
+    - testing
+    description: The Zoom app provides cloud-hosted video conferencing, plus online
+      meetings and group messaging.
+    developer: Zoom Video Communications, Inc.
+    display_name: Zoom
+    minimum_os_version: '10.7'
+    name: '%NAME%'
+    postuninstall_script: '#!/bin/sh
+
+      rm -rf /Applications/zoom.us.app
+
+      '
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.Zoom
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.hansen-m.download.zoomus:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Zoom/Zoom.download.recipe.yaml
+      sha256_hash: 20f33b5492d0e5efb5dcf907167c2f749dd8caf75428f5441d98f03c1d4cbcb4
+    com.github.homebysix.munki.Zoom:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Zoom/Zoom.munki.recipe.yaml
+      sha256_hash: b7d6bf37b8c6e620da55d6b35a45096c6f8763a882030b190309588402553435
+    com.github.homebysix.pkg.Zoom:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Zoom/Zoom.pkg.recipe.yaml
+      sha256_hash: ede682bd972f3001623996a4fc50c71ea4b98f7b045a0fc8ba9926ff5cb14433

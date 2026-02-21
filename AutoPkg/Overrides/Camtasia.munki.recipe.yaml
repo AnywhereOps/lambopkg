@@ -1,0 +1,30 @@
+Identifier: local.munki.Camtasia
+Input:
+  DISPLAY_NAME: '%NAME%'
+  DOWNLOAD_URL: https://download.techsmith.com/camtasiamac/releases/Camtasia.dmg
+  MUNKI_REPO_SUBDIR: DMS/Applications
+  NAME: Camtasia
+  pkginfo:
+    catalogs:
+    - testing
+    description: A powerful, yet easy-to-use screen recorder, Camtasia helps you create
+      professional videos without having to be a video pro. Easily record your screen
+      movements and actions, or import HD video from a camera or other source. Customize
+      and edit content on both Mac and Windows platforms, and share your videos with
+      viewers on nearly any device.
+    display_name: '%DISPLAY_NAME%'
+    name: '%NAME%'
+    postinstall_script: "#!/bin/bash\n/Applications/Camtasia\\ 2023.app/Contents/Resources/aceinstaller\
+      \ install --silent\n            "
+ParentRecipe: com.github.jps3.munki.Camtasia
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.jps3.download.Camtasia:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Camtasia/Camtasia.download.recipe.yaml
+      sha256_hash: 9e194195f3370d8857a71ae716c3b0020b0cf961c3a81668b993b9a149e11d36
+    com.github.jps3.munki.Camtasia:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Camtasia/Camtasia.munki.recipe.yaml
+      sha256_hash: 3750ded129fba2b87a089f2634b1639c2fd554b0497e11661eaf49dc5d8cb61d

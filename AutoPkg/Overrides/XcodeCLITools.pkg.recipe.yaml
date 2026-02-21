@@ -1,0 +1,54 @@
+Identifier: local.pkg.XcodeCLITools
+Input:
+  APPLE_ID: dev@domain.com
+  BETA: ''
+  NAME: Xcode Command Line Tools
+  NOSKIP: ''
+  PASSWORD: ''
+  PASSWORD_FILE: ''
+  PATTERN: ((?!.*beta).*\/Command_Line_Tools_for_Xcode_.*\/Command_Line_Tools_for_Xcode.*.dmg)
+  VERSION_EMIT_PATH: xcode_tag
+ParentRecipe: com.github.mlbz521.pkg.XcodeCLITools
+ParentRecipeTrustInfo:
+  non_core_processors:
+    AppleCookieDownloader:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Xcode/AppleCookieDownloader.py
+      sha256_hash: 2ececc26d212d4e7b1aee46fe4d2e2df102b0a3d63ef0dfd80ef63af71be333b
+    AppleDataGatherer:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Xcode/AppleDataGatherer.py
+      sha256_hash: 9f09325eb61d45f94eed72b3960955fa19e6487ea142cf2f75a338417e0a663c
+    AppleURLSearcher:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Xcode/AppleURLSearcher.py
+      sha256_hash: dde02986d55ddef584179a5f4469f673eef8a980b803cfe53ef846a7d054e813
+    XcodeVersionEmitter:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Xcode/XcodeVersionEmitter.py
+      sha256_hash: 459ddc8827f35dc0a6205a4df33d22714f5e21714b9c6790b6c431c9b6a40ba6
+    com.github.mlbz521.SharedProcessors/RenamePath:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-MLBZ521/RenamePath.py
+      sha256_hash: faa233fb45d31992b02ae464d1f0c2a58b94d7e29cf1d4fae177b437b80be41a
+    com.github.mlbz521.SharedProcessors/StringRightSplitter:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-MLBZ521/StringRightSplitter.py
+      sha256_hash: cc1b0445cf5b93fead22641833bf80742be599eabb3b83a3df9b32c842d47271
+    com.github.mlbz521.SharedProcessors/XPathParser:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-MLBZ521/XPathParser.py
+      sha256_hash: 27c935a312b5544f2579deda5d04a192ce489d64192180f6b3c532a33ebd3858
+    com.github.mlbz521.SharedProcessors/XarExtractSingleFile:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-MLBZ521/XarExtractSingleFile.py
+      sha256_hash: 113a0ce1529ee70cfb312e036579b50bb598316ed9f6c33f13f631532daa407e
+  parent_recipes:
+    com.github.mlbz521.pkg.XcodeCLITools:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Xcode/XcodeCLITools.pkg.recipe.yaml
+      sha256_hash: 77ebaab151879546fcf4f52cd8f721a95edffe53b456a369cf679f68a3c4a094
+    com.github.nmcspadden.download.xcode:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Xcode/Xcode.download.recipe.yaml
+      sha256_hash: 6800adc75ff7e951c04ca243e717d82fe3ace181412f236dc190af5cb40c03cd

@@ -1,0 +1,32 @@
+Identifier: local.munki.GIMP
+Input:
+  ARCH: x86_64
+  MUNKI_CATEGORY: Image Manipulation
+  MUNKI_REPO_SUBDIR: apps/GIMP
+  NAME: GIMP
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: GIMP is the GNU Image Manipulation Program. It is a freely distributed
+      piece of software for such tasks as photo retouching, image composition and
+      image authoring. It works on many operating systems, in many languages.
+    developer: The GIMP Team
+    display_name: GIMP
+    name: '%NAME%'
+    supported_architectures:
+    - '%ARCH%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: io.github.hjuutilainen.munki.GIMP
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    io.github.hjuutilainen.download.GIMP:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/GIMP/GIMP.download.recipe.yaml
+      sha256_hash: 130da9a58f8f3f4d28e67d2266277f03912248fd2b0e9a62ed347905cf4b7369
+    io.github.hjuutilainen.munki.GIMP:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/GIMP/GIMP.munki.recipe.yaml
+      sha256_hash: 88775aa92ac46917eb66b99e29c6da648ba72e4271bf2518a9ef6f09f8e7601b

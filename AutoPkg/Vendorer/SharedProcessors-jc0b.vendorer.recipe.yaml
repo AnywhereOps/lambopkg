@@ -1,0 +1,15 @@
+Description: Obtain Shared Processors from jc0b's repo
+
+Identifier: com.github.anywhereops.vendorer.SharedProcessorsjc0b
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/jc0b-recipes
+      folder_path: SharedProcessors
+      commit_sha: 2db4a7c0ef51fe76b46c23ef1f4c1f025deac181
+      destination_path: SharedProcessors-jc0b

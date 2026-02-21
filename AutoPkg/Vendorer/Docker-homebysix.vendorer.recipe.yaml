@@ -1,0 +1,17 @@
+Description: Obtain upstream Docker recipe from autopkg/homebysix-recipes
+
+Identifier: com.github.anywhereops.vendorer.Docker
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/homebysix-recipes
+      folder_path: Docker
+      commit_sha: 26f97759822c6c90b8f458f35b82ff9496785c71
+      destination_path: Docker
+      recipe_type: munki
+      required_license: Apache-2.0

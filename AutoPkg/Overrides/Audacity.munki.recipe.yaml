@@ -1,0 +1,26 @@
+Identifier: local.munki.Audacity
+Input:
+  ARCHITECTURE: x86_64
+  MUNKI_REPO_SUBDIR: apps/Audacity
+  NAME: Audacity
+  PRERELEASE: ''
+  pkginfo:
+    catalogs:
+    - testing
+    description: Audacity is a free, easy-to-use, multi-track audio editor and recorder
+      for Windows, Mac OS X, GNU/Linux and other operating systems.
+    display_name: Audacity
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.dataJAR-recipes.munki.Audacity
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.download.Audacity:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Audacity/Audacity.download.recipe.yaml
+      sha256_hash: fee4747d45565c0d01f9093a259e7fa62bb865b6b117c533d536c9188893746f
+    com.github.dataJAR-recipes.munki.Audacity:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Audacity/Audacity.munki.recipe.yaml
+      sha256_hash: 3532965e5e33ba99f7d24738bc6f3e1ed2126920c67264517e731db67b6c8a33

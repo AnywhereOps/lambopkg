@@ -1,0 +1,31 @@
+Identifier: local.munki.AmazonCorrettoJDK
+Input:
+  ARCH: x64
+  MAJOR_VERSION: '8'
+  MUNKI_REPO_SUBDIR: jdk
+  NAME: Corretto%MAJOR_VERSION%
+  pkginfo:
+    catalogs:
+    - testing
+    description: Amazon Corretto is a no-cost, multiplatform, production-ready distribution
+      of the Open Java Development Kit (OpenJDK).
+    display_name: Amazon Corretto %MAJOR_VERSION%
+    minimum_os_version: '10.9'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.amazon.aws.munki.amazoncorretto
+ParentRecipeTrustInfo:
+  non_core_processors:
+    CorrettoURLProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Corretto/CorrettoURLProvider.py
+      sha256_hash: ab45a9fa915b52854b7b5d7625aba5ccda210a5f103447cf8df931938f5f0f38
+  parent_recipes:
+    com.amazon.aws.download.amazoncorretto:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Corretto/AmazonCorrettoJDK.download.recipe.yaml
+      sha256_hash: 31702e2700f1e7488bcb8476e925e2bbe4a9f1a79420459cd578015ee723477c
+    com.amazon.aws.munki.amazoncorretto:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Corretto/AmazonCorrettoJDK.munki.recipe.yaml
+      sha256_hash: 3c2d22220e002f670ab88cd5605e0b7dcad866fa13530a05b13e7314d4058de1

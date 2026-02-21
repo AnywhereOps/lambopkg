@@ -1,0 +1,44 @@
+Identifier: local.munki.Blackmagic Desktop Video
+Input:
+  DERIVE_MIN_OS: true
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: BlackmagicDesktopVideo
+  PRODUCT_NAME_PATTERN: ^Desktop Video (?P<version>\d+\.\d+(\.\d+)?)$
+  REG_CITY: ''
+  REG_COUNTRY: ''
+  REG_EMAIL: ''
+  REG_FIRSTNAME: ''
+  REG_LASTNAME: ''
+  REG_PHONE: ''
+  REG_STATE: ''
+  pkginfo:
+    catalogs:
+    - testing
+    description: Blackmagic Desktop Video includes everything you need to set up your
+      DeckLink, Multibridge, UltraStudio, Intensity and H.264 Pro Recorder for any
+      task in your facility.
+    developer: Blackmagic Design Inc
+    display_name: Blackmagic Desktop Video
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.dataJAR-recipes.munki.Blackmagic Desktop Video
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.grahampugh.recipes.commonprocessors/ChangeModeOwner:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-grahampugh/ChangeModeOwner.py
+      sha256_hash: f27cbc43e0168a703a9bebc47655c4334084efa5114be73efc119136a47bb46d
+    com.github.timsutton.download.davinciresolvelite11/BlackMagicURLProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-timsutton/BlackMagicURLProvider.py
+      sha256_hash: 62a931d3a269d6d704b5311b64eae597caa1d3e13c202fc0667eeca5b5707884
+  parent_recipes:
+    com.github.dataJAR-recipes.download.Blackmagic Desktop Video:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Blackmagic Desktop Video/Blackmagic Desktop Video.download.recipe.yaml
+      sha256_hash: c33726e7b4e19c08b7ea9215d49400a1467d0f0a7d85112d17dc57226dcd77e6
+    com.github.dataJAR-recipes.munki.Blackmagic Desktop Video:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Blackmagic Desktop Video/Blackmagic Desktop Video.munki.recipe.yaml
+      sha256_hash: 2ca8adece34af6ba131caa6db4d7232197094245deba124a06f55d14abbfb8fb

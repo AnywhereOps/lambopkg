@@ -1,0 +1,11 @@
+Identifier: local.download.DellDisplayAndPeripheralManager
+Input:
+  NAME: Dell Display and Peripheral Manager
+ParentRecipe: com.github.grahampugh.recipes.download.DellDisplayAndPeripheralManager
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.grahampugh.recipes.download.DellDisplayAndPeripheralManager:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/DellDisplayAndPeripheralManager/DellDisplayAndPeripheralManager.download.recipe.yaml
+      sha256_hash: 7da8615ea27b6fcfb9c18d03574f420009bba0cb2a849c0ef939e94bcd908c35

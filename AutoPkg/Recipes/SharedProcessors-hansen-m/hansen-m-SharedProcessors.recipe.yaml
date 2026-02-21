@@ -1,0 +1,9 @@
+# Downloaded from https://github.com/autopkg/hansen-m-recipes/blob/de17d7db2537ffa00c27281a392f37fe599efdca/SharedProcessors/hansen-m-SharedProcessors.recipe
+# Commit: de17d7db2537ffa00c27281a392f37fe599efdca
+# Downloaded at: 2025-11-27 20:29:07 UTC
+
+Description: Dummy recipe for referencing shared processors in this directory.
+Identifier: com.github.hansen-m.SharedProcessors
+Input: {}
+MinimumVersion: 0.4.0
+Process: []

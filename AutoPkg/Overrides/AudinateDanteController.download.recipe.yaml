@@ -1,0 +1,12 @@
+Identifier: local.download.AudinateDanteController
+Input:
+  NAME: BlackmagicATEMSwitchers
+  SPARKLE_FEED_URL: https://software-updates.audinate.com/DanteController/appcast/DanteController-apple_intel.xml
+ParentRecipe: com.github.davidbpirie.download.AudinateDanteController
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.davidbpirie.download.AudinateDanteController:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Audinate/AudinateDanteController.download.recipe.yaml
+      sha256_hash: 42b51ead4db8190aca460a2b4b421a93e196f2d8ab8283e469647363fb1c0ef9

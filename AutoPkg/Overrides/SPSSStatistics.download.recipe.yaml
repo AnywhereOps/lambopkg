@@ -1,0 +1,22 @@
+Identifier: local.download.SPSSStatistics
+Input:
+  FILE_SHARE: /path/to/offline/repository
+  MAJOR_VERSION: ''
+  MAX_FOLDER_DEPTH: '1'
+  NAME: SPSS Statistics
+  NAME_EXCEPTION: ''
+  NAME_LIMITATION: ''
+  SEARCH_STRING: SPSS
+  VERSION_STRING_SEPARATOR: '-'
+ParentRecipe: com.github.mlbz521.download.SPSSStatistics
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.mlbz521.SharedProcessors/OfflineApps:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-MLBZ521/OfflineApps.py
+      sha256_hash: c7ad0b8cef10bc0ab309af5db4cc7d6856557e6819535ffeb4692cf263007149
+  parent_recipes:
+    com.github.mlbz521.download.SPSSStatistics:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SPSS Statistics/SPSSStatistics.download.recipe.yaml
+      sha256_hash: ef3ba5f7fa52335d50b57a829de222ad862cfe9dc2a8388ae4ad8880d8314df9

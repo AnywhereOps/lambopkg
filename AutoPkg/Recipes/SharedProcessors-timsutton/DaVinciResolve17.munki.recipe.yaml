@@ -1,0 +1,49 @@
+# Downloaded from https://github.com/autopkg/timsutton-recipes/blob/9193e16e06f78c6e9692955c13737c8b5e6e56a6/Blackmagic/DaVinciResolve17.munki.recipe
+# Commit: 9193e16e06f78c6e9692955c13737c8b5e6e56a6
+# Downloaded at: 2025-11-27 22:30:19 UTC
+
+Description: "Downloads the most recent version of DaVinci Resolve 17 and imports into Munki.\n\nPlease see directions in the download recipe about additional Input variables required for this\nrecipe.\n\nResolve also includes the CUDA driver installed via a postinstall script. It may or may not\ninstall, depending on whether a equivalent version of the CUDA driver exists already on the system.\nThe postinstall script calls another script located within the application bundle to perform the\nactual installation. It can be found here within this recipe's CACHE_DIR (look for CUDA_VER):\n\npkg_payload/Library/Application Support/Blackmagic Design/DaVinci Resolve/Prereqs/install.sh\n\nEven if the CUDA driver does install via the Resolve installer pkg, it should not require a\nrestart, as it reloads its kext and support daemons in postinstall scripts. You may consider\nadding the CUDA driver as a separate item in Munki and adding it as a 'requires' for Resolve.\n\nOne caveat with this package, is that this installer runs a script that evalutes\nthe owner of /dev/console to derive a home directory, which then is configured system-wide\nas a cache location for Resolve. If this installer is run while a user is logged in, then\nthis user's home will be used, and if run at the loginwindow, the root user's home will be.\n"
+Identifier: com.github.timsutton.munki.davinciresolve17
+Input:
+  NAME: DaVinciResolve17
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  pkginfo:
+    catalogs:
+    - testing
+    description: This software installs the free version of DaVinci Resolve 17 which features up to 10x faster editing performance, Fairlight audio post production, dozens of new filters and effects and more. Technical support is available via the Blackmagic Design community forums.
+    display_name: DaVinci Resolve 17
+    minimum_os_version: 10.11.6
+    name: '%NAME%'
+    uninstallable: true
+    uninstall_method: uninstall_script
+    uninstall_script: "#!/bin/sh\n            # Run the uninstaller script provided with the app.\n            # Alternatively, replace this with your own version of their uninstaller.\n            # For example, their uninstaller intentionally leaves the following on the\n            # system, which you may disagree with:\n            # - /Library/Application Support/Blackmagic Design/DaVinci Resolve\n            # - /Library/Preferences/Blackmagic Design/DaVinci Resolve\n            #\n            # Their uninstaller is also executable and world-writable.\n\n            UNINSTALL_SCRIPT=\"/Applications/DaVinci Resolve/Uninstall Resolve.app/Contents/Resources/uninstall.sh\"\n\n            [ -x \"${UNINSTALL_SCRIPT}\" ] || exit 1\n            \"${UNINSTALL_SCRIPT}\"\n            "
+MinimumVersion: 0.2.9
+ParentRecipe: com.github.timsutton.download.davinciresolve17
+Process:
+- Processor: Unarchiver
+  Arguments:
+    archive_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/unzip'
+    purge_destination: true
+- Processor: FileFinder
+  Arguments:
+    pattern: '%RECIPE_CACHE_DIR%/unzip/*.dmg'
+- Processor: FlatPkgUnpacker
+  Arguments:
+    flat_pkg_path: '%found_filename%/*.pkg'
+    destination_path: '%RECIPE_CACHE_DIR%/distpkg'
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      installs:
+      - CFBundleIdentifier: com.blackmagic-design.DaVinciResolve
+        CFBundleName: DaVinci Resolve
+        CFBundleShortVersionString: '%version%'
+        path: /Applications/DaVinci Resolve/DaVinci Resolve.app
+        type: application
+        version_comparison_key: CFBundleShortVersionString
+      version: '%version%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%found_filename%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

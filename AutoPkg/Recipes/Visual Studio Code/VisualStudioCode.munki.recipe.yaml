@@ -1,0 +1,33 @@
+# Downloaded from https://github.com/autopkg/valdore86-recipes/blob/ac8cd106a30988731d5b41424d2751b293755f15/Visual Studio Code/VisualStudioCode.munki.recipe
+# Commit: ac8cd106a30988731d5b41424d2751b293755f15
+# Downloaded at: 2025-11-27 22:28:33 UTC
+
+Description: Downloads the current release version of Visual Studio Code. and imports into Munki.
+Identifier: com.github.valdore86.munki.visualstudiocode
+Input:
+  MUNKI_REPO_SUBDIR: apps/Visual Studio Code
+  NAME: Visual Studio Code
+  pkginfo:
+    catalogs:
+    - testing
+    category: Text Editors
+    description: "Code combines the streamlined UI of a modern editor with rich code assistance and navigation, and an integrated debugging experience \u2013 without the need for a full IDE."
+    developer: Microsoft
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: 1.0.4
+ParentRecipe: com.github.valdore86.download.visualstudiocode
+Process:
+- Processor: DmgCreator
+  Arguments:
+    dmg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+    dmg_root: '%RECIPE_CACHE_DIR%/%NAME%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%dmg_path%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/%NAME%'
+    - '%RECIPE_CACHE_DIR%/%NAME%.dmg'

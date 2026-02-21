@@ -1,0 +1,33 @@
+Description: Downloads the latest Blender. (At least) Since v2.93 you may choose between x64 and arm64 as architecture. This recipes defaults to x64.
+Identifier: local.download.Blender
+Input:
+  NAME: Blender
+  ARCHITECTURE: arm64
+MinimumVersion: 0.4.2
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    url: https://download.blender.org/release/
+    re_pattern: (?s)href="(Blender(\d+\.\d+)/)(?!.*href="Blender(\d+\.\d+)/)
+- Processor: URLTextSearcher
+  Arguments:
+    URL_INTER: https://download.blender.org/release/%match%
+    url: https://download.blender.org/release/%match%
+    re_pattern: (?s)(blender-(?P<version>\d+\.\d+\.\d+)-macos-%ARCHITECTURE%.dmg)(?!.*(blender-(\d+\.\d+\.\d+)-macos-%ARCHITECTURE%.dmg))
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%.dmg'
+    url: '%URL_INTER%%match%'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/Blender.app'
+    requirement: identifier "org.blenderfoundation.blender" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "68UA947AUU"
+    strict_verification: true
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    io.github.hjuutilainen.download.Blender:
+      git_hash: c41819bcad3639d28b7a51fa31abf80f733b1044
+      path: ~/cloud-autopkg-runner/AutoPkg/Recipes/Blender/Blender.download.recipe.yaml
+      sha256_hash: bd35157cab694e8bcbd92ad23fe0e6f5966e06e2b59142fa0584bc5597434744

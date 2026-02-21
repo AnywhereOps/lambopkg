@@ -1,0 +1,50 @@
+# Downloaded from https://github.com/autopkg/recipes/blob/4aa2d9380d7f8ba54af95915c8c47a73fcf88acf/GoogleChrome/GoogleChromePkg.munki.recipe
+# Commit: 4aa2d9380d7f8ba54af95915c8c47a73fcf88acf
+# Downloaded at: 2025-11-27 22:27:43 UTC
+
+Description: "Downloads the latest version of the Google Chrome Enterprise Package and imports it into Munki.\n\nSet the DERIVE_MIN_OS variable to a non-empty string to set the minimum_os_version via MunkiInstallsItemsCreator. This requires a minimum AutoPkg version of 2.7 please update if you're not already running it."
+Identifier: com.github.autopkg.munki.googlechromepkg
+Input:
+  DERIVE_MIN_OS: YES
+  MUNKI_REPO_SUBDIR: apps/Google
+  NAME: GoogleChrome
+  pkginfo:
+    blocking_applications:
+    - Google Chrome
+    catalogs:
+    - testing
+    description: Chrome is a fast, simple, and secure web browser, built for the modern web.
+    developer: Google
+    display_name: Google Chrome
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: '2.7'
+ParentRecipe: com.github.autopkg.download.googlechromepkg
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    flat_pkg_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/unpack'
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/unpack/GoogleChrome.pkg/Payload'
+    destination_path: '%RECIPE_CACHE_DIR%/payload/Applications'
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%RECIPE_CACHE_DIR%/payload/Applications/Google Chrome.app/Contents/Info.plist'
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      version: '%version%'
+- Processor: MunkiInstallsItemsCreator
+  Arguments:
+    faux_root: '%RECIPE_CACHE_DIR%/payload'
+    installs_item_paths:
+    - /Applications/Google Chrome.app
+    derive_minimum_os_version: '%DERIVE_MIN_OS%'
+- Processor: MunkiPkginfoMerger
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+    version_comparison_key: CFBundleVersion

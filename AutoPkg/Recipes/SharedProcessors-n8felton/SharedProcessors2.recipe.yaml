@@ -1,0 +1,5 @@
+Description: Shared Processors for n8felton-recipes
+Identifier: com.github.n8felton.SharedProcessors
+Input: {}
+MinimumVersion: 0.4.3
+Process: []

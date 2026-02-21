@@ -1,0 +1,34 @@
+# Downloaded from https://github.com/autopkg/timsutton-recipes/blob/9193e16e06f78c6e9692955c13737c8b5e6e56a6/Blackmagic/DaVinciResolveLite11.download.recipe
+# Commit: 9193e16e06f78c6e9692955c13737c8b5e6e56a6
+# Downloaded at: 2025-11-27 22:30:20 UTC
+
+Description: "Downloads latest version of DaVinci Resolve Lite 11.\n\nThis product requires registration in order to download, so\nyou _must_ override all input variables beginning with 'REG_'\nand they must contain data.\n\nNotably, REG_STATE and REG_COUNTRY must contain sane values:\n- REG_COUNTRY is of the form 'us', 'ca', etc.\n- REG_STATE is a proper name, i.e. 'Maryland'.\n"
+Identifier: com.github.timsutton.download.davinciresolvelite11
+Input:
+  PRODUCT_NAME_PATTERN: ^DaVinci Resolve Lite (?P<version>11{1}(\.\d+)*)$
+  NAME: DaVinciResolveLite11
+  REG_FIRSTNAME: ''
+  REG_LASTNAME: ''
+  REG_EMAIL: ''
+  REG_PHONE: ''
+  REG_CITY: ''
+  REG_STATE: ''
+  REG_COUNTRY: ''
+MinimumVersion: 2.0.0
+Process:
+- Processor: BlackMagicURLProvider
+  Arguments:
+    product_name_pattern: '%PRODUCT_NAME_PATTERN%'
+    product_name: DaVinci Resolve Lite
+    registration_info:
+      firstname: '%REG_FIRSTNAME%'
+      lastname: '%REG_LASTNAME%'
+      email: '%REG_EMAIL%'
+      phone: '%REG_PHONE%'
+      city: '%REG_CITY%'
+      state: '%REG_STATE%'
+      country: '%REG_COUNTRY%'
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%-%version%.zip'
+- Processor: EndOfCheckPhase

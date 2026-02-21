@@ -1,0 +1,31 @@
+Identifier: local.munki.ScanSnapHome
+Input:
+  MUNKI_CATEGORY: Peripherals
+  MUNKI_REPO_SUBDIR: apps/ScanSnap Home
+  NAME: ScanSnap Home
+  SEARCH_URL: https://scansnap.fujitsu.com/global/dl/mac-sshoffline-q.html
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML,
+    like Gecko) Chrome/86.0.4240.193 Safari/537.36 Edg/86.0.622.68
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: ScanSnap Home is a desktop application that edits, manages, and utilizes
+      scanned data from documents, business cards, photos, and receipts to increase
+      your productivity.
+    developer: Fujitsu
+    display_name: '%NAME%'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.munki.scansnaphome
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.joshua-d-miller.download.scansnaphome:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Fujitsu/ScanSnapHome.download.recipe.yaml
+      sha256_hash: d078a2e00a71d787f189f9a676f0297184c60ddd989372d4b292158ae83bac2a
+    com.github.joshua-d-miller.munki.scansnaphome:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Fujitsu/ScanSnapHome.munki.recipe.yaml
+      sha256_hash: c1ed95b730e5d1c68a1c2126263a92d4c078035840dc04e4697c0e946d48e603

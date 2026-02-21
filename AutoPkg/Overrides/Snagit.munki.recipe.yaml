@@ -1,0 +1,56 @@
+Identifier: local.munki.Snagit
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Snagit
+  SNAGIT_LICENCE_KEY: ''
+  pkginfo:
+    catalogs:
+    - testing
+    description: Screen capture utility.
+    developer: TechSmith Corporation
+    display_name: Snagit
+    name: '%NAME%'
+    postinstall_script: '#!/bin/bash
+
+
+      ## postinstall script created from vendors doc here: https://support.techsmith.com/hc/en-us/articles/115007344888-Enterprise-Install-Guidelines-for-Snagit-on-MacOS
+
+      ## Uncomment for commands you wish to use
+
+
+      ## If it doesn''t exist, create licence file
+
+      # if ! [ -f /Users/Shared/TechSmith/Snagit/LicenseKey ]; then
+
+      #  /bin/mkdir -p "/Users/Shared/TechSmith/Snagit" ; /usr/bin/touch /Users/Shared/TechSmith/Snagit/LicenseKey
+      ; /bin/echo "%SNAGIT_LICENCE_KEY%" > /Users/Shared/TechSmith/Snagit/LicenseKey
+
+      # fi
+
+
+      ## Deployment Options see this doc for full details: https://support.techsmith.com/hc/en-us/articles/115007344888-Enterprise-Install-Guidelines-for-Snagit-on-MacOS#options-list
+
+      # defaults write com.TechSmith.Snagit.plist DisableProductLogin -bool YES
+
+      # defaults write com.TechSmith.Snagit.plist HideRegistrationKey -bool YES
+
+      defaults write com.TechSmith.Snagit.plist DisableCheckForUpdates -bool YES
+
+      defaults write com.TechSmith.Snagit.plist DisableTracking -bool YES
+
+
+      exit'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.dataJAR-recipes.munki.Snagit
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.download.Snagit:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Snagit/Snagit.download.recipe.yaml
+      sha256_hash: 6aa9a8141eb023321e2f440038e2eff21400f9258c51ad55ad02e9e1b0066ed8
+    com.github.dataJAR-recipes.munki.Snagit:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Snagit/Snagit.munki.recipe.yaml
+      sha256_hash: 57296da9c16dc5e33cbf8774bfc556ba3038aeeb2b8dbef63cdd700978a256c7

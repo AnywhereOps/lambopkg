@@ -1,0 +1,25 @@
+Identifier: local.munki.Vivaldi
+Input:
+  MUNKI_REPO_SUBDIR: apps
+  NAME: Vivaldi
+  pkginfo:
+    catalogs:
+    - testing
+    category: Productivity
+    description: A browser for our friends.
+    developer: Vivaldi Technologies
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.Vivaldi
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.homebysix.download.Vivaldi:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Vivaldi/Vivaldi.download.recipe.yaml
+      sha256_hash: 7ec5fe837d9507318581f7be262587c6145f55944fbcaebc5178e0c008e32552
+    com.github.homebysix.munki.Vivaldi:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Vivaldi/Vivaldi.munki.recipe.yaml
+      sha256_hash: 32b83f77c9f397ccabe77d6d892a3bfebcd08739dd7dc9a4dee2b15d32cd3026

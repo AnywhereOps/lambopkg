@@ -1,0 +1,46 @@
+# Downloaded from https://github.com/autopkg/nmcspadden-recipes/blob/b43a0d0e955b08ac0ce61a92e026a893bec7234e/Xcode/Xcode.munki.recipe
+# Commit: b43a0d0e955b08ac0ce61a92e026a893bec7234e
+# Downloaded at: 2025-11-27 22:26:49 UTC
+
+Description: Download, extract, and import Xcode into Munki. You must override the APPLE_ID and one of PASSWORD or PASSWORD_FILE.
+Identifier: com.github.nmcspadden.munki.xcode
+Input:
+  NAME: Xcode
+  USE_VERSIONED_FILENAME: ''
+  FILENAME_SUFFIX: ''
+  MUNKI_REPO_SUBDIR: apps/apple/xcode/
+  ICON_NAME: Xcode.png
+  pkginfo:
+    catalogs:
+    - testing
+    description: Xcode
+    display_name: '%NAME%'
+    name: '%NAME%'
+    postinstall_script: "#!/bin/sh\n# Ensure everyone is a member of \"developer\" group\n/usr/sbin/dseditgroup -o edit -a everyone -t group _developer\n# Enable Developer Mode\n/usr/sbin/DevToolsSecurity -enable\n# Accept the license\n/Applications/%fixed_filename%/Contents/Developer/usr/bin/xcodebuild -license accept\n# Install embedded packages\nfor PKG in `/bin/ls /Applications/%fixed_filename%/Contents/Resources/Packages/*.pkg` ; do\n  /usr/sbin/installer -pkg \"$PKG\" -target /\ndone\n                "
+    unattended_install: true
+MinimumVersion: 1.0.4
+ParentRecipe: com.github.nmcspadden.extract.xcode
+Process:
+- Processor: XcodeFileNamer
+  Arguments:
+    should_produce_versioned_name: '%USE_VERSIONED_FILENAME%'
+    suffix: '%FILENAME_SUFFIX%'
+  Comment: Generate filename based on input variables
+- Processor: FileMover
+  Arguments:
+    source: '%found_filename%'
+    target: '%RECIPE_CACHE_DIR%/%NAME%_unpack/%xcode_filename%.app'
+- Processor: DmgCreator
+  Arguments:
+    dmg_root: '%RECIPE_CACHE_DIR%/%NAME%_unpack/%xcode_filename%.app'
+    dmg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      display_name: Xcode %major_version%.%minor_version%.%patch_version% (%build_version%) %BETA%
+      icon_name: '%ICON_NAME%'
+      version: '%major_version%.%minor_version%.%patch_version%.%bundle_version%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

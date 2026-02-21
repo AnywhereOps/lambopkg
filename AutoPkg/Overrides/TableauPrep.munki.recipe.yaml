@@ -1,0 +1,35 @@
+Identifier: local.munki.TableauPrep
+Input:
+  DERIVE_MIN_OS: true
+  DOWNLOAD_URL: https://www.tableau.com/downloads/prep/mac
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: TableauPrep
+  pkginfo:
+    blocking_applications:
+    - TableauPrep
+    catalogs:
+    - testing
+    description: Tableau Prep is a self-service data preparation tool with Tableau
+      Prep Builder and Prep Conductor.
+    display_name: Tableau Prep
+    installer_choices_xml:
+    - attributeSetting: 1
+      choiceAttribute: selected
+      choiceIdentifier: com.tableausoftware.desktop.app
+    - attributeSetting: 0
+      choiceAttribute: selected
+      choiceIdentifier: com.tableausoftware.desktopShortcut
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: ch.unibas.its.git.mcs.munki.tableau-prep
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    ch.unibas.its.git.mcs.download.tableau-prep:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/TableauPrep/TableauPrep.download.recipe.yaml
+      sha256_hash: dc20e830a09a3bacd74508446b4fd4069b154c215e7c58fb29dd8aabe52a3045
+    ch.unibas.its.git.mcs.munki.tableau-prep:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/TableauPrep/TableauPrep.munki.recipe.yaml
+      sha256_hash: 20df1f81f6fa049bb642ae3b16a03eb4e4ba49c16ff3415560401bdb9f7a68e3

@@ -1,0 +1,45 @@
+Identifier: local.munki.Omnissa Horizon Client
+Input:
+  HORIZON_MAJOR_VERSION: '8'
+  MUNKI_CATEGORY: Productivity
+  MUNKI_REPO_SUBDIR: apps/Omnissa
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: Omnissa Horizon Client for Mac allows you to connect to your Omnissa
+      Horizon virtual desktop from your device of choice giving you on-the-go access
+      from any location.
+    developer: Omnissa
+    display_name: Omnissa Horizon Client
+    name: OmnissaHorizonClient
+    postinstall_script: '#!/bin/sh
+
+
+      /Applications/Omnissa\ Horizon\ Client.app/Contents/Library/InitUsbServices.tool
+
+
+      exit'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: '#!/bin/sh
+
+
+      /Applications/Omnissa\ Horizon\ Client.app/Contents/Resources/Uninstall\ Omnissa\
+      Horizon\ Client.app/Contents/Library/uninstall.tool
+
+
+      exit'
+ParentRecipe: com.github.dataJAR-recipes.munki.Omnissa Horizon Client
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.download.Omnissa Horizon Client:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Omnissa Horizon Client/Omnissa Horizon Client.download.recipe.yaml
+      sha256_hash: ae92a9469faa2a62db7c8c7f504579bc5641042081d28cc6b32110ea4e6a2c07
+    com.github.dataJAR-recipes.munki.Omnissa Horizon Client:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Omnissa Horizon Client/Omnissa Horizon Client.munki.recipe.yaml
+      sha256_hash: de369b26f15a40e14c877218afc25037bc39182894956ff05dfa3864165d96f6

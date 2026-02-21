@@ -1,0 +1,63 @@
+Identifier: local.munki.Zotero
+Input:
+  MUNKI_REPO_SUBDIR: apps/zotero
+  NAME: Zotero
+  pkginfo:
+    blocking_applications:
+    - Microsoft Word
+    - Zotero
+    catalogs:
+    - testing
+    category: Reference
+    description: Zotero - zoh-TAIR-oh - is a free, easy-to-use tool to help you collect,
+      organize, cite, and share your research sources. It lives right where you do
+      your work-in the web browser itself.
+    developer: Roy Rosenzweig CHNM
+    display_name: '%NAME%'
+    name: '%NAME%'
+    postinstall_script: "#!/bin/bash\n            # Mircosoft Word 2011 Plugin for\
+      \ Zotero\n            # Last Updated April 10, 2014 - Joshua D. Miller\n   \
+      \         # Set Permissions to allow the Zotero Word Plugin to Install\n   \
+      \         [ ! -e /Applications/Microsoft\\ Office\\ 2011/ ] || chmod o+w /Applications/Microsoft\\\
+      \ Office\\ 2011/Office/Startup/Word\n            \n            # Install script\
+      \ Microsoft Word 2016 Plugin for Zotero\n            # Check if Word 2016 is\
+      \ installed\n            if [ -e /Applications/Microsoft\\ Word.app ]; then\n\
+      \            echo \"Word 2016 detected. Installing Zotero Word template.\"\n\
+      \            # Get logged in user\n            loggedInUser=$( echo \"show State:/Users/ConsoleUser\"\
+      \ | scutil | awk '/Name :/ { print $3 }' )\n            echo \"Logged in user\
+      \ is\" $loggedInUser\n            # Copy Zotero.dotm to Word 2016 Startup directory\n\
+      \            /bin/cp /Applications/Zotero.app/Contents/Resources/integration/word-for-mac/Zotero.dotm\
+      \ /Users/$loggedInUser/Library/Group\\ Containers/UBF8T346G9.Office/User\\ Content.localized/Startup.localized/Word/\n\
+      \            else echo \"Word 2016 not found. Skipping installation of Zotero\
+      \ Word template.\"\n            fi\n            exit 0\n            "
+    postuninstall_script: "#!/bin/bash\n            # Uninstall Script for Word Plugin\
+      \ for Zotero\n            # Last Updated April 10, 2014 - Joshua D. Miller\n\
+      \            # Remove the Zotero Template file\n            [ -e /Applications/Microsoft\\\
+      \ Office\\ 2011/Office/Word/Startup/Zotero.dot ] && rm /Applications/Microsoft\\\
+      \ Office\\ 2011/Office/Startup/Word/Zotero.dot\n            # Restore Permissions\
+      \ on the folder /Applications/Microsoft Office 2011/Office/Startup/Word/\n \
+      \           [ ! -e /Applications/Microsoft\\ Office\\ 2011/ ] || chmod o-w /Applications/Microsoft\\\
+      \ Office\\ 2011/Office/Startup/Word\n\t\t\t\n\t\t\t# Uninstall script for Microsoft\
+      \ Word 2016 Plugin for Zotero\n            # Get logged in user\n          \
+      \  loggedInUser=$( echo \"show State:/Users/ConsoleUser\" | scutil | awk '/Name\
+      \ :/ { print $3 }' )\n            echo \"Logged in user is\" $loggedInUser\n\
+      \            echo \"Checking for existence of Zotero.dotm\"\n            if\
+      \ [ -e /Users/$loggedInUser/Library/Group\\ Containers/UBF8T346G9.Office/User\\\
+      \ Content.localized/Startup.localized/Word/Zotero.dotm ]; then\n           \
+      \ echo \"Zotero.dotm found. Attempting removal.\"\n            /bin/rm /Users/$loggedInUser/Library/Group\\\
+      \ Containers/UBF8T346G9.Office/User\\ Content.localized/Startup.localized/Word/Zotero.dotm\n\
+      \            else echo \"Zotero.dotm not found. Skipping attempted removal.\"\
+      \n            fi\n            exit 0\n            "
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.autopkg.munki.zotero
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.joshua-d-miller.autopkg.munki.zotero:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Zotero/Zotero.munki.recipe.yaml
+      sha256_hash: 683bce6eda4bbfcdafc7be8f467b6bff9312e347064ba3bc7c1f44bc792c09ba
+    com.github.joshua-d-miller.download.zotero:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Zotero/Zotero.download.recipe.yaml
+      sha256_hash: f89008da999918dc22903b0587e46fd5d29fa4bb86f7245a7f28f5e1a88a89ac

@@ -1,0 +1,124 @@
+# Downloaded from https://github.com/autopkg/hansen-m-recipes/blob/de17d7db2537ffa00c27281a392f37fe599efdca/SharedProcessors/GoogleChromeWinVersioner.py
+# Commit: de17d7db2537ffa00c27281a392f37fe599efdca
+# Downloaded at: 2025-11-27 20:29:07 UTC
+
+#!/usr/local/autopkg/python
+#
+# Copyright 2018 The Pennsylvania State University.
+#
+# Updated by Rusty Myers (rzm102@psu.edu)
+# Modified original by Matt Hansen (mah60@psu.edu).
+# Based on WinInstallerExtractor
+
+import os
+import platform
+import re
+import subprocess
+
+from autopkglib import Processor, ProcessorError
+
+__all__ = ["GoogleChromeWinVersioner"]
+
+
+class GoogleChromeWinVersioner(Processor):
+    description = "Extracts the Google Chrome Win version using 7z and Regex."
+    input_variables = {
+        "exe_path": {
+            "required": False,
+            "description": "Path to exe or msi, defaults to %pathname%",
+        },
+        "preserve_paths": {
+            "required": False,
+            "description": "eXtract archive with full paths, defaults to 'True'",
+        },
+        "extract_dir": {
+            "required": True,
+            "description": "Output path for the extracted archive.",
+        },
+        "ignore_pattern": {
+            "required": False,
+            "description": "Wildcard pattern to ignore files from the archive.",
+        },
+        "ignore_errors": {
+            "required": False,
+            "description": "Ignore any errors during the extraction.",
+        },
+        "output_var_name": {
+            "required": False,
+            "description": "Output variable name. Defaults to 'version'",
+        },
+        "version_regex": {"required": False, "description": "Regex statement to override default."},
+        "sevenzip_path": {"required": False, "description": "Path to 7-Zip binary. Defaults to /usr/local/bin/7z."},
+    }
+    output_variables = {
+        "version": {"description": "The version of Google Chrome within MSI."},
+    }
+
+    __doc__ = description
+
+    def main(self):
+
+        # Set default path to msiinfo
+        if "arm" in platform.processor():
+            sevenzip_default_path = os.path.abspath("/opt/homebrew/bin/7z")
+        else:
+            sevenzip_default_path = os.path.abspath("/usr/local/bin/7z")
+
+        # Set MSIINFO variable to input variable or default path
+        sevenzip_path = self.env.get("sevenzip_path", sevenzip_default_path)
+        if not (os.path.isfile(sevenzip_path) and os.access(sevenzip_path, os.X_OK)):
+            raise ProcessorError(
+                f"GoogleChromeWinVersioner: Can't find 7z at `{self.env['sevenzip_path']}` Have you installed 7z?: `brew install p7zip`"
+            )
+        exe_path = self.env.get("exe_path", self.env.get("pathname"))
+        preserve_paths = self.env.get("preserve_paths", "True")
+        working_directory = self.env.get("RECIPE_CACHE_DIR")
+        extract_directory = self.env.get("extract_dir", "ExtractedInstaller")
+        ignore_pattern = self.env.get("ignore_pattern", "")
+        ignore_errors = self.env.get("ignore_errors", "False")
+        output_var_name = self.env.get("output_var_name", "version")
+        version_regex = self.env.get("version_regex", "[0-9]{1,3}.[0-9].[0-9]{4}.[0-9]{1,4}")
+        verbosity = self.env.get("verbose", 0)
+
+        extract_flag = "x" if preserve_paths == "True" else "e"
+        extract_path = "%s/%s" % (working_directory, extract_directory)
+
+        self.output("Extracting: %s" % exe_path)
+        cmd = [sevenzip_default_path, extract_flag, "-y", "-o%s" % extract_path, exe_path]
+
+        if ignore_pattern:
+            cmd.append("-x!%s" % ignore_pattern)
+
+        try:
+            if verbosity > 1:
+                subprocess.check_call(cmd)
+            else:
+                subprocess.check_call(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        except:
+            if ignore_errors != "True":
+                raise
+
+        self.output("Extracted Archive Path: %s" % extract_path)
+
+        pattern = re.compile(version_regex)
+
+        try:
+            with open(extract_path + "/[5]SummaryInformation", encoding="latin-1") as file:
+                data = file.read()
+                msiversion = pattern.findall(data)[0]
+        except:
+            version_regex = '(?<=manifest version=")[0-9]{1,3}.[0-9].[0-9]{4}.[0-9]{1,4}'
+            pattern = re.compile(version_regex)
+            with open(extract_path + "/Binary.GoogleChromeInstaller", encoding="latin-1") as file:
+                data = file.read()
+                msiversion = pattern.findall(data)[0]
+        if msiversion != "":
+            self.env[output_var_name] = msiversion
+        else:
+            self.output("Unable to get version from MSI")
+            return None
+
+
+if __name__ == "__main__":
+    processor = GoogleChromeWinVersioner()
+    processor.execute_shell()

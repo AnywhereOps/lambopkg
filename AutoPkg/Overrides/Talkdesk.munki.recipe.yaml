@@ -1,0 +1,29 @@
+Identifier: local.munki.Talkdesk
+Input:
+  MUNKI_REPO_SUBDIR: talkdesk/talkdesk
+  NAME: Talkdesk
+  pkginfo:
+    catalogs:
+    - testing
+    description: Talkdesk is a global cloud contact center leader for modern AI-powered
+      customer service that is trusted, flexible, and innovative.
+    developer: Talkdesk, Inc
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.jc0b.munki.Talkdesk
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.jc0b.shared/TalkdeskReleaseInfoProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-jc0b/TalkdeskReleaseInfoProvider.py
+      sha256_hash: a36c96acf510b5d20e2c77a3f9e0f78bf64c46d2228e4c1775a012c0298869ad
+  parent_recipes:
+    com.github.jc0b.download.Talkdesk:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/TalkDesk/Talkdesk.download.recipe.yaml
+      sha256_hash: c60b8bd0bcba4f768e28c0b0f25bd1d2937d20799e9525b212d5c3eac086394d
+    com.github.jc0b.munki.Talkdesk:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/TalkDesk/Talkdesk.munki.recipe.yaml
+      sha256_hash: 0ef21cf5ecd974c2ae9d4bf7f7bacb8ea20f9f1612575c0d30b82b7c8bd84fa9

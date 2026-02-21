@@ -1,0 +1,52 @@
+site_name: autopatcher
+repo_url: https://github.com/AnywhereOps/autopatcher
+site_url: https://AnywhereOps.github.io/autopatcher
+site_description: This project is for running Autopkg and importing into munki as well as promoting new versions through munki catalogs
+site_author: AnywhereOps
+edit_uri: edit/main/docs/
+repo_name: AnywhereOps/autopatcher
+copyright: Maintained by <a href="https://AnywhereOps.com">AnywhereOps</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["scripts"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AnywhereOps/autopatcher
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/autopatcher
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true

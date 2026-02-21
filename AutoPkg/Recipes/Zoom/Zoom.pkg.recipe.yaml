@@ -1,0 +1,38 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Zoom/Zoom.pkg.recipe
+# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
+# Downloaded at: 2025-11-27 22:32:34 UTC
+
+Description: Downloads the current release version of Zoom and builds a package.
+Identifier: com.github.homebysix.pkg.Zoom
+Input:
+  BUNDLE_ID: us.zoom.xos
+  NAME: Zoom
+MinimumVersion: '1.1'
+ParentRecipe: com.github.hansen-m.download.zoomus
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/FlatPkgUnpacker'
+    flat_pkg_path: '%pathname%'
+    purge_destination: true
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/PkgPayloadUnpacker/Applications'
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/FlatPkgUnpacker/zoomus.pkg/Payload'
+    purge_destination: true
+- Processor: PlistReader
+  Arguments:
+    info_path: '%destination_path%/zoom.us.app/Contents/Info.plist'
+    plist_keys:
+      CFBundleShortVersionString: jamfversion
+      CFBundleVersion: version
+      LSMinimumSystemVersion: min_os_version
+- Processor: PkgCopier
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg'
+    source_pkg: '%pathname%'
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/FlatPkgUnpacker'
+  Comment: Cleans up resources from FlatPkgUnpacker processor run (leaves PkgPayloadUnpacker resources for child recipes).

@@ -1,0 +1,9 @@
+# Downloaded from https://github.com/autopkg/MLBZ521-recipes/blob/8b7738eed4c2f8b6b32a897907ee3420fa0c74ef/Shared Processors/SharedProcessors.recipe
+# Commit: 8b7738eed4c2f8b6b32a897907ee3420fa0c74ef
+# Downloaded at: 2025-11-27 22:31:13 UTC
+
+Description: Shared Processors for mlbz521-recipes
+Identifier: com.github.mlbz521.SharedProcessors
+Input: {}
+MinimumVersion: 0.4.3
+Process: []

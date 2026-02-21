@@ -1,0 +1,9 @@
+# Downloaded from https://github.com/autopkg/ahousseini-recipes/blob/31e6138b990db5622ef2f3ab05d541edcf92997e/SharedProcessors/SharedProcessors.recipe
+# Commit: 31e6138b990db5622ef2f3ab05d541edcf92997e
+# Downloaded at: 2025-11-27 22:30:48 UTC
+
+Description: Recipe stub for any Shared Processors in this directory.
+Identifier: com.github.ahousseini-recipes.SharedProcessors
+Input: {}
+MinimumVersion: 0.4.0
+Process: []

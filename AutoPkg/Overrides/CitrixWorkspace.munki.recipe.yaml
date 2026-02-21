@@ -1,0 +1,34 @@
+Identifier: local.munki.CitrixWorkspace
+Input:
+  DERIVE_MIN_OS: true
+  MUNKI_CATEGORY: Internet
+  MUNKI_REPO_SUBDIR: apps/Citrix
+  NAME: CitrixWorkspace
+  pkginfo:
+    blocking_applications:
+    - Citrix Workspace
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: "The new Citrix Workspace app gives users a great experience\u2014\
+      a secure, contextual, unified workspace\u2014on any device. Give teams instant\
+      \ access to all their SaaS and web apps, files, mobile apps, Citrix Virtual\
+      \ Apps and Desktops from an easy-to-use, all-in-one interface powered by Citrix\
+      \ Workspace services."
+    developer: Citrix Systems, Inc.
+    display_name: Citrix Workspace
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: io.github.hjuutilainen.munki.CitrixWorkspace
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    io.github.hjuutilainen.download.CitrixWorkspace:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/CitrixReceiver/CitrixWorkspace.download.recipe.yaml
+      sha256_hash: 3af121fa7d3fc4ca2f8ce9e36a844da6ff2a4f7161f3329812158b8ee1068830
+    io.github.hjuutilainen.munki.CitrixWorkspace:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/CitrixReceiver/CitrixWorkspace.munki.recipe.yaml
+      sha256_hash: 2f6c2481729ca6440d9e78cdeecda5e1eefdb9437407f5251e582086d55186eb

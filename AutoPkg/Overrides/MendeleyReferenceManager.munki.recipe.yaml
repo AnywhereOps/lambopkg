@@ -1,0 +1,30 @@
+Identifier: local.munki.MendeleyReferenceManager
+Input:
+  DOWNLOAD_PART_URL: https://static.mendeley.com/bin/desktop/mendeley-reference-manager
+  MUNKI_REPO_SUBDIR: apps/mendeleyreferencemanager
+  NAME: Mendeley Reference Manager
+  SEARCH_URL: https://www.mendeley.com/download-reference-manager/macOS
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML,
+    like Gecko) Chrome/86.0.4240.193 Safari/537.36 Edg/86.0.622.68
+  pkginfo:
+    catalogs:
+    - testing
+    category: Reference
+    description: Mendeley Reference Manager simplifies your workflow, so you can focus
+      on achieving your goals.
+    developer: Elsevier
+    display_name: '%NAME%'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.autopkg.munki.mendeleyreferencemanager
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.joshua-d-miller.autopkg.munki.mendeleyreferencemanager:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Mendeley/MendeleyReferenceManager.munki.recipe.yaml
+      sha256_hash: 155d409aa1f8fb91bbe57ab0c5b2422b10be92d4c7fa7deda051b90d271c8685
+    com.github.joshua-d-miller.download.mendeleyreferencemanager:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Mendeley/MendeleyReferenceManager.download.recipe.yaml
+      sha256_hash: e6c254d4fdccf843b59e297c77c4de6cfac6dbc274e82d6a75fa1335f5610316

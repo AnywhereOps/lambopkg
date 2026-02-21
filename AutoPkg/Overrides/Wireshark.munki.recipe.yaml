@@ -1,0 +1,26 @@
+Identifier: local.munki.Wireshark
+Input:
+  MUNKI_REPO_SUBDIR: apps/wireshark
+  NAME: Wireshark
+  pkginfo:
+    blocking_applications:
+    - Wireshark
+    catalogs:
+    - testing
+    description: Wireshark is a network protocol analyzer.
+    display_name: Wireshark
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.Wireshark
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.homebysix.download.Wireshark:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Wireshark/Wireshark.download.recipe.yaml
+      sha256_hash: c2a78e4220999512b6778ee4ea01c416729876072f209532e6613fcbdb0c3e99
+    com.github.homebysix.munki.Wireshark:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Wireshark/Wireshark.munki.recipe.yaml
+      sha256_hash: b337fcbdb12d05f211c15ae8198f324150a5444607956ea2075155c56bcec673

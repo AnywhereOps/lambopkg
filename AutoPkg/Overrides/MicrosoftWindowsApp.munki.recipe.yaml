@@ -1,0 +1,35 @@
+Identifier: local.munki.MicrosoftWindowsApp
+Input:
+  DOWNLOADURL: https://go.microsoft.com/fwlink/?linkid=%PRODUCTID%
+  MUNKI_REPO_SUBDIR: apps/microsoft
+  NAME: WindowsApp
+  PRODUCTID: '868963'
+  SOFTWARETITLE1: Windows
+  SOFTWARETITLE2: App
+  VENDOR: Microsoft
+  pkginfo:
+    blocking_applications:
+    - Windows App
+    catalogs:
+    - development-microsoft-MicrosoftWindowsApp
+    category: Utility
+    description: Use the new Windows App to connect to a remote PC or virtual apps
+      and desktops made available by your administrator. The app helps you be productive
+      no matter where you are.
+    developer: Microsoft
+    display_name: Windows App
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.foigus.munki.microsoftwindowsapp
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.foigus.munki.microsoftwindowsapp:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Microsoft/MicrosoftWindowsApp.munki.recipe.yaml
+      sha256_hash: 4fb2b2fe4ac76c9207fa7aa7801031903d879e6ab443649d49eff563598001d6
+    com.github.rtrouton.download.microsoftwindowsapp:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/MicrosoftWindowsApp/MicrosoftWindowsApp.download.recipe.yaml
+      sha256_hash: b6a073ed83f0e1f565407ec058e82acbd98c6aef1ae9be836e623d163518f5d6

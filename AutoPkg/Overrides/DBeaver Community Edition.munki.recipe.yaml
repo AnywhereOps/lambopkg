@@ -1,0 +1,29 @@
+Identifier: local.munki.DBeaver Community Edition
+Input:
+  APP_FILENAME: DBeaver
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: DBeaver Community Edition
+  os: macos
+  pkginfo:
+    catalogs:
+    - testing
+    description: 'Free multi-platform database tool for developers, SQL programmers,
+      database administrators and analysts. Supports all popular databases: MySQL,
+      PostgreSQL, MariaDB, SQLite, Oracle, DB2, SQL Server, Sybase, MS Access, Teradata,
+      Firebird, Derby, etc.'
+    developer: DBeaver Corp
+    display_name: DBeaver Community Edition
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.dataJAR-recipes.munki.DBeaver Community Edition
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.munki.DBeaver Community Edition:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/DBeaver Community Edition/DBeaver Community Edition.munki.recipe.yaml
+      sha256_hash: fb72ef491c270a49e183f3c2fc79a0d55b2d247a80cb70468857a2b804720810
+    com.github.peshay.download.DBeaverCE:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/DBeaverCE/DBeaverCE.download.recipe.yaml
+      sha256_hash: 3de30d28f0038d259f3f0c02b5b360cde231b50238901e34d49eeba9003443d7

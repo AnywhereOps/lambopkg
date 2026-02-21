@@ -1,0 +1,23 @@
+# Downloaded from https://github.com/autopkg/recipes/blob/4aa2d9380d7f8ba54af95915c8c47a73fcf88acf/GoogleChrome/GoogleChromePkg.download.recipe
+# Commit: 4aa2d9380d7f8ba54af95915c8c47a73fcf88acf
+# Downloaded at: 2025-11-27 22:27:43 UTC
+
+Description: Downloads latest Google Chrome enterprise package.
+Identifier: com.github.autopkg.download.googlechromepkg
+Input:
+  NAME: GoogleChrome
+  DOWNLOAD_URL: https://dl.google.com/chrome/mac/stable/accept_tos%3Dhttps%253A%252F%252Fwww.google.com%252Fintl%252Fen_ph%252Fchrome%252Fterms%252F%26_and_accept_tos%3Dhttps%253A%252F%252Fpolicies.google.com%252Fterms/googlechrome.pkg
+MinimumVersion: 1.4.1
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: '%DOWNLOAD_URL%'
+    filename: GoogleChrome.pkg
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Google LLC (EQHXZ8M8AV)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%pathname%'

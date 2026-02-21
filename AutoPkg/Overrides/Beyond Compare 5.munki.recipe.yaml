@@ -1,0 +1,31 @@
+Identifier: local.munki.Beyond Compare 5
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: BeyondCompare5
+  pkginfo:
+    catalogs:
+    - testing
+    description: Beyond Compare allows you to quickly and easily compare your files
+      and folders.  By using simple, powerful commands you can focus on the differences
+      you're interested in and ignore those you're not.  You can then merge the changes,
+      synchronize your files, and generate reports for your records.
+    developer: Scooter Software, Inc.
+    display_name: Beyond Compare 5
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.dataJAR-recipes.munki.Beyond Compare 5
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.homebysix.VersionSplitter/VersionSplitter:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-homebysix/VersionSplitter.py
+      sha256_hash: a5880fdf5e6a2eaa404d7e4e4ed127843575f9adfd1c64a492cb8339c9bd6538
+  parent_recipes:
+    com.github.dataJAR-recipes.download.Beyond Compare 5:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Beyond Compare 5/Beyond Compare 5.download.recipe.yaml
+      sha256_hash: cc6e4ef31b6b84a1d24949860411b8947340afac36ec72608b8ffe40a02dcdaa
+    com.github.dataJAR-recipes.munki.Beyond Compare 5:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Beyond Compare 5/Beyond Compare 5.munki.recipe.yaml
+      sha256_hash: 1de63cb8573e36c666ae2b186c67013be7c1ba2dd70dc18319c23b4c3a0ccf08

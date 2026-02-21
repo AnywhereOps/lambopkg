@@ -1,0 +1,9 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/VersionSplitter/VersionSplitter.recipe
+# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
+# Downloaded at: 2025-11-27 22:25:52 UTC
+
+Description: This is a stub recipe that can be used as a reference when referring to the VersionSplitter shared processor.
+Identifier: com.github.homebysix.VersionSplitter
+Input: {}
+MinimumVersion: 0.5.0
+Process: []

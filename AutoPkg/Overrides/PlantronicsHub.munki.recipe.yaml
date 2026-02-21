@@ -1,0 +1,27 @@
+Identifier: local.munki.PlantronicsHub
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: PlantronicsHub
+  pkginfo:
+    blocking_applications:
+    - Plantronics Hub.app
+    catalogs:
+    - testing
+    description: Allows end-users to customize their settings and get visible status
+      of their Plantronics audio device on their desktop.
+    developer: Plantronics, Inc.
+    display_name: Plantronics Hub
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.blackthroat.munki.PlantronicsHub
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.blackthroat.download.PlantronicsHub:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Plantronics, Inc./PlantronicsHub.download.recipe.yaml
+      sha256_hash: da94812984dd5211663c9c9e18cd6bd0cfd5530050480128e11aa5999e41c0d7
+    com.github.blackthroat.munki.PlantronicsHub:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Plantronics, Inc./PlantronicsHub.munki.recipe.yaml
+      sha256_hash: 266f658629678dae4339e4380e90ff2dbab584e6d7402103357d200943bb7030

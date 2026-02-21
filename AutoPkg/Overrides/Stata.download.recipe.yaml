@@ -1,0 +1,22 @@
+Identifier: local.download.Stata
+Input:
+  FILE_SHARE: /path/to/offline/repository
+  MAJOR_VERSION: ''
+  MAX_FOLDER_DEPTH: '1'
+  NAME: Stata
+  NAME_EXCEPTION: testing
+  NAME_LIMITATION: ''
+  SEARCH_STRING: Stata
+  VERSION_STRING_SEPARATOR: '-'
+ParentRecipe: com.github.mlbz521.download.Stata
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.mlbz521.SharedProcessors/OfflineApps:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-MLBZ521/OfflineApps.py
+      sha256_hash: c7ad0b8cef10bc0ab309af5db4cc7d6856557e6819535ffeb4692cf263007149
+  parent_recipes:
+    com.github.mlbz521.download.Stata:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Stata/Stata.download.recipe.yaml
+      sha256_hash: 71e9418c55849658ae6eee86f34ce481352a3514c2e896b789366e7515de0e6e

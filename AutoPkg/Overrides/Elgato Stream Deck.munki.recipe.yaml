@@ -1,0 +1,112 @@
+Identifier: local.munki.Elgato Stream Deck
+Input:
+  DERIVE_MIN_OS: true
+  FORCE_MUNKIIMPORT: ''
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: ElgatoStreamDeck
+  pkginfo:
+    catalogs:
+    - testing
+    description: 'You are creating quality content backed by the best tech on the
+      planet. But you want to do more. With Stream Deck, unleash your creative genius
+      and make waves across Twitch and YouTube. All while focusing on what matters
+      most: your audience.'
+    developer: Corsair Memory, Inc
+    display_name: Elgato Stream Deck
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: '#!/bin/bash
+
+
+      # This uninstall script is taken from the Elagto Stream Deck Uninstaller Package:
+
+      # https://help.elgato.com/hc/en-us/articles/360028232731-Stream-Deck-Uninstall-Procedure-on-macOS
+
+
+      # unload the LaunchAgent
+
+      launchctl unload -w /Library/LaunchAgents/com.elgato.StreamDeck.plist > /dev/null
+      2>&1
+
+      launchctl unload -w $HOME/Library/LaunchAgents/com.elgato.StreamDeck.plist >
+      /dev/null 2>&1
+
+
+      # kill the Stream Deck application if it was launched manually
+
+      killall "Stream Deck" > /dev/null 2>&1 || true
+
+
+      # delete previous Stream Deck app (as it may have different name)
+
+      rm -f /Library/LaunchAgents/com.elgato.StreamDeck.plist
+
+      rm -f $HOME/Library/LaunchAgents/com.elgato.StreamDeck.plist
+
+
+      # remove app
+
+      rm -rf "/Applications/Stream Deck.app"
+
+      rm -rf "/Applications/Elgato Stream Deck.app"
+
+
+      # remove STREAMDECKSHM
+
+      su - $USER -c "/bin/rm -rf ~/Library/Caches/STREAMDECKSHM"
+
+
+      # remove cache
+
+      su - $USER -c "/bin/rm -rf ~/Library/Caches/elgato/StreamDeck"
+
+      su - $USER -c "/bin/rm -rf ~/Library/Caches/com.elgato.StreamDeck"
+
+
+      # remove com.elgato.StreamDeck in Application Support (Profiles, HockeyApp)
+
+      su - $USER -c "/bin/rm -rf ~/Library/Application\ Support/com.elgato.StreamDeck"
+
+
+      # remove preferences
+
+      su - $USER -c "defaults delete com.elgato.StreamDeck"
+
+      su - $USER -c "/bin/rm -rf ~/Library/Preferences/com.elgato.StreamDeck.plist"
+
+
+      # remove logs
+
+      su - $USER -c "/bin/rm -rf ~/Library/Logs/StreamDeck"
+
+
+      # remove OBS related stuff
+
+      PLUGIN_NAME="StreamDeckPlugin"
+
+
+      OBS_PLUGINS_DIR_V2="$HOME/Library/Application Support/obs-studio/plugins"
+
+      rm -rf "$OBS_PLUGINS_DIR_V2/$PLUGIN_NAME.plugin"
+
+
+      OBS_PLUGINS_DIR="/Library/Application Support/obs-studio/plugins"
+
+      rm -rf "$OBS_PLUGINS_DIR/$PLUGIN_NAME"
+
+
+      exit 0'
+ParentRecipe: com.github.dataJAR-recipes.munki.Elgato Stream Deck
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.download.Elgato Stream Deck:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Elgato Stream Deck/Elgato Stream Deck.download.recipe.yaml
+      sha256_hash: 0b084aa580fa6a2f626689bc81bbf277edfb0d6f48fab9df746aad39bb83e3ca
+    com.github.dataJAR-recipes.munki.Elgato Stream Deck:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Elgato Stream Deck/Elgato Stream Deck.munki.recipe.yaml
+      sha256_hash: 00f9318634856c20c2fb25965ae4550ea5c2d1ce634f625b0ae1d53dbc7881db

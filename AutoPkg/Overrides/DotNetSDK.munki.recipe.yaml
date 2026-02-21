@@ -1,0 +1,35 @@
+Identifier: local.munki.DotNetSDK
+Input:
+  LANGUAGE_CODE: en-us
+  MUNKI_CATEGORY: Development
+  MUNKI_REPO_SUBDIR: apps/DotNetSDK
+  NAME: DotNetSDK
+  PLATFORM_ARCH: x64
+  RELEASE: LTS
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: .NET is a general purpose development platform maintained by Microsoft
+      and the .NET community on GitHub. It is cross-platform, supporting Windows,
+      macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+    developer: Microsoft
+    display_name: .NET SDK
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.gerardkok.munki.DotNetSDK
+ParentRecipeTrustInfo:
+  non_core_processors:
+    DotNetURLProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/DotNet/DotNetURLProvider.py
+      sha256_hash: b810e009b04554aeae57571d56dee58b8cf73811467324885d3c1dae64e68360
+  parent_recipes:
+    com.github.gerardkok.download.DotNetSDK:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/DotNet/DotNetSDK.download.recipe.yaml
+      sha256_hash: 1591733ae75089d917ce89b7be67f4e37b910b338e2d372311f1c8ac47f8fd27
+    com.github.gerardkok.munki.DotNetSDK:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/DotNet/DotNetSDK.munki.recipe.yaml
+      sha256_hash: 7338739e84e9115fc34e27751ea870c883f0d6551aaa752a7abf28bc4217962b

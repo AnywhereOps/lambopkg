@@ -1,0 +1,26 @@
+Identifier: local.munki.DockerDesktop
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Docker
+  PLATFORM_ARCH: amd64
+  pkginfo:
+    catalogs:
+    - testing
+    description: Automates deployment of containerized applications.
+    developer: Docker
+    display_name: Docker
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.DockerDesktop
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.homebysix.download.DockerDesktop:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Docker/DockerDesktop.download.recipe.yaml
+      sha256_hash: 320f1759d113a5d86ea7967da4f5b780c86452c9f4b6facb21568be1c0248b5a
+    com.github.homebysix.munki.DockerDesktop:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Docker/DockerDesktop.munki.recipe.yaml
+      sha256_hash: 780a93345c85497b238342bb4580f62af4d3ddfbfd09e305f80318dd00920095

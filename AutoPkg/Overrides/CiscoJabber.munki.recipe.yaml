@@ -1,0 +1,30 @@
+Identifier: local.munki.CiscoJabber
+Input:
+  MUNKI_REPO_SUBDIR: apps/ciscojabber
+  NAME: Cisco Jabber
+  SEARCH_URL: https://www.webex.com/downloads/jabber.html
+  pkginfo:
+    catalogs:
+    - testing
+    category: Social
+    description: "Collaborate anywhere, on any device\nMobility doesn\u2019t have\
+      \ to limit productivity. Cisco Jabber delivers instant messaging, voice and\
+      \ video calls, voice messaging, desktop sharing, conferencing, and presence.\
+      \ Find the right people, see whether and how they\u2019re available, and collaborate\
+      \ more effectively."
+    developer: Cisco Systems Inc.
+    display_name: '%NAME%'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.autopkg.munki.ciscojabber
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.joshua-d-miller.autopkg.munki.ciscojabber:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Cisco/CiscoJabber.munki.recipe.yaml
+      sha256_hash: c115fb1d45882d5f967c6ecec1a5eee01d898cf98a0cc10350d21c909726e904
+    com.github.joshua-d-miller.download.ciscojabber:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/Cisco/CiscoJabber.download.recipe.yaml
+      sha256_hash: 51f0a0da547c504ed2be81201643336adf27108367c2a7dea43576dd6000dc03

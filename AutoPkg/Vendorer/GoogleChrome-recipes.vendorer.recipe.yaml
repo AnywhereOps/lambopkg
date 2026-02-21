@@ -1,0 +1,17 @@
+Description: Obtain upstream GoogleChrome recipe from autopkg/recipes
+
+Identifier: com.github.anywhereops.vendorer.GoogleChrome
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/recipes
+      folder_path: GoogleChrome
+      commit_sha: 4aa2d9380d7f8ba54af95915c8c47a73fcf88acf
+      destination_path: GoogleChrome
+      recipe_type: munki
+      required_license: Apache-2.0

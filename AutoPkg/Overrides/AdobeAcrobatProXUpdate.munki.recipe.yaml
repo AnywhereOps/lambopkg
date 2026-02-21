@@ -1,0 +1,34 @@
+Identifier: local.munki.AdobeAcrobatProXUpdate
+Input:
+  MAJOR_VERSION: '10'
+  MUNKI_REPO_SUBDIR: apps/AcrobatPro
+  NAME: AdobeAcrobatProX_Update
+  TARGET_OS: '10.9'
+  VERSION: latest
+  pkginfo:
+    blocking_applications:
+    - Adobe Acrobat Pro.app
+    catalogs:
+    - testing
+    description: ''
+    display_name: Adobe Acrobat Pro Update
+    name: '%NAME%'
+    unattended_install: true
+    update_for:
+    - AdobeAcrobatProX
+ParentRecipe: com.github.autopkg.munki.AdobeAcrobatProXUpdate
+ParentRecipeTrustInfo:
+  non_core_processors:
+    AdobeAcrobatProUpdateInfoProvider:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/AdobeAcrobatPro/AdobeAcrobatProUpdateInfoProvider.py
+      sha256_hash: 612d3d87bb08a136eeffa5290ab19a45c20f61e7bb06f79708930d279e99f41e
+  parent_recipes:
+    com.github.autopkg.download.AdobeAcrobatProXUpdate:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/AdobeAcrobatPro/AdobeAcrobatProXUpdate.download.recipe.yaml
+      sha256_hash: 7c5eca81a646c0ae6aff41114d25c10bf6fb0d17c1f709af56ac145fcccc47a5
+    com.github.autopkg.munki.AdobeAcrobatProXUpdate:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/AdobeAcrobatPro/AdobeAcrobatProXUpdate.munki.recipe.yaml
+      sha256_hash: b50f7cebc30906d751bf81aa010c86f4f39114283bd40aef78fae8be809e2fa2

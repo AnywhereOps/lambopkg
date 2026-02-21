@@ -1,0 +1,37 @@
+# Downloaded from https://github.com/autopkg/nmcspadden-recipes/blob/b43a0d0e955b08ac0ce61a92e026a893bec7234e/Xcode/Xcode.extract.recipe
+# Commit: b43a0d0e955b08ac0ce61a92e026a893bec7234e
+# Downloaded at: 2025-11-27 22:26:48 UTC
+
+Description: Extract Xcode from a XIP. Requires passing in a XIP containing Xcode.
+Identifier: com.github.nmcspadden.extract.xcode
+Input:
+  NAME: Xcode
+  BUILD_NUMBER_EMIT_PATH: xcode_build_number
+MinimumVersion: 1.0.4
+ParentRecipe: com.github.nmcspadden.download.xcode
+Process:
+- Processor: XcodeXIPUnpacker
+  Arguments:
+    PKG: '%pathname%'
+- Processor: FileFinder
+  Arguments:
+    pattern: '%RECIPE_CACHE_DIR%/Xcode_unpack/*.app'
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%found_filename%'
+    requirement: identifier "com.apple.dt.Xcode" and anchor apple
+- Processor: PlistReader
+  Arguments:
+    info_path: '%found_filename%/Contents/version.plist'
+    plist_keys:
+      CFBundleVersion: bundle_version
+      CFBundleShortVersionString: version
+      ProductBuildVersion: build_version
+- Processor: XcodeVersioner
+  Arguments:
+    app_path: '%found_filename%'
+    version: '%version%'
+- Processor: XcodeBuildNumberEmitter
+  Arguments:
+    dont_skip: '%NOSKIP%'
+    output_filepath: '%BUILD_NUMBER_EMIT_PATH%'

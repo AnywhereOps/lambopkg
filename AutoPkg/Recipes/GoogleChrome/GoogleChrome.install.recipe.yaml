@@ -1,0 +1,16 @@
+# Downloaded from https://github.com/autopkg/recipes/blob/4aa2d9380d7f8ba54af95915c8c47a73fcf88acf/GoogleChrome/GoogleChrome.install.recipe
+# Commit: 4aa2d9380d7f8ba54af95915c8c47a73fcf88acf
+# Downloaded at: 2025-11-27 22:27:43 UTC
+
+Description: Downloads latest Google Chrome disk image and installs Google Chrome.
+Identifier: com.github.autopkg.install.googlechrome
+Input: {}
+MinimumVersion: 0.4.0
+ParentRecipe: com.github.autopkg.download.googlechrome
+Process:
+- Processor: InstallFromDMG
+  Arguments:
+    dmg_path: '%pathname%'
+    items_to_copy:
+    - source_item: Google Chrome.app
+      destination_path: /Applications/

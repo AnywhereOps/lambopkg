@@ -1,0 +1,15 @@
+Identifier: local.download.PrusaSlicer
+Input:
+  NAME: PrusaSlicer
+ParentRecipe: com.github.ahousseini-recipes.download.PrusaSlicer
+ParentRecipeTrustInfo:
+  non_core_processors:
+    com.github.ahousseini-recipes.SharedProcessors/HomebrewCaskURL:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/SharedProcessors-ahousseini/HomebrewCaskURL.py
+      sha256_hash: 4bfbbef424cf9e27f421679e4db65b274098dba0955dd362cd7469af1e3b6cbf
+  parent_recipes:
+    com.github.ahousseini-recipes.download.PrusaSlicer:
+      git_hash: 1917dc41972756232b48e2152f301708a1355f6b
+      path: AutoPkg/Recipes/PrusaSlicer/PrusaSlicer.download.recipe.yaml
+      sha256_hash: 54b240c4d1429c4fa32040baa7c9d0b1e314cc7be3b4cb66cfb53a31a81a6716

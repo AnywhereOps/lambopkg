@@ -1,0 +1,16 @@
+Description: Obtain Shared Processors from ahousseini's repo
+
+Identifier: com.github.anywhereops.vendorer.SharedProcessorsahousseini
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/ahousseini-recipes
+      folder_path: SharedProcessors
+      commit_sha: 31e6138b990db5622ef2f3ab05d541edcf92997e
+      destination_path: SharedProcessors-ahousseini
+      required_license: Apache-2.0
