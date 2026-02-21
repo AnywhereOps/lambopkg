@@ -1,0 +1,16 @@
+Description: Obtain upstream Fleet recipe from autopkg/jc0b-recipes
+
+Identifier: com.github.anywhereops.vendorer.Fleet
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/jc0b-recipes
+      folder_path: Fleet
+      commit_sha: b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea
+      destination_path: Fleet
+      recipe_type: munki

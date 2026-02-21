@@ -1,0 +1,37 @@
+Identifier: local.munki.fleetctl
+Input:
+  MUNKI_REPO_SUBDIR: apps/fleetctl
+  NAME: fleetctl
+  PKGID: com.fleetdm.fleetctl
+  pkginfo:
+    catalogs:
+    - testing
+    description: 'fleetctl (pronounced "Fleet control") is a command line interface
+      (CLI) tool for managing Fleet from the command line. fleetctl enables a GitOps
+      workflow with Fleet. fleetctl also provides a quick way to work with all the
+      data exposed by Fleet without having to use the Fleet UI or work directly with
+      the Fleet API.
+
+      '
+    display_name: '%NAME%'
+    minimum_os_version: '12.0'
+    name: '%NAME%'
+    version_script: |
+      #!/bin/sh
+      /usr/local/bin/fleetctl --version | /usr/bin/awk '/^fleetctl/{print $4}'
+ParentRecipe: com.github.jc0b.munki.fleetctl
+ParentRecipeTrustInfo:
+  non_core_processors:
+    FindAndReplace:
+      path: ''
+      sha256_hash: PROCESSOR FILEPATH NOT FOUND
+  parent_recipes:
+    com.github.jc0b.download.fleetctl:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.download.recipe.yaml
+      sha256_hash: 6f46b1b16eca6a54dfadfda5d612ccc8c088f5f50fd69e03bb55bda18bf90d91
+    com.github.jc0b.munki.fleetctl:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.munki.recipe.yaml
+      sha256_hash: f6070f9ec4e00e8cea84d7d46c1e3f8f0c23d8bf9445a8908d5695ad8f5ee451
+    com.github.jc0b.pkg.fleetctl:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.pkg.recipe.yaml
+      sha256_hash: d736094c8463e31036c72c09aba617f6d062d769b4d1c8bfb86db20cb3ddbbda

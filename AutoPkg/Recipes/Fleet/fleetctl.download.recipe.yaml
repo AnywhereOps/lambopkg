@@ -1,0 +1,42 @@
+# Downloaded from https://github.com/autopkg/jc0b-recipes/blob/b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea/Fleet/fleetctl.download.recipe.yaml
+# Commit: b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea
+# Downloaded at: 2026-02-21 05:59:00 UTC
+
+Description: Gets the latest version of fleetctl from Github releases, and normalises the version.
+Identifier: com.github.jc0b.download.fleetctl
+MinimumVersion: "2.7.6"
+
+Input:
+  NAME: fleetctl
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: fleetdm/fleet
+      asset_regex: fleetctl_v.*_macos.zip
+      sort_by_highest_tag_names: true
+      release_id: "latest"
+
+  - Processor: FindAndReplace
+    Arguments:
+      find: fleet-v
+      input_string: "%version%"
+      replace: ""
+      result_output_var_name: version
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "%NAME%-%version%.zip"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%pathname%"
+      destination_path: "%RECIPE_CACHE_DIR%/%NAME%"
+      purge_destination: true
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      requirement: identifier "com.fleetdm.fleetctl" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8VBZ3948LU"
+      input_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%_v%version%_macos/fleetctl"

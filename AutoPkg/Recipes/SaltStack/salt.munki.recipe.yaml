@@ -1,0 +1,24 @@
+# Downloaded from https://github.com/autopkg/mosen-recipes/blob/908662c062d02ff949d672eb5ff3234dc69a10e4/SaltStack/salt.munki.recipe
+# Commit: 908662c062d02ff949d672eb5ff3234dc69a10e4
+# Downloaded at: 2026-02-21 05:59:22 UTC
+
+Description: Import SaltStack into munki
+Identifier: com.github.mosen.munki.salt
+Input:
+  NAME: salt
+  MUNKI_REPO_SUBDIR: support/SaltStack
+  pkginfo:
+    catalogs:
+    - testing
+    description: Change the way you build, control and secure complex infrastructure and application environments at scale.
+    developer: SaltStack
+    display_name: SaltStack
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: 0.2.0
+ParentRecipe: com.github.mosen.download.salt
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

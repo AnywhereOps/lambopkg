@@ -1,0 +1,40 @@
+# Downloaded from https://github.com/autopkg/jc0b-recipes/blob/b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea/Fleet/fleetctl.pkg.recipe.yaml
+# Commit: b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea
+# Downloaded at: 2026-02-21 05:59:01 UTC
+
+Description: Gets the latest version of fleetctl, and creates an installer pkg.
+Identifier: com.github.jc0b.pkg.fleetctl
+ParentRecipe: com.github.jc0b.download.fleetctl
+MinimumVersion: "2.7.6"
+
+Input:
+  NAME: fleetctl
+  PKGID: com.fleetdm.fleetctl
+
+Process:
+
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        usr: "0755"
+        usr/local: "0755"
+        usr/local/bin: "0755"
+      pkgroot: "%RECIPE_CACHE_DIR%/pkg_root"
+
+  - Processor: Copier
+    Arguments:
+      source_path: "%RECIPE_CACHE_DIR%/%NAME%/%NAME%_v%version%_macos/fleetctl"
+      destination_path: "%RECIPE_CACHE_DIR%/pkg_root/usr/local/bin/fleetctl"
+
+  - Processor: PkgCreator
+    Arguments:
+      pkg_request:
+        chown:
+          - group: "wheel"
+            path: "/usr/local/bin/%NAME%"
+            user: "root"
+            mode: "0755"
+        pkgname: "%NAME%-%version%"
+        version: "%version%"
+        id: "%PKGID%"
+        pkgdir: "%RECIPE_CACHE_DIR%"

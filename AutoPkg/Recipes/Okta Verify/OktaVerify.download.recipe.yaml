@@ -1,0 +1,25 @@
+# Downloaded from https://github.com/autopkg/nstrauss-recipes/blob/e58bfac92f1739258afd8cf246d148e1b60fd986/Okta Verify/OktaVerify.download.recipe
+# Commit: e58bfac92f1739258afd8cf246d148e1b60fd986
+# Downloaded at: 2026-02-21 05:58:42 UTC
+
+Description: "Download the latest version of Okta Verify. \n    \n    OKTA_DOMAIN: Usually \"okta.com\"\n    OKTA_ORG: Org tenant - \"myorg\" part of a subdomain like \"myorg.okta.com\"\n    OKTA_RELEASE_CHANNEL: GA or EA\n    "
+Identifier: com.github.nstrauss.download.OktaVerify
+Input:
+  NAME: OktaVerify
+  OKTA_DOMAIN: okta.com
+  OKTA_ORG: ''
+  OKTA_RELEASE_CHANNEL: GA
+MinimumVersion: '1.0'
+Process:
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%.pkg'
+    url: https://%OKTA_ORG%.%OKTA_DOMAIN%/api/v1/artifacts/OKTA_VERIFY_MACOS/download?releaseChannel=%OKTA_RELEASE_CHANNEL%
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Okta, Inc. (B7F62B65BN)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%pathname%'

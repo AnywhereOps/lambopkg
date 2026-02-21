@@ -1,6 +1,6 @@
-# Downloaded from https://github.com/autopkg/recipes/blob/4aa2d9380d7f8ba54af95915c8c47a73fcf88acf/GoogleChrome/GoogleChromePkg.munki.recipe
-# Commit: 4aa2d9380d7f8ba54af95915c8c47a73fcf88acf
-# Downloaded at: 2025-11-27 22:27:43 UTC
+# Downloaded from https://github.com/autopkg/recipes/blob/4b5a199119b507053f074f17d7955f1f21f612f0/GoogleChrome/GoogleChromePkg.munki.recipe
+# Commit: 4b5a199119b507053f074f17d7955f1f21f612f0
+# Downloaded at: 2026-02-21 05:58:30 UTC
 
 Description: "Downloads the latest version of the Google Chrome Enterprise Package and imports it into Munki.\n\nSet the DERIVE_MIN_OS variable to a non-empty string to set the minimum_os_version via MunkiInstallsItemsCreator. This requires a minimum AutoPkg version of 2.7 please update if you're not already running it."
 Identifier: com.github.autopkg.munki.googlechromepkg

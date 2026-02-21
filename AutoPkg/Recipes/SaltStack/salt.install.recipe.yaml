@@ -1,0 +1,14 @@
+# Downloaded from https://github.com/autopkg/mosen-recipes/blob/908662c062d02ff949d672eb5ff3234dc69a10e4/SaltStack/salt.install.recipe
+# Commit: 908662c062d02ff949d672eb5ff3234dc69a10e4
+# Downloaded at: 2026-02-21 05:59:22 UTC
+
+Description: Install SaltStack directly from the current version on the web
+Identifier: com.github.mosen.install.salt
+Input:
+  PYVERSION: '2'
+ParentRecipe: com.github.mosen.download.salt
+MinimumVersion: 0.6.1
+Process:
+- Processor: Installer
+  Arguments:
+    pkg_path: '%pathname%'

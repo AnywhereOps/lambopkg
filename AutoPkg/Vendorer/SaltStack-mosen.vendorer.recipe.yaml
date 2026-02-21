@@ -1,0 +1,17 @@
+Description: Obtain upstream SaltStack recipe from autopkg/mosen-recipes
+
+Identifier: com.github.anywhereops.vendorer.SaltStack
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/mosen-recipes
+      folder_path: SaltStack
+      commit_sha: 908662c062d02ff949d672eb5ff3234dc69a10e4
+      destination_path: SaltStack
+      recipe_type: munki
+      required_license: MIT

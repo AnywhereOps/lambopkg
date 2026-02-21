@@ -1,0 +1,27 @@
+# Downloaded from https://github.com/autopkg/jc0b-recipes/blob/b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea/Fleet/fleetd.download.recipe.yaml
+# Commit: b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea
+# Downloaded at: 2026-02-21 05:59:01 UTC
+
+Description: |
+  Gets the latest version of the fleetd installer (as built by Fleet) from their downloads page.
+Identifier: com.github.jc0b.download.fleetd
+MinimumVersion: "2.3"
+
+Input:
+  NAME: fleetd
+  FLEET_DOWNLOAD_URL: "https://download.fleetdm.com/fleetd-base.pkg"
+
+Process:
+  - Processor: URLDownloader
+    Arguments:
+      url: "%FLEET_DOWNLOAD_URL%"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      expected_authority_names:
+        - "Developer ID Installer: Fleet Device Management Inc (8VBZ3948LU)"
+        - "Developer ID Certification Authority"
+        - "Apple Root CA"
+      input_path: "%pathname%"

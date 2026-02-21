@@ -26,6 +26,7 @@ dependencies = [
     "python-dotenv==1.2.1",
     "pyyaml==6.0.3",
     "slack-sdk==3.37.0",
+    "thefuzz==0.22.1",
 ]
 
 [project.urls]

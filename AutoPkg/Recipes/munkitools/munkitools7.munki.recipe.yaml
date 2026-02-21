@@ -1,0 +1,46 @@
+# Downloaded from https://github.com/autopkg/recipes/blob/4b5a199119b507053f074f17d7955f1f21f612f0/munkitools/munkitools7.munki.recipe
+# Commit: 4b5a199119b507053f074f17d7955f1f21f612f0
+# Downloaded at: 2026-02-21 05:59:09 UTC
+
+Description: "Downloads and imports Munki tools version 7 via the official releases listing on GitHub.\n\nYou can set INCLUDE_PRERELEASES to any value to have this recipe pull prerelease versions.\n\nThis recipe cannot be overridden to pull a download from an alternate location.\n\nThe GitHubReleasesInfoProvider processor used by this recipe also\nrespects an input variable: 'sort_by_highest_tag_names', which\nif set, will ignore the post dates of the releases and instead sort\ndescending by tag names according to LooseVersion semantics.\n"
+Identifier: com.github.autopkg.munki.munkitools7
+Input:
+  INCLUDE_PRERELEASES: ''
+  NAME: munkitools
+  MUNKI_REPO_SUBDIR: munkitools
+  MUNKI_ICON: munkitools.png
+  pkginfo:
+    catalogs:
+    - development
+    category: munkitools
+    description: Managed software installation for macOS.
+    developer: The Munki Project
+    display_name: Managed Software Center
+    icon_name: '%MUNKI_ICON%'
+    minimum_os_version: '10.15'
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: 0.5.0
+Process:
+- Processor: GitHubReleasesInfoProvider
+  Arguments:
+    asset_regex: ^munkitools-7.*?pkg$
+    github_repo: munki/munki
+    include_prereleases: '%INCLUDE_PRERELEASES%'
+- Processor: URLDownloader
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Mac Admins Open Source (T4SK8ZXCXG)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%pathname%'
+- Processor: MunkiImporter
+  Arguments:
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+    pkg_path: '%pathname%'
+- Processor: MunkiOptionalReceiptEditor
+  Arguments:
+    pkg_ids_set_optional_true:
+    - com.googlecode.munki.libs

@@ -1,0 +1,28 @@
+# Downloaded from https://github.com/autopkg/mosen-recipes/blob/908662c062d02ff949d672eb5ff3234dc69a10e4/SaltStack/salt-py3.munki.recipe
+# Commit: 908662c062d02ff949d672eb5ff3234dc69a10e4
+# Downloaded at: 2026-02-21 05:59:21 UTC
+
+Description: Import SaltStack python3 into munki
+Identifier: com.github.mosen.munki.salt.py3
+Input:
+  NAME: salt-py3
+  MUNKI_REPO_SUBDIR: support/SaltStack
+  pkginfo:
+    catalogs:
+    - testing
+    description: Change the way you build, control and secure complex infrastructure and application environments at scale.
+    developer: SaltStack
+    display_name: SaltStack
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: 0.2.0
+ParentRecipe: com.github.mosen.download.salt.py3
+Process:
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      version: '%version%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

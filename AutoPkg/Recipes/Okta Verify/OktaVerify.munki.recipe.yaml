@@ -1,0 +1,46 @@
+# Downloaded from https://github.com/autopkg/nstrauss-recipes/blob/e58bfac92f1739258afd8cf246d148e1b60fd986/Okta Verify/OktaVerify.munki.recipe
+# Commit: e58bfac92f1739258afd8cf246d148e1b60fd986
+# Downloaded at: 2026-02-21 05:58:42 UTC
+
+Description: "Download Okta Verify, copy to versioned package, and import into Munki.\n\nSet the DERIVE_MIN_OS variable to a non-empty string to set the minimum_os_version via MunkiInstallsItemsCreator. This requires a minimum AutoPkg version of 2.7 please update if you're not already running it."
+Identifier: com.github.nstrauss.munki.OktaVerify
+Input:
+  NAME: OktaVerify
+  MUNKI_CATEGORY: Security
+  MUNKI_REPO_SUBDIR: apps/OktaVerify
+  DERIVE_MIN_OS: YES
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: Okta Verify is a lightweight multifactor authentication app that is used to register your device to Okta. Registering your device to Okta gives you passwordless authentication to apps, strong device-level security, and more.
+    developer: Okta
+    display_name: Okta Verify
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: "#!/bin/zsh\n/usr/bin/killall \"Okta Verify\"\n/bin/rm -rf \"/Applications/Okta Verify.app\"\npkgutil --forget com.okta.mobile\nexit 0\n            "
+MinimumVersion: '2.7'
+ParentRecipe: com.github.nstrauss.pkg.OktaVerify
+Process:
+- Processor: MunkiInstallsItemsCreator
+  Arguments:
+    faux_root: '%RECIPE_CACHE_DIR%/payload'
+    derive_minimum_os_version: '%DERIVE_MIN_OS%'
+    installs_item_paths:
+    - /Applications/Okta Verify.app
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/payload'
+    - '%RECIPE_CACHE_DIR%/unpack'
+- Processor: MunkiPkginfoMerger
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      version: '%version%.%ov_build%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

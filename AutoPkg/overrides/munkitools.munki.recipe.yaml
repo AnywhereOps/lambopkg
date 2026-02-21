@@ -1,0 +1,24 @@
+Identifier: local.munki.munkitools
+Input:
+  INCLUDE_PRERELEASES: ''
+  MUNKI_ICON: munkitools.png
+  MUNKI_REPO_SUBDIR: munkitools
+  NAME: munkitools
+  pkginfo:
+    catalogs:
+    - development
+    category: munkitools
+    description: Managed software installation for macOS.
+    developer: The Munki Project
+    display_name: Managed Software Center
+    icon_name: '%MUNKI_ICON%'
+    minimum_os_version: '10.15'
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.autopkg.munki.munkitools
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.autopkg.munki.munkitools:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/munkitools/munkitools.munki.recipe.yaml
+      sha256_hash: 7a2fc747e50279f41d21b8c45c7c7b8b654e940adddc89d192209025f77d3fbc

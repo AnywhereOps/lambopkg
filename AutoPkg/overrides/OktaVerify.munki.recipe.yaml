@@ -1,0 +1,38 @@
+Identifier: local.munki.OktaVerify
+Input:
+  DERIVE_MIN_OS: true
+  MUNKI_CATEGORY: Security
+  MUNKI_REPO_SUBDIR: apps/OktaVerify
+  NAME: OktaVerify
+  OKTA_DOMAIN: okta.com
+  OKTA_ORG: ''
+  OKTA_RELEASE_CHANNEL: GA
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: Okta Verify is a lightweight multifactor authentication app that
+      is used to register your device to Okta. Registering your device to Okta gives
+      you passwordless authentication to apps, strong device-level security, and more.
+    developer: Okta
+    display_name: Okta Verify
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: uninstall_script
+    uninstall_script: "#!/bin/zsh\n/usr/bin/killall \"Okta Verify\"\n/bin/rm -rf \"\
+      /Applications/Okta Verify.app\"\npkgutil --forget com.okta.mobile\nexit 0\n\
+      \            "
+ParentRecipe: com.github.nstrauss.munki.OktaVerify
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.nstrauss.download.OktaVerify:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Okta Verify/OktaVerify.download.recipe.yaml
+      sha256_hash: 4902b9ccf63dc415616709f9a2f28ac97f6e08f4549750964ffd2d56c3d2d797
+    com.github.nstrauss.munki.OktaVerify:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Okta Verify/OktaVerify.munki.recipe.yaml
+      sha256_hash: db0bd3ba6fa7b22526ac33f9f271d1314e6be04dea7b2240667d6f48e6061f37
+    com.github.nstrauss.pkg.OktaVerify:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Okta Verify/OktaVerify.pkg.recipe.yaml
+      sha256_hash: e5d20063ec36d71fac946c958de937c4ea363a75b04c88e83abc9f99d51dc793
