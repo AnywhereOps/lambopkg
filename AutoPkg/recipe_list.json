@@ -1,3 +1,27 @@
 [
-  "GoogleChrome.munki.recipe.yaml"
+  "GoogleChrome.munki.recipe.yaml",
+  "GoogleChromePkg.munki.recipe.yaml",
+  "OktaVerify.munki.recipe.yaml",
+  "fleetd.munki.recipe.yaml",
+  "fleetctl.munki.recipe.yaml",
+  "munkitools.munki.recipe.yaml",
+  "Claude.munki.recipe.yaml",
+  "Discord.munki.recipe.yaml",
+  "GitHubDesktop.munki.recipe.yaml",
+  "iMazing.munki.recipe.yaml",
+  "JamfComplianceEditor.munki.recipe.yaml",
+  "MicrosoftExcel365.munki.recipe.yaml",
+  "MicrosoftPowerpoint365.munki.recipe.yaml",
+  "MicrosoftWord365.munki.recipe.yaml",
+  "NordVPN.munki.recipe.yaml",
+  "OBS.munki.recipe.yaml",
+  "MicrosoftOneDrive.munki.recipe.yaml",
+  "Recipe Robot.munki.recipe.yaml",
+  "Spotify.munki.recipe.yaml",
+  "Apparency.munki.recipe.yaml",
+  "Archaeology.munki.recipe.yaml",
+  "Visual Studio.munki.recipe.yaml",
+  "WhatsApp.munki.recipe.yaml",
+  "Zoom.munki.recipe.yaml",
+  "GoogleDrive.munki.recipe.yaml"
 ]
