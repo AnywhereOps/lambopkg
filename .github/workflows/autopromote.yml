@@ -5,12 +5,29 @@ on:
   #   - cron:  '30 16 * * *'
   workflow_dispatch:  # Enables manual triggering
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   autopromote:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+        aws-region: us-east-2
+
+    - name: Fetch GitHub App secret
+      uses: aws-actions/aws-secretsmanager-get-secrets@v2
+      with:
+        secret-ids: |
+          MUNKISRV_APP, ${{ secrets.MUNKISRV_GITHUB_APP_ARN }}
+        parse-json-secrets: true
+
     - name: Checkout this repo
       uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
       with:
@@ -20,8 +37,8 @@ jobs:
       uses: actions/create-github-app-token@7e473efe3cb98aa54f8d4bac15400b15fad77d94 #2.2.0
       id: app-token
       with:
-        app-id: ${{ secrets.MUNKI_APP_ID }}
-        private-key: ${{ secrets.MUNKI_APP_PRIVATE_KEY }}
+        app-id: ${{ env.MUNKISRV_APP_APP_ID }}
+        private-key: ${{ env.MUNKISRV_APP_PRIVATE_KEY }}
         owner: andrew-kemp-dahlberg
 
     - name: Checkout Munki repo
