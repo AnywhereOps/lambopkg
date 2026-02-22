@@ -116,18 +116,10 @@ jobs:
           uv run scripts/autopkg_tools.py
 
 
-      # - name: Configure AWS credentials
-      #   if: always()
-      #   uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 #5.1.1
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: us-east-1
-
-      # - name: Push packages to Storage Bucket
-      #   if: always()
-      #   run: |
-      #     aws s3 sync ${MUNKI_DIR}/pkgs/ s3://${{secrets.AWS_S3_BUCKET}}/pkgs/
+      - name: Push packages to S3
+        if: always()
+        run: |
+          aws s3 sync ${MUNKI_DIR}/pkgs/ s3://${{ secrets.MUNKI_S3_BUCKET }}/pkgs/
 
 
       - name: Upload Artifacts
