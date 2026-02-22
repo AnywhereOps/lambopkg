@@ -61,7 +61,7 @@ jobs:
         with:
           repository: ${{ env.MUNKI_GH_REPO }}
           token: ${{ steps.app-token.outputs.token }}
-          fetch-depth: 1
+          fetch-depth: 0  # Full history needed for worktrees
           path: ${{ env.MUNKI_CLONE_DIR }}
 
       - name: Configure Munki repo push credentials
