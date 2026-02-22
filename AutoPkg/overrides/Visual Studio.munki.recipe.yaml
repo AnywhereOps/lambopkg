@@ -1,0 +1,27 @@
+Identifier: local.munki.Visual Studio
+Input:
+  ARCH_TYPE: x64
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: VisualStudio
+  pkginfo:
+    catalogs:
+    - testing
+    description: |-
+      Visual Studio for Mac is a .NET integrated development environment on the Mac that can be used to edit, debug, and build code and then publish an app.
+
+      In addition to a code editor and debugger, Visual Studio for Mac includes compilers, code completion tools, graphical designers, and source control features to ease the software development process.
+    developer: Microsoft Corporation
+    display_name: Visual Studio
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.dataJAR-recipes.munki.VisualStudio
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.dataJAR-recipes.download.VisualStudio:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Visual Studio/Visual Studio.download.recipe.yaml
+      sha256_hash: a3050c2b410d807e76dabe81f92e720d0f8b790a5950f561aaee42ddb56ccd27
+    com.github.dataJAR-recipes.munki.VisualStudio:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Visual Studio/Visual Studio.munki.recipe.yaml
+      sha256_hash: 4e9260a9ed9098aa2ac664dee24fb350f21f360cb16b3b696e95bedf43f29427

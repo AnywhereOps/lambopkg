@@ -1,0 +1,24 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/GitHub/GitHubDesktop.pkg.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:34 UTC
+
+Description: Downloads the latest version of GitHub Desktop and creates a package.
+Identifier: com.github.homebysix.pkg.GitHubDesktop
+Input:
+  BUNDLE_ID: com.github.GitHub
+  NAME: GitHub Desktop
+MinimumVersion: 1.0.2
+ParentRecipe: com.github.homebysix.download.GitHubDesktop
+Process:
+- Processor: PkgCreator
+  Arguments:
+    pkg_request:
+      chown:
+      - group: admin
+        path: Applications
+        user: root
+      id: '%BUNDLE_ID%'
+      pkgname: '%NAME%-%BUILD%-%version%'
+      pkgroot: '%RECIPE_CACHE_DIR%/%NAME%'
+      scripts: scripts
+      version: '%version%'

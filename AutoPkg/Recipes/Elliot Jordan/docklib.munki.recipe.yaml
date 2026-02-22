@@ -1,0 +1,26 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Elliot Jordan/docklib.munki.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:47:46 UTC
+
+Description: Downloads the latest docklib and imports into Munki.
+Identifier: com.github.homebysix.munki.docklib
+Input:
+  MUNKI_REPO_SUBDIR: apps/docklib
+  NAME: docklib
+  pathname: '%pathname%'
+  pkginfo:
+    catalogs:
+    - testing
+    description: A Python module that provides methods for manipulating the macOS Dock.
+    developer: Elliot Jordan
+    display_name: docklib
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.homebysix.download.docklib
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

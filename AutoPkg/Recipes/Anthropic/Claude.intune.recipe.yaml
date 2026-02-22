@@ -1,0 +1,29 @@
+# Downloaded from https://github.com/autopkg/almenscorner-recipes/blob/c69534f0253da986346daf26462270710f8501ae/Anthropic/Claude.intune.recipe
+# Commit: c69534f0253da986346daf26462270710f8501ae
+# Downloaded at: 2026-02-22 01:45:09 UTC
+
+Description: Downloads latest Claude.
+Identifier: com.github.almenscorner.intune.Claude
+Input:
+  categories:
+  - Productivity
+  description: Your AI partner on desktop. Fast, focused, and designed for deep work.
+  developer: Anthropic
+  display_name: Claude
+MinimumVersion: '1.1'
+ParentRecipe: com.github.almenscorner.download.Claude
+Process:
+- Processor: com.github.almenscorner.intune-upload.processors/IntuneAppIconGetter
+  Arguments:
+    app_file: '%dmg_path%'
+    name: '%NAME%'
+- Processor: com.github.almenscorner.intune-upload.processors/IntuneAppUploader
+  Arguments:
+    app_file: '%dmg_path%'
+    bundleId: '%bundleid%'
+    bundleVersion: '%version%'
+    description: '%description%'
+    displayname: '%display_name%'
+    icon: '%icon_file_path%'
+    publisher: '%developer%'
+    version: '%version%'

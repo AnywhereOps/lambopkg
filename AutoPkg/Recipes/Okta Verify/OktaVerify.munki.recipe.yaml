@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/nstrauss-recipes/blob/e58bfac92f1739258afd8cf246d148e1b60fd986/Okta Verify/OktaVerify.munki.recipe
 # Commit: e58bfac92f1739258afd8cf246d148e1b60fd986
-# Downloaded at: 2026-02-21 05:58:42 UTC
+# Downloaded at: 2026-02-22 01:47:22 UTC
 
 Description: "Download Okta Verify, copy to versioned package, and import into Munki.\n\nSet the DERIVE_MIN_OS variable to a non-empty string to set the minimum_os_version via MunkiInstallsItemsCreator. This requires a minimum AutoPkg version of 2.7 please update if you're not already running it."
 Identifier: com.github.nstrauss.munki.OktaVerify

@@ -1,0 +1,27 @@
+Identifier: local.munki.Apparency
+Input:
+  NAME: Apparency
+  PKG_URL: https://www.mothersruin.com/software/downloads/Apparency.dmg
+  pkginfo:
+    catalogs:
+    - testing
+    category: Utilities
+    description: Aparency is an application for inspecting other applications.
+    developer: Mothers Ruin Software
+    display_name: Apparency
+    icon_name: Apparency.png
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstallable: true
+  repo_subdirectory: utilities
+ParentRecipe: com.github.kevinmcox.munki.Apparency
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.kevinmcox.download.Apparency:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Apparency.download.recipe.yaml
+      sha256_hash: e83fcde00cac8cf1e14726439f33b6af977bd988611e56a9500afc00cbe5a9d5
+    com.github.kevinmcox.munki.Apparency:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Apparency.munki.recipe.yaml
+      sha256_hash: c094a2a498f104ca6971995fbfc932a25c60edffa12f6a7e702758ff4f616577

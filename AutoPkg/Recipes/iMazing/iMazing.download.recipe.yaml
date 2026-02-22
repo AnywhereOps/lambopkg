@@ -1,0 +1,23 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/iMazing/iMazing.download.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:44 UTC
+
+Comment: Created with Recipe Robot v1.0.3 (https://github.com/homebysix/recipe-robot)
+Description: "Downloads the latest version of iMazing.\n\nTested with MAJOR_VERSION 2 and 3."
+Identifier: com.github.homebysix.download.iMazing
+Input:
+  MAJOR_VERSION: '2'
+  NAME: iMazing
+MinimumVersion: 0.6.1
+Process:
+- Processor: SparkleUpdateInfoProvider
+  Arguments:
+    appcast_url: https://downloads.imazing.com/com.DigiDNA.iMazing%MAJOR_VERSION%Mac.xml
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%-%version%.dmg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/iMazing.app'
+    requirement: identifier "com.DigiDNA.iMazing%MAJOR_VERSION%Mac" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = J5PR93692Y

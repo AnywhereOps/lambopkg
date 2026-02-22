@@ -1,0 +1,22 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Elliot Jordan/Recipe Robot.download.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:47:43 UTC
+
+Comment: Created with Recipe Robot v1.0.3 (https://github.com/homebysix/recipe-robot)
+Description: "Downloads the latest version of Recipe Robot.\n\nNote: Although Recipe Robot has a Sparkle feed as of version 2.2.0, this recipe\nstill relies on GitHubReleasesInfoProvider in order to minimize points of failure."
+Identifier: com.github.homebysix.download.RecipeRobot
+Input:
+  NAME: Recipe Robot
+MinimumVersion: 0.6.1
+Process:
+- Processor: GitHubReleasesInfoProvider
+  Arguments:
+    github_repo: homebysix/recipe-robot
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%-%version%.dmg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/Recipe Robot.app'
+    requirement: anchor apple generic and identifier "com.elliotjordan.recipe-robot" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "32SVX952DB")

@@ -1,6 +1,6 @@
-# Downloaded from https://github.com/autopkg/hansen-m-recipes/blob/de17d7db2537ffa00c27281a392f37fe599efdca/Zoom/Zoom64-Win.download.recipe
-# Commit: de17d7db2537ffa00c27281a392f37fe599efdca
-# Downloaded at: 2025-11-27 22:32:35 UTC
+# Downloaded from https://github.com/autopkg/hansen-m-recipes/blob/76ca42243d2d45d2704ae28473ca40e329d12458/Zoom/Zoom64-Win.download.recipe
+# Commit: 76ca42243d2d45d2704ae28473ca40e329d12458
+# Downloaded at: 2026-02-22 01:49:38 UTC
 
 Description: Downloads the latest version of Zoom 64bit.
 Identifier: com.github.hansen-m.download.zoom64-win

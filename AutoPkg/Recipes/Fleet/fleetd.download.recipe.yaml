@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/jc0b-recipes/blob/b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea/Fleet/fleetd.download.recipe.yaml
 # Commit: b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea
-# Downloaded at: 2026-02-21 05:59:01 UTC
+# Downloaded at: 2026-02-22 01:49:58 UTC
 
 Description: |
   Gets the latest version of the fleetd installer (as built by Fleet) from their downloads page.

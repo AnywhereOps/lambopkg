@@ -1,0 +1,17 @@
+Description: Obtain upstream Spotify recipe from autopkg/recipes
+
+Identifier: com.github.anywhereops.vendorer.Spotify
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/recipes
+      folder_path: Spotify
+      commit_sha: 4b5a199119b507053f074f17d7955f1f21f612f0
+      destination_path: Spotify
+      recipe_type: munki
+      required_license: Apache-2.0

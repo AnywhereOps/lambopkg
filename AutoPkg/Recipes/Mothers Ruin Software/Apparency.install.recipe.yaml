@@ -1,0 +1,17 @@
+# Downloaded from https://github.com/autopkg/kevinmcox-recipes/blob/b0420a50e4532aa401412eefec8a77683b2d5d81/Mothers Ruin Software/Apparency.install.recipe
+# Commit: b0420a50e4532aa401412eefec8a77683b2d5d81
+# Downloaded at: 2026-02-22 01:48:40 UTC
+
+Description: Installs the latest version of Apparency.
+Identifier: com.github.kevinmcox.install.Apparency
+Input:
+  NAME: Apparency
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.kevinmcox.download.Apparency
+Process:
+- Processor: InstallFromDMG
+  Arguments:
+    dmg_path: '%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg'
+    items_to_copy:
+    - destination_path: /Applications
+      source_item: Apparency.app

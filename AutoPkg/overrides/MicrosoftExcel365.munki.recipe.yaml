@@ -1,0 +1,24 @@
+Identifier: local.munki.MicrosoftExcel365
+Input:
+  DOWNLOADURL: https://go.microsoft.com/fwlink/?linkid=%PRODUCTID%
+  MUNKI_REPO_SUBDIR: apps/msoffice
+  NAME: Excel365
+  PRODUCTID: '525135'
+  SOFTWARETITLE: Excel
+  VENDOR: Microsoft
+  pkginfo:
+    catalogs:
+    - testing
+    display_name: Microsoft Excel 365
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.rtrouton.munki.microsoftexcel365
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.rtrouton.download.microsoftexcel365:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftExcel365/MicrosoftExcel365.download.recipe.yaml
+      sha256_hash: 74075f76f431adc45a2c28dd5de408847accea7375a600e7566eca87b5ad32b4
+    com.github.rtrouton.munki.microsoftexcel365:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftExcel365/MicrosoftExcel365.munki.recipe.yaml
+      sha256_hash: 45183599b9d511273903b31f332a6ef1e8edac27a7c3c0bd1d6e20ee574461f0

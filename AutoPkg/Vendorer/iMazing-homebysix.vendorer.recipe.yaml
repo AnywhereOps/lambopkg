@@ -1,0 +1,17 @@
+Description: Obtain upstream iMazing recipe from autopkg/homebysix-recipes
+
+Identifier: com.github.anywhereops.vendorer.iMazing
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/homebysix-recipes
+      folder_path: iMazing
+      commit_sha: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+      destination_path: iMazing
+      recipe_type: munki
+      required_license: Apache-2.0

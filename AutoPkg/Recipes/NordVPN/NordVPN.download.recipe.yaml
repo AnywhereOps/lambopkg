@@ -1,0 +1,21 @@
+# Downloaded from https://github.com/autopkg/ahousseini-recipes/blob/f492141969d35725e565834657527cebbe2bc519/NordVPN/NordVPN.download.recipe
+# Commit: f492141969d35725e565834657527cebbe2bc519
+# Downloaded at: 2026-02-22 01:46:54 UTC
+
+Description: Downloads the latest version of NordVPN.
+Identifier: com.github.ahousseini-recipes.download.NordVPN
+Input:
+  NAME: NordVPN
+MinimumVersion: 1.0.0
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: https://downloads.nordcdn.com/apps/macos/generic/NordVPN-OpenVPN/latest/NordVPN.pkg
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Nordvpn S.A. (W5W395V82Y)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%pathname%'

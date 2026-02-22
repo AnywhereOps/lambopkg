@@ -1,0 +1,14 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Elliot Jordan/touchbarlib.pkg.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:47:47 UTC
+
+Description: This recipe does nothing, since touchbarlib is already downloaded as a pkg.
+Identifier: com.github.homebysix.pkg.touchbarlib
+Input:
+  NAME: touchbarlib
+MinimumVersion: 0.5.0
+ParentRecipe: com.github.homebysix.download.touchbarlib
+Process:
+- Processor: PkgCopier
+  Arguments:
+    source_pkg: '%pathname%'

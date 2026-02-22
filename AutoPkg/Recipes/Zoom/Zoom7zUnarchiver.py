@@ -1,6 +1,6 @@
-# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Zoom/Zoom7zUnarchiver.py
-# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
-# Downloaded at: 2025-11-27 22:32:34 UTC
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Zoom/Zoom7zUnarchiver.py
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:49:34 UTC
 
 #
 # Copyright 2010 Per Olofsson
@@ -24,7 +24,7 @@ import os
 import shutil
 import subprocess
 
-from autopkglib import Processor, ProcessorError
+from autopkglib import Processor, ProcessorError  # noqa: F401
 
 __all__ = ["Zoom7zUnarchiver"]
 
@@ -52,12 +52,14 @@ class Zoom7zUnarchiver(Processor):  # pylint: disable=invalid-name
         "destination_path": {
             "required": False,
             "description": (
-                "Directory where archive will be unpacked, created if necessary. Defaults to RECIPE_CACHE_DIR/NAME."
+                "Directory where archive will be unpacked, created "
+                "if necessary. Defaults to RECIPE_CACHE_DIR/NAME."
             ),
         },
         "purge_destination": {
             "required": False,
-            "description": "Whether the contents of the destination directory will be removed before unpacking.",
+            "description": "Whether the contents of the destination directory "
+            "will be removed before unpacking.",
         },
         "archive_format": {
             "required": False,
@@ -88,7 +90,9 @@ class Zoom7zUnarchiver(Processor):  # pylint: disable=invalid-name
         # handle some defaults for archive_path and destination_path
         archive_path = self.env.get("archive_path", self.env.get("pathname"))
         if not archive_path:
-            raise ProcessorError("Expected an 'archive_path' input variable but none is set!")
+            raise ProcessorError(
+                "Expected an 'archive_path' input variable but none is set!"
+            )
         destination_path = self.env.get(
             "destination_path",
             os.path.join(self.env["RECIPE_CACHE_DIR"], self.env["NAME"]),
@@ -115,11 +119,16 @@ class Zoom7zUnarchiver(Processor):  # pylint: disable=invalid-name
         if fmt is None:
             fmt = self.get_archive_format(archive_path)
             if not fmt:
-                raise ProcessorError(f"Can't guess archive format for filename {os.path.basename(archive_path)}")
-            self.output(f"Guessed archive format '{fmt}' from filename {os.path.basename(archive_path)}")
+                raise ProcessorError(
+                    f"Can't guess archive format for filename {os.path.basename(archive_path)}"
+                )
+            self.output(
+                f"Guessed archive format '{fmt}' from filename {os.path.basename(archive_path)}"
+            )
         elif fmt not in EXTNS:
             raise ProcessorError(
-                f"'{fmt}' is not valid for the 'archive_format' variable. Must be one of {', '.join(EXTNS)}."
+                f"'{fmt}' is not valid for the 'archive_format' variable. "
+                f"Must be one of {', '.join(EXTNS)}."
             )
 
         if fmt == "zip":
@@ -136,7 +145,9 @@ class Zoom7zUnarchiver(Processor):  # pylint: disable=invalid-name
         elif fmt == "7z":
             cmd_7z = self.env.get("7z_unarchiver_path")
             if not cmd_7z:
-                raise ProcessorError("Expected an '7z_unarchiver_path' input variable since file format is 7z!")
+                raise ProcessorError(
+                    "Expected an '7z_unarchiver_path' input variable since file format is 7z!"
+                )
             cmd = [cmd_7z, "x", archive_path, "-o" + destination_path]
         elif fmt.startswith("tar"):
             cmd = ["/usr/bin/tar", "-x", "-f", archive_path, "-C", destination_path]
@@ -148,7 +159,9 @@ class Zoom7zUnarchiver(Processor):  # pylint: disable=invalid-name
         # Call the shell command.
         proc = subprocess.run(cmd, check=False, capture_output=True, text=True)
         if proc.returncode != 0:
-            raise ProcessorError(f"Unarchiving {archive_path} with {os.path.basename(cmd[0])} failed: {proc.stderr}")
+            raise ProcessorError(
+                f"Unarchiving {archive_path} with {os.path.basename(cmd[0])} failed: {proc.stderr}"
+            )
 
         self.output(f"Unarchived {archive_path} to {destination_path}")
 

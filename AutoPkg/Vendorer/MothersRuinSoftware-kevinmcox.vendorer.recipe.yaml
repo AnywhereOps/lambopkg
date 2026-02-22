@@ -1,0 +1,17 @@
+Description: Obtain upstream Mothers Ruin Software recipe from autopkg/kevinmcox-recipes
+
+Identifier: com.github.anywhereops.vendorer.MothersRuinSoftware
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/kevinmcox-recipes
+      folder_path: Mothers Ruin Software
+      commit_sha: b0420a50e4532aa401412eefec8a77683b2d5d81
+      destination_path: Mothers Ruin Software
+      recipe_type: munki
+      required_license: Apache-2.0

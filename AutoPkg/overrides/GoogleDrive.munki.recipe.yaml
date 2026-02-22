@@ -1,0 +1,36 @@
+Identifier: local.munki.GoogleDrive
+Input:
+  DOWNLOAD_URL: https://dl.google.com/drive-file-stream/GoogleDrive.dmg
+  MUNKI_CATEGORY: Backups
+  MUNKI_REPO_SUBDIR: apps/googledrive
+  NAME: GoogleDrive
+  pkg_ids_set_optional_true:
+  - com.google.drivefs.filesystems.dfsfuse.arm64
+  - com.google.drivefs.filesystems.dfsfuse.x86_64
+  - com.google.drivefs.arm64
+  - com.google.drivefs.x86_64
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: "With Google Drive, you stream your Drive files directly from the\
+      \ cloud to your Mac or PC, freeing up disk space and network bandwidth. Because\
+      \ Drive files are stored in the cloud, any changes you or your collaborators\
+      \ make are automatically updated everywhere. You\u2019ll always have the latest\
+      \ version.\n\nYou can also make Drive files available for offline access. These\
+      \ cached files sync back to the cloud when you're online, so the latest version\
+      \ is available on all your devices."
+    developer: Google Inc.
+    display_name: Google Drive
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.apizz.munki.GoogleDrive
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.apizz.munki.GoogleDrive:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Google_Drive/GoogleDrive.munki.recipe.yaml
+      sha256_hash: 88e6b9958d69c9f04d0bca055328ccf293eafe569313d2919a9b0d04e796d294
+    com.github.nstrauss.download.GoogleDrive:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Google Drive/GoogleDrive.download.recipe.yaml
+      sha256_hash: da442b3fbd57d3e9fa3c74f777e44814535cff8ccfb52996c43983b14c2042d5

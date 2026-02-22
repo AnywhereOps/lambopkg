@@ -1,0 +1,17 @@
+Description: Obtain upstream MicrosoftPowerPoint365 recipe from autopkg/rtrouton-recipes
+
+Identifier: com.github.anywhereops.vendorer.MicrosoftPowerPoint365
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/rtrouton-recipes
+      folder_path: MicrosoftPowerPoint365
+      commit_sha: 7d4886a0c21b4990c2fe43b23bcaaf8477363734
+      destination_path: MicrosoftPowerPoint365
+      recipe_type: munki
+      required_license: MIT

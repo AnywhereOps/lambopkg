@@ -1,0 +1,16 @@
+Description: Obtain upstream Logitech recipe from autopkg/wegotoeleven-recipes
+
+Identifier: com.github.anywhereops.vendorer.Logitech
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/wegotoeleven-recipes
+      folder_path: Logitech
+      commit_sha: 04ea6e664cd93cded2563ec8aecc31c52eddb424
+      destination_path: Logitech
+      recipe_type: download

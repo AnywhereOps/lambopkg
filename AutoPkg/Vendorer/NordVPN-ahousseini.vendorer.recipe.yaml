@@ -1,0 +1,17 @@
+Description: Obtain upstream NordVPN recipe from autopkg/ahousseini-recipes
+
+Identifier: com.github.anywhereops.vendorer.NordVPN
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/ahousseini-recipes
+      folder_path: NordVPN
+      commit_sha: f492141969d35725e565834657527cebbe2bc519
+      destination_path: NordVPN
+      recipe_type: munki
+      required_license: Apache-2.0

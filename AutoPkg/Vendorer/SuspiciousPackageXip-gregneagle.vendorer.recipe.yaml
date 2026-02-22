@@ -1,0 +1,17 @@
+Description: Obtain upstream SuspiciousPackageXip recipe from autopkg/gregneagle-recipes
+
+Identifier: com.github.anywhereops.vendorer.SuspiciousPackageXip
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/gregneagle-recipes
+      folder_path: SuspiciousPackageXip
+      commit_sha: 39b126a910d3a8d643f63022f2c135bac132a23e
+      destination_path: SuspiciousPackageXip
+      recipe_type: munki
+      required_license: Apache-2.0

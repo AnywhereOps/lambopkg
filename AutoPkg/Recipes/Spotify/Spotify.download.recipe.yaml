@@ -1,0 +1,21 @@
+# Downloaded from https://github.com/autopkg/recipes/blob/4b5a199119b507053f074f17d7955f1f21f612f0/Spotify/Spotify.download.recipe
+# Commit: 4b5a199119b507053f074f17d7955f1f21f612f0
+# Downloaded at: 2026-02-22 01:48:00 UTC
+
+Description: "Downloads the latest Spotify.\n\nFor Apple Silicon set DOWNLOAD_ARCH to \"ARM64\" and SUPPORTED_ARCH to \"arm64\" (default)\n\nFor Intel leave DOWNLOAD_ARCH empty and set SUPPORTED_ARCH to \"x86_64\""
+Identifier: com.github.autopkg.download.Spotify
+Input:
+  NAME: Spotify
+  DOWNLOAD_ARCH: ARM64
+  SUPPORTED_ARCH: arm64
+MinimumVersion: 0.4.0
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: https://download.scdn.co/Spotify%DOWNLOAD_ARCH%.dmg
+    filename: '%NAME%-%SUPPORTED_ARCH%.dmg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/Spotify.app'
+    requirement: identifier "com.spotify.client" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "2FNC3A47ZF"

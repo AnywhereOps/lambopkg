@@ -1,0 +1,24 @@
+Identifier: local.munki.MicrosoftPowerpoint365
+Input:
+  DOWNLOADURL: https://go.microsoft.com/fwlink/?linkid=%PRODUCTID%
+  MUNKI_REPO_SUBDIR: apps/msoffice
+  NAME: PowerPoint365
+  PRODUCTID: '525136'
+  SOFTWARETITLE: PowerPoint
+  VENDOR: Microsoft
+  pkginfo:
+    catalogs:
+    - testing
+    display_name: Microsoft PowerPoint 365
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.rtrouton.munki.microsoftpowerpoint365
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.rtrouton.download.microsoftpowerpoint365:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftPowerPoint365/MicrosoftPowerPoint365.download.recipe.yaml
+      sha256_hash: d8d6aa6a1f4bc04b66ed45da604aa33f4cc531fefa6797e23e966d0955293e18
+    com.github.rtrouton.munki.microsoftpowerpoint365:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftPowerPoint365/MicrosoftPowerpoint365.munki.recipe.yaml
+      sha256_hash: 982a7ad57834b6e91a692a93d59038408182ffe31d26e8b2873d4fcc113ba5f7

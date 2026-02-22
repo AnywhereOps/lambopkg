@@ -1,0 +1,34 @@
+# Downloaded from https://github.com/autopkg/kevinmcox-recipes/blob/b0420a50e4532aa401412eefec8a77683b2d5d81/Mothers Ruin Software/Archaeology.pkg.recipe
+# Commit: b0420a50e4532aa401412eefec8a77683b2d5d81
+# Downloaded at: 2026-02-22 01:48:41 UTC
+
+Description: Downloads the latest version of Archaeology and creates a package.
+Identifier: com.github.kevinmcox.pkg.Archaeology
+Input:
+  NAME: Archaeology
+MinimumVersion: 2.7.2
+ParentRecipe: com.github.kevinmcox.download.Archaeology
+Process:
+- Processor: AppDmgVersioner
+  Arguments:
+    dmg_path: '%pathname%'
+- Processor: PkgRootCreator
+  Arguments:
+    pkgroot: '%RECIPE_CACHE_DIR%/%NAME%'
+    pkgdirs:
+      Applications: '0775'
+- Processor: Copier
+  Arguments:
+    source_path: '%pathname%/%app_name%'
+    destination_path: '%pkgroot%/Applications/%app_name%'
+    overwrite: true
+- Processor: PkgCreator
+  Arguments:
+    pkg_request:
+      pkgname: '%NAME%-%version%'
+      version: '%version%'
+      id: '%bundleid%'
+      chown:
+      - path: Applications
+        user: root
+        group: admin

@@ -1,0 +1,29 @@
+# Downloaded from https://github.com/autopkg/nstrauss-recipes/blob/e58bfac92f1739258afd8cf246d148e1b60fd986/Google Drive/GoogleDrive.pkg.recipe
+# Commit: e58bfac92f1739258afd8cf246d148e1b60fd986
+# Downloaded at: 2026-02-22 01:50:33 UTC
+
+Description: Downloads the latest version of Google Drive for desktop and builds a pkg. Note Google Drive File Stream was rebranded to Google Drive for desktop, and this recipe updated to reflect the name change.
+Identifier: com.github.nstrauss.pkg.GoogleDrive
+Input:
+  NAME: GoogleDrive
+MinimumVersion: 2.7.1
+ParentRecipe: com.github.nstrauss.download.GoogleDrive
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/unpack'
+    flat_pkg_path: '%pathname%/GoogleDrive.pkg'
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/payload'
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/unpack/GoogleDrive_arm64.pkg/Payload'
+- Processor: PlistReader
+  Arguments:
+    info_path: '%RECIPE_CACHE_DIR%/payload/Google Drive.app/Contents/Info.plist'
+    plist_keys:
+      CFBundleVersion: version
+      LSMinimumSystemVersion: min_os_version
+- Processor: PkgCopier
+  Arguments:
+    source_pkg: '%pathname%/GoogleDrive.pkg'
+    pkg_path: '%RECIPE_CACHE_DIR%/GoogleDrive-%version%.pkg'

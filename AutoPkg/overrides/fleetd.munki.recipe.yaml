@@ -80,4 +80,4 @@ ParentRecipeTrustInfo:
   parent_recipes:
     com.github.kevinmcox.munki.fleetd:
       path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetd.munki.recipe.yaml
-      sha256_hash: f849807d30cc177dffda4fef51a32155438d8d116cb2c5820aaeaf4055d59620
+      sha256_hash: 4ead230250a1cd80ca4da8d990583dee6234524f67ca351da1f3a1e8f2df46b9

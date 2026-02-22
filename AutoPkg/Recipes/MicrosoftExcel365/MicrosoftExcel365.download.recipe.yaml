@@ -1,0 +1,26 @@
+# Downloaded from https://github.com/autopkg/rtrouton-recipes/blob/7d4886a0c21b4990c2fe43b23bcaaf8477363734/MicrosoftExcel365/MicrosoftExcel365.download.recipe
+# Commit: 7d4886a0c21b4990c2fe43b23bcaaf8477363734
+# Downloaded at: 2026-02-22 01:46:17 UTC
+
+Description: Downloads the latest Microsoft Excel installer package for Office 365.
+Identifier: com.github.rtrouton.download.microsoftexcel365
+MinimumVersion: 1.0.0
+Input:
+  NAME: Microsoft Excel
+  VENDOR: Microsoft
+  SOFTWARETITLE: Excel
+  PRODUCTID: '525135'
+  DOWNLOADURL: https://go.microsoft.com/fwlink/?linkid=%PRODUCTID%
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: '%DOWNLOADURL%'
+    filename: '%VENDOR%_%SOFTWARETITLE%.pkg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%'
+    expected_authority_names:
+    - 'Developer ID Installer: Microsoft Corporation (UBF8T346G9)'
+    - Developer ID Certification Authority
+    - Apple Root CA

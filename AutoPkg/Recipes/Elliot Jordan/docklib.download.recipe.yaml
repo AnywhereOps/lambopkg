@@ -1,0 +1,24 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Elliot Jordan/docklib.download.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:47:45 UTC
+
+Description: Downloads the current release of docklib from Github.
+Identifier: com.github.homebysix.download.docklib
+Input:
+  NAME: docklib
+MinimumVersion: 1.0.0
+Process:
+- Processor: GitHubReleasesInfoProvider
+  Arguments:
+    github_repo: homebysix/docklib
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%-%version%.pkg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Elliot Jordan (32SVX952DB)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%pathname%'

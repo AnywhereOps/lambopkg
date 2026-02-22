@@ -1,0 +1,23 @@
+# Downloaded from https://github.com/autopkg/joshua-d-miller-recipes/blob/8a1767feebc676e376cc661d05f092c654217ce1/Discord/Discord.download.recipe
+# Commit: 8a1767feebc676e376cc661d05f092c654217ce1
+# Downloaded at: 2026-02-22 01:45:18 UTC
+
+Description: Downloads the latest verison of Discord
+Identifier: com.github.joshua-d-miller.download.Discord
+Input:
+  NAME: Discord
+  DOWNLOAD_URL: https://discordapp.com/api/download?platform=osx
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/601.2.7 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7
+MinimumVersion: 0.3.1
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: '%DOWNLOAD_URL%'
+    request_headers:
+      user-agent: '%USER_AGENT%'
+    filename: '%NAME%.dmg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/Discord.app'
+    requirement: identifier "com.hnc.Discord" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "53Q6R32WPB"

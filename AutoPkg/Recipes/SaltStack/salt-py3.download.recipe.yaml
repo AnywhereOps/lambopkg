@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/mosen-recipes/blob/908662c062d02ff949d672eb5ff3234dc69a10e4/SaltStack/salt-py3.download.recipe
 # Commit: 908662c062d02ff949d672eb5ff3234dc69a10e4
-# Downloaded at: 2026-02-21 05:59:21 UTC
+# Downloaded at: 2026-02-22 01:50:18 UTC
 
 Description: Downloads the latest python3 version of SaltStack.
 Identifier: com.github.mosen.download.salt.py3

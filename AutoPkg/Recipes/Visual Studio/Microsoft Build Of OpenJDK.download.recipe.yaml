@@ -1,0 +1,34 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/Visual Studio/Microsoft Build Of OpenJDK.download.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:49:02 UTC
+
+Comment: 'manifest URL obtained from this thread on Jamf Nation: https://community.jamf.com/t5/jamf-pro/visual-studio-for-mac-deployment/m-p/292547/highlight/true#M260110'
+Description: "Downloads the latest version of Microsoft Build Of OpenJDK for Visual Studio.\n\nFor the ARCH_TYPE variable use \"x64\" for Intel or \"aarch64\" for Apple Silicon"
+Identifier: com.github.dataJAR-recipes.download.Microsoft Build Of OpenJDK
+Input:
+  ARCH_TYPE: x64
+  NAME: MicrosoftBuildOfOpenJDK
+MinimumVersion: '1.1'
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: (https://download\.visualstudio\.microsoft\.com/download/pr/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/[A-Za-z0-9]+/microsoft-jdk-([0-9]+(\.[0-9]+)+)-macos-%ARCH_TYPE%\.pkg)
+    result_output_var_name: MicrosoftBuildOfOpenJDK_URL
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: https://download\.visualstudio\.microsoft\.com/download/pr/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/[A-Za-z0-9]+/microsoft-jdk-(([0-9]+(\.[0-9]+)+))-macos-%ARCH_TYPE%\.pkg
+    result_output_var_name: MicrosoftBuildOfOpenJDK_VERSION
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: URLDownloader
+  Arguments:
+    filename: microsoft-jdk-%MicrosoftBuildOfOpenJDK_VERSION%-osx-%ARCH_TYPE%.pkg
+    url: '%MicrosoftBuildOfOpenJDK_URL%'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Microsoft Corporation (UBF8T346G9)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%RECIPE_CACHE_DIR%/downloads/microsoft-jdk-%MicrosoftBuildOfOpenJDK_VERSION%-osx-%ARCH_TYPE%.pkg'

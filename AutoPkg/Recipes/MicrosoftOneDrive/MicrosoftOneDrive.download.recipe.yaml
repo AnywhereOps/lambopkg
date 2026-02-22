@@ -1,0 +1,26 @@
+# Downloaded from https://github.com/autopkg/rtrouton-recipes/blob/7d4886a0c21b4990c2fe43b23bcaaf8477363734/MicrosoftOneDrive/MicrosoftOneDrive.download.recipe
+# Commit: 7d4886a0c21b4990c2fe43b23bcaaf8477363734
+# Downloaded at: 2026-02-22 01:47:32 UTC
+
+Description: Downloads the latest Microsoft OneDrive installer pkg.
+Identifier: com.github.rtrouton.download.microsoftonedrive
+MinimumVersion: 1.0.0
+Input:
+  NAME: Microsoft OneDrive
+  VENDOR: Microsoft
+  SOFTWARETITLE: OneDrive
+  PRODUCTID: '823060'
+  DOWNLOADURL: https://go.microsoft.com/fwlink/?linkid=%PRODUCTID%
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: '%DOWNLOADURL%'
+    filename: '%SOFTWARETITLE%.pkg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%'
+    expected_authority_names:
+    - 'Developer ID Installer: Microsoft Corporation (UBF8T346G9)'
+    - Developer ID Certification Authority
+    - Apple Root CA

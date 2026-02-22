@@ -1,0 +1,23 @@
+Identifier: local.munki.Recipe Robot
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Recipe Robot
+  pkginfo:
+    catalogs:
+    - testing
+    description: A kick ass tool for creating AutoPkg recipes.
+    developer: Elliot Jordan
+    display_name: Recipe Robot
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.RecipeRobot
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.homebysix.download.RecipeRobot:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Elliot Jordan/Recipe Robot.download.recipe.yaml
+      sha256_hash: ae7a1cb25d5b0927f2967764de8f05169972eb47a98bf8a3534f271208733371
+    com.github.homebysix.munki.RecipeRobot:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Elliot Jordan/Recipe Robot.munki.recipe.yaml
+      sha256_hash: 1241460c28445b20d4ffa8b63c859a73d758a461e6cf408d4c4fac5d9074319d

@@ -1,0 +1,34 @@
+# Downloaded from https://github.com/autopkg/almenscorner-recipes/blob/c69534f0253da986346daf26462270710f8501ae/Anthropic/Claude.download.recipe
+# Commit: c69534f0253da986346daf26462270710f8501ae
+# Downloaded at: 2026-02-22 01:45:09 UTC
+
+Description: Downloads the latest version of Claude.
+Identifier: com.github.almenscorner.download.Claude
+Input:
+  NAME: Claude
+MinimumVersion: 0.3.1
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: (https:\/\/downloads\.claude\.ai\/releases\/darwin\/universal\/(?:[0-9]+(?:\.[0-9]+)*)\/Claude-(?:[A-Fa-f0-9]{40})\.zip)
+    url: https://formulae.brew.sh/api/cask/claude.json
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%.zip'
+    url: '%match%'
+- Processor: EndOfCheckPhase
+- Processor: Unarchiver
+  Arguments:
+    archive_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%'
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%RECIPE_CACHE_DIR%/Claude.app'
+    requirement: identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW
+- Processor: DmgCreator
+  Arguments:
+    dmg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+    dmg_root: '%RECIPE_CACHE_DIR%/Claude.app'
+- Processor: AppDmgVersioner
+  Arguments:
+    dmg_path: '%dmg_path%'

@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/jc0b-recipes/blob/b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea/Fleet/fleetd.munki.recipe.yaml
 # Commit: b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea
-# Downloaded at: 2026-02-21 05:59:02 UTC
+# Downloaded at: 2026-02-22 01:49:59 UTC
 
 Identifier: com.github.jc0b.munki.fleetd
 Description: Imports a fleetd package into Munki.

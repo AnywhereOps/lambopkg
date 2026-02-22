@@ -1,0 +1,14 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Elliot Jordan/docklib.pkg.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:47:46 UTC
+
+Description: This recipe does nothing, since docklib is already downloaded as a pkg.
+Identifier: com.github.homebysix.pkg.docklib
+Input:
+  NAME: docklib
+MinimumVersion: 0.5.0
+ParentRecipe: com.github.homebysix.download.docklib
+Process:
+- Processor: PkgCopier
+  Arguments:
+    source_pkg: '%pathname%'

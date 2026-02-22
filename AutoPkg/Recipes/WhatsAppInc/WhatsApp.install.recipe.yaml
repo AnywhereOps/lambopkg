@@ -1,0 +1,18 @@
+# Downloaded from https://github.com/autopkg/scriptingosx-recipes/blob/8a19293caf528805e0ef5dda9e4edc7295e4eeb6/WhatsAppInc/WhatsApp.install.recipe
+# Commit: 8a19293caf528805e0ef5dda9e4edc7295e4eeb6
+# Downloaded at: 2026-02-22 01:49:15 UTC
+
+Comment: Created with Recipe Robot v1.0.2 (https://github.com/homebysix/recipe-robot)
+Description: Installs the latest version of WhatsApp.
+Identifier: com.scriptingosx.install.WhatsApp
+Input:
+  NAME: WhatsApp
+MinimumVersion: 0.6.1
+ParentRecipe: com.scriptingosx.download.WhatsApp
+Process:
+- Processor: InstallFromDMG
+  Arguments:
+    dmg_path: '%pathname%'
+    items_to_copy:
+    - destination_path: /Applications
+      source_item: WhatsApp.app

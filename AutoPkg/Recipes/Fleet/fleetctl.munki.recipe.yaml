@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/jc0b-recipes/blob/b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea/Fleet/fleetctl.munki.recipe.yaml
 # Commit: b4e4e63fffb5609ba8a82236dcfbdb1d75c83aea
-# Downloaded at: 2026-02-21 05:59:01 UTC
+# Downloaded at: 2026-02-22 01:49:57 UTC
 
 Description: Gets the latest version of fleetctl, and imports it into Munki.
 Identifier: com.github.jc0b.munki.fleetctl

@@ -1,0 +1,18 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/iMazing/iMazing.install.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:44 UTC
+
+Comment: Created with Recipe Robot v1.0.3 (https://github.com/homebysix/recipe-robot)
+Description: Installs the latest version of iMazing.
+Identifier: com.github.homebysix.install.iMazing
+Input:
+  NAME: iMazing
+MinimumVersion: 0.6.1
+ParentRecipe: com.github.homebysix.download.iMazing
+Process:
+- Processor: InstallFromDMG
+  Arguments:
+    dmg_path: '%pathname%'
+    items_to_copy:
+    - destination_path: /Applications
+      source_item: iMazing.app

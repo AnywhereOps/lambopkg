@@ -1,0 +1,16 @@
+Description: Obtain upstream WhatsAppInc recipe from autopkg/scriptingosx-recipes
+
+Identifier: com.github.anywhereops.vendorer.WhatsAppInc
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/scriptingosx-recipes
+      folder_path: WhatsAppInc
+      commit_sha: 8a19293caf528805e0ef5dda9e4edc7295e4eeb6
+      destination_path: WhatsAppInc
+      recipe_type: munki

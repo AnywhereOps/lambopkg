@@ -1,0 +1,11 @@
+Identifier: local.download.LogiOptionsPlus
+Input:
+  NAME: Logi OptionsPlus
+  URL: https://download01.logi.com/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip
+ParentRecipe: com.github.wegotoeleven-recipes.download.LogiOptionsPlus
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.wegotoeleven-recipes.download.LogiOptionsPlus:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Logitech/LogiOptionsPlus.download.recipe.yaml
+      sha256_hash: 1c67088677e933c9170c1f85ff9d58ef9dce60a2b8aa091d796ea5bd6e132734

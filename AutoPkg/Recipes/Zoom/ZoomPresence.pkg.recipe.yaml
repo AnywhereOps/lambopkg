@@ -1,6 +1,6 @@
-# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/26f97759822c6c90b8f458f35b82ff9496785c71/Zoom/ZoomPresence.pkg.recipe
-# Commit: 26f97759822c6c90b8f458f35b82ff9496785c71
-# Downloaded at: 2025-11-27 22:32:34 UTC
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Zoom/ZoomPresence.pkg.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:49:36 UTC
 
 Description: Downloads the current release version of Zoom Rooms and builds a package.
 Identifier: com.github.homebysix.pkg.ZoomPresence

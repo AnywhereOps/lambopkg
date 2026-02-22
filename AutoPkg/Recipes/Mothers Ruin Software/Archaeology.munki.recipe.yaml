@@ -1,0 +1,27 @@
+# Downloaded from https://github.com/autopkg/kevinmcox-recipes/blob/b0420a50e4532aa401412eefec8a77683b2d5d81/Mothers Ruin Software/Archaeology.munki.recipe
+# Commit: b0420a50e4532aa401412eefec8a77683b2d5d81
+# Downloaded at: 2026-02-22 01:48:41 UTC
+
+Description: Downloads the latest version of the Archaeology application and imports it into Munki.
+Identifier: com.github.kevinmcox.munki.Archaeology
+Input:
+  NAME: Archaeology
+  repo_subdirectory: utilities
+  pkginfo:
+    catalogs:
+    - testing
+    category: Utilities
+    description: Archaeology is a tool For digging into binary files on macOS.
+    developer: Mothers Ruin Software
+    display_name: Archaeology
+    icon_name: Archaeology.png
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+    uninstallable: true
+MinimumVersion: 2.7.2
+ParentRecipe: com.github.kevinmcox.download.Archaeology
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'

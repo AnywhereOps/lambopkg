@@ -1,0 +1,25 @@
+# Downloaded from https://github.com/autopkg/gregneagle-recipes/blob/39b126a910d3a8d643f63022f2c135bac132a23e/SuspiciousPackageXip/SuspiciousPackageXip.munki.recipe
+# Commit: 39b126a910d3a8d643f63022f2c135bac132a23e
+# Downloaded at: 2026-02-22 01:48:14 UTC
+
+Description: "Downloads the SuspiciousPackage app xip archive, builds a package,\nand imports into your Munki repo."
+Identifier: com.github.gregneagle.munki.suspiciouspackagexip
+Input:
+  NAME: SuspiciousPackage
+  MUNKI_CATEGORY: Utilities
+  MUNKI_REPO_SUBDIR: apps
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: An application for inspecting OS X installer packages
+    developer: Mothers Ruin Software
+    display_name: Suspicious Package
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: 0.5.3
+ParentRecipe: com.github.gregneagle.pkg.suspiciouspackagexip
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

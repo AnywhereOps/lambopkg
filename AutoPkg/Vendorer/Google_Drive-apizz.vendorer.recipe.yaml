@@ -1,0 +1,17 @@
+Description: Obtain upstream Google_Drive recipe from autopkg/apizz-recipes
+
+Identifier: com.github.anywhereops.vendorer.Google_Drive
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/apizz-recipes
+      folder_path: Google_Drive
+      commit_sha: 89924a4aa3d364e3b0a841917b34d380772a371a
+      destination_path: Google_Drive
+      recipe_type: munki
+      required_license: MIT

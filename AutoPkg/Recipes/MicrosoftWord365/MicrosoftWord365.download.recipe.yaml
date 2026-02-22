@@ -1,0 +1,26 @@
+# Downloaded from https://github.com/autopkg/rtrouton-recipes/blob/7d4886a0c21b4990c2fe43b23bcaaf8477363734/MicrosoftWord365/MicrosoftWord365.download.recipe
+# Commit: 7d4886a0c21b4990c2fe43b23bcaaf8477363734
+# Downloaded at: 2026-02-22 01:46:39 UTC
+
+Description: Downloads the latest Microsoft Word installer package for Office 365.
+Identifier: com.github.rtrouton.download.microsoftword365
+MinimumVersion: 1.0.0
+Input:
+  NAME: Microsoft Word
+  VENDOR: Microsoft
+  SOFTWARETITLE: Word
+  PRODUCTID: '525134'
+  DOWNLOADURL: https://go.microsoft.com/fwlink/?linkid=%PRODUCTID%
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: '%DOWNLOADURL%'
+    filename: '%VENDOR%_%SOFTWARETITLE%.pkg'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%'
+    expected_authority_names:
+    - 'Developer ID Installer: Microsoft Corporation (UBF8T346G9)'
+    - Developer ID Certification Authority
+    - Apple Root CA

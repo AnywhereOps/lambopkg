@@ -1,0 +1,16 @@
+Description: Obtain upstream Zoom recipe from autopkg/hansen-m-recipes
+
+Identifier: com.github.anywhereops.vendorer.Zoom
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/hansen-m-recipes
+      folder_path: Zoom
+      commit_sha: 76ca42243d2d45d2704ae28473ca40e329d12458
+      destination_path: Zoom
+      recipe_type: munki

@@ -1,0 +1,69 @@
+# Downloaded from https://github.com/autopkg/apizz-recipes/blob/89924a4aa3d364e3b0a841917b34d380772a371a/Google_Drive/GoogleDrive.munki.recipe
+# Commit: 89924a4aa3d364e3b0a841917b34d380772a371a
+# Downloaded at: 2026-02-22 01:50:30 UTC
+
+Description: "Downloads the latest version of Google Drive (previously File Stream) and imports it into a munki repo.\n\nSince Google Drive has macOS architecture specific PKGs that won't be installed, this will cause an endless install loop if the applicable PKG receipts aren't marked as optional. To address this, these items are added in the Input variable dictionary under the pkg_ids_set_optional_true key.\n\nIf an admin wishes to use this same recipe to manage a single Google Drive PKG installer with 2 separate munki items - 1 for arm64, 1 for x86_64 - simply remove the applicable pkg ids from the pkg_ids_set_optional_true array."
+Identifier: com.github.apizz.munki.GoogleDrive
+Input:
+  MUNKI_CATEGORY: Backups
+  MUNKI_REPO_SUBDIR: apps/googledrive
+  NAME: GoogleDrive
+  pkginfo:
+    catalogs:
+    - testing
+    category: '%MUNKI_CATEGORY%'
+    description: "With Google Drive, you stream your Drive files directly from the cloud to your Mac or PC, freeing up disk space and network bandwidth. Because Drive files are stored in the cloud, any changes you or your collaborators make are automatically updated everywhere. You\u2019ll always have the latest version.\n\nYou can also make Drive files available for offline access. These cached files sync back to the cloud when you're online, so the latest version is available on all your devices."
+    developer: Google Inc.
+    display_name: Google Drive
+    name: '%NAME%'
+    unattended_install: true
+  pkg_ids_set_optional_true:
+  - com.google.drivefs.filesystems.dfsfuse.arm64
+  - com.google.drivefs.filesystems.dfsfuse.x86_64
+  - com.google.drivefs.arm64
+  - com.google.drivefs.x86_64
+MinimumVersion: 2.7.1
+ParentRecipe: com.github.nstrauss.download.GoogleDrive
+Process:
+- Processor: Copier
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/GoogleDrive.pkg'
+    overwrite: true
+    source_path: '%pathname%/GoogleDrive.pkg'
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/unpack'
+    flat_pkg_path: '%RECIPE_CACHE_DIR%/GoogleDrive.pkg'
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/payload'
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/unpack/GoogleDrive_arm64.pkg/Payload'
+  Comment: Expand the arm64 app version. Assumes info is same as for x86_64.
+- Processor: PlistReader
+  Arguments:
+    info_path: '%RECIPE_CACHE_DIR%/payload/Google Drive.app/Contents/Info.plist'
+    plist_keys:
+      CFBundleVersion: version
+      LSMinimumSystemVersion: min_os_version
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      minimum_os_version: '%min_os_version%'
+      version: '%version%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/GoogleDrive.pkg'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/GoogleDrive.pkg'
+    - '%RECIPE_CACHE_DIR%/payload'
+    - '%RECIPE_CACHE_DIR%/unpack'
+- Processor: StopProcessingIf
+  Arguments:
+    predicate: munki_repo_changed == FALSE
+  Comment: Ensure we actually imported something
+- Processor: MunkiOptionalReceiptEditor
+  Arguments:
+    pkginfo_repo_path: '%pkginfo_repo_path%'

@@ -1,0 +1,35 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/Visual Studio/Mono Framework.munki.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:49:03 UTC
+
+Comment: 'manifest URL obtained from this thread on Jamf Nation: https://community.jamf.com/t5/jamf-pro/visual-studio-for-mac-deployment/m-p/292547/highlight/true#M260110'
+Description: Downloads the latest version of Mono Framework for Visual Studio and imports it into Munki.
+Identifier: com.github.dataJAR-recipes.munki.Mono Framework
+Input:
+  NAME: MonoFramework
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  pkginfo:
+    catalogs:
+    - testing
+    description: "Mono Framework for Visual Studio\n\nCross platform, open source .NET framework"
+    developer: Microsoft Corporation
+    display_name: Mono Framework
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: '1.1'
+ParentRecipe: com.github.dataJAR-recipes.download.Mono Framework
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: '\"minimumSupportedOsVersion\": \"([0-9]*\.[0-9]+)\",'
+    result_output_var_name: min_os_ver
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      minimum_os_version: '%min_os_ver%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/downloads/monoframework-mdk-%monoframework_VERSION%.macos10.xamarin.universal.pkg'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

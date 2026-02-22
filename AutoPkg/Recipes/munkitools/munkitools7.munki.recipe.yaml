@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/recipes/blob/4b5a199119b507053f074f17d7955f1f21f612f0/munkitools/munkitools7.munki.recipe
 # Commit: 4b5a199119b507053f074f17d7955f1f21f612f0
-# Downloaded at: 2026-02-21 05:59:09 UTC
+# Downloaded at: 2026-02-22 01:50:07 UTC
 
 Description: "Downloads and imports Munki tools version 7 via the official releases listing on GitHub.\n\nYou can set INCLUDE_PRERELEASES to any value to have this recipe pull prerelease versions.\n\nThis recipe cannot be overridden to pull a download from an alternate location.\n\nThe GitHubReleasesInfoProvider processor used by this recipe also\nrespects an input variable: 'sort_by_highest_tag_names', which\nif set, will ignore the post dates of the releases and instead sort\ndescending by tag names according to LooseVersion semantics.\n"
 Identifier: com.github.autopkg.munki.munkitools7

@@ -1,0 +1,47 @@
+# Downloaded from https://github.com/autopkg/gregneagle-recipes/blob/39b126a910d3a8d643f63022f2c135bac132a23e/SuspiciousPackageXip/SuspiciousPackageXip.pkg.recipe
+# Commit: 39b126a910d3a8d643f63022f2c135bac132a23e
+# Downloaded at: 2026-02-22 01:48:14 UTC
+
+Description: "Downloads the SuspiciousPackage app xip archive, and builds a package.\nA proof-of-concept example of working with xip archives in case these become more common.\nRequires a post-0.5.2 version of the Unarchiver processor to expand the gzip\narchive inside the xar archive."
+Identifier: com.github.gregneagle.pkg.suspiciouspackagexip
+Input:
+  NAME: SuspiciousPackage
+MinimumVersion: 0.5.3
+ParentRecipe: com.github.gregneagle.download.suspiciouspackagexip
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    purge_destination: true
+    flat_pkg_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/unpack'
+    skip_payload: true
+  Comment: "Abuse the FlatPkgUnpacker processor: by setting skip_payload to true,\nwe cause the processor to use xar to expand the xip archive."
+- Processor: PkgRootCreator
+  Arguments:
+    pkgroot: '%RECIPE_CACHE_DIR%/pkg_root'
+    pkgdirs:
+      Applications: '0775'
+- Processor: Unarchiver
+  Arguments:
+    archive_format: gzip
+    archive_path: '%RECIPE_CACHE_DIR%/unpack/Content'
+    destination_path: '%RECIPE_CACHE_DIR%/pkg_root/Applications/'
+    purge_destination: true
+- Processor: PlistReader
+  Arguments:
+    info_path: '%RECIPE_CACHE_DIR%/pkg_root/Applications/Suspicious Package.app'
+    plist_keys:
+      CFBundleShortVersionString: version
+      CFBundleIdentifier: bundleid
+      CFBundleName: app_name
+- Processor: PkgCreator
+  Arguments:
+    pkg_request:
+      pkgname: '%NAME%-%version%'
+      version: '%version%'
+      id: '%bundleid%'
+      options: purge_ds_store
+      chown:
+      - path: Applications
+        user: root
+        group: admin

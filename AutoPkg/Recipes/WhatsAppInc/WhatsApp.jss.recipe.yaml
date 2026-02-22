@@ -1,0 +1,31 @@
+# Downloaded from https://github.com/autopkg/scriptingosx-recipes/blob/8a19293caf528805e0ef5dda9e4edc7295e4eeb6/WhatsAppInc/WhatsApp.jss.recipe
+# Commit: 8a19293caf528805e0ef5dda9e4edc7295e4eeb6
+# Downloaded at: 2026-02-22 01:49:15 UTC
+
+Comment: Created with Recipe Robot v1.0.2 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of WhatsApp and imports it into your JSS.
+Identifier: com.scriptingosx.jss.WhatsApp
+Input:
+  CATEGORY: Communication
+  GROUP_NAME: '%NAME%-update-smart'
+  GROUP_TEMPLATE: SmartGroupTemplate.xml
+  NAME: WhatsApp
+  POLICY_CATEGORY: Testing
+  POLICY_TEMPLATE: PolicyTemplate.xml
+  SELF_SERVICE_DESCRIPTION: "WhatsApp Messenger is a cross-platform mobile messaging app which allows you to exchange messages without having to pay for SMS. WhatsApp Messenger is available for iPhone, BlackBerry, Android, Windows Phone and Nokia and yes, those phones can all message each other! Because WhatsApp Messenger uses the same internet data plan that you use for email and web browsing, there is no cost to message and stay in touch with your friends.\nIn addition to basic messaging WhatsApp users can create groups, send each other unlimited images, video and audio media messages."
+  SELF_SERVICE_ICON: '%NAME%.png'
+MinimumVersion: 0.6.1
+ParentRecipe: com.scriptingosx.pkg.WhatsApp
+Process:
+- Processor: JSSImporter
+  Arguments:
+    category: '%CATEGORY%'
+    groups:
+    - name: '%GROUP_NAME%'
+      smart: true
+      template_path: '%GROUP_TEMPLATE%'
+    policy_category: '%POLICY_CATEGORY%'
+    policy_template: '%POLICY_TEMPLATE%'
+    prod_name: '%NAME%'
+    self_service_description: '%SELF_SERVICE_DESCRIPTION%'
+    self_service_icon: '%SELF_SERVICE_ICON%'

@@ -1,0 +1,29 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Elliot Jordan/Recipe Robot.munki.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:47:44 UTC
+
+Comment: Created with Recipe Robot v1.0.3 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of Recipe Robot and imports it into Munki.
+Identifier: com.github.homebysix.munki.RecipeRobot
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Recipe Robot
+  pkginfo:
+    catalogs:
+    - testing
+    description: A kick ass tool for creating AutoPkg recipes.
+    developer: Elliot Jordan
+    display_name: Recipe Robot
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: 0.6.1
+ParentRecipe: com.github.homebysix.download.RecipeRobot
+Process:
+- Processor: AppDmgVersioner
+  Arguments:
+    dmg_path: '%pathname%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

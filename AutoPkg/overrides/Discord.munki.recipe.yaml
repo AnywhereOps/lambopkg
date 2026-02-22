@@ -1,0 +1,29 @@
+Identifier: local.munki.Discord
+Input:
+  DOWNLOAD_URL: https://discordapp.com/api/download?platform=osx
+  MUNKI_REPO_SUBDIR: apps/discord
+  NAME: Discord
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/601.2.7
+    (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7
+  pkginfo:
+    catalogs:
+    - testing
+    category: Social
+    description: Discord is a freeware proprietary VoIP application designed for gaming
+      communities. Discord runs on Microsoft Windows, macOS, Android, iOS, Linux,
+      and in a web browser. In December 2016, the developers announced that Discord
+      had over 25 million users.
+    developer: Discord
+    display_name: Discord
+    name: '%NAME%'
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.autopkg.munki.Discord
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.joshua-d-miller.autopkg.munki.Discord:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Discord/Discord.munki.recipe.yaml
+      sha256_hash: f99d6af6336f7bf9f6a6a81f603bdf9fc550e0e160f98ce74efb2f59aa374d11
+    com.github.joshua-d-miller.download.Discord:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Discord/Discord.download.recipe.yaml
+      sha256_hash: f70c85d0ad48b7d51c0dd1ecd3b571eb9a5965b5b6373a3acc215de437ad9e9e

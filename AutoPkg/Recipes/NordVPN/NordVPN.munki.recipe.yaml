@@ -1,0 +1,58 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/NordVPN/NordVPN.munki.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:46:52 UTC
+
+Description: Downloads the latest version of NordVPN and imports it into Munki.
+Identifier: com.github.dataJAR-recipes.munki.NordVPN
+Input:
+  NAME: NordVPN
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  pkginfo:
+    blocking_applications:
+    - NordVPN.app
+    - NordVPNLauncher Sideload.app
+    catalogs:
+    - testing
+    description: "Get the fastest VPN in the world and enjoy a smooth, safe, and private connection on your Mac. NordVPN\u2019s easy-to-use app will protect all your connected devices from snoopers tracking what you do online.\n\nEven if you think you have nothing to hide \u2014 no one likes to be watched. That\u2019s why you need a VPN to protect your privacy and keep your online data safe."
+    developer: Nordvpn S.A.
+    display_name: NordVPN
+    name: '%NAME%'
+    postuninstall_script: "#!/bin/bash\n#\nlaunchctl unload /Library/LaunchDaemons/com.nordvpn.macos.helper.plist\n#\nrm /Library/LaunchDaemons/com.nordvpn.macos.helper.plist"
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: 1.1.0
+ParentRecipe: com.github.ahousseini-recipes.download.NordVPN
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/unpacked'
+    flat_pkg_path: '%RECIPE_CACHE_DIR%/downloads/NordVPN.pkg'
+    purge_destination: true
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/Applications'
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/unpacked/com.nordvpn.macos.pkg/Payload'
+    purge_destination: true
+- Processor: PlistReader
+  Arguments:
+    info_path: '%RECIPE_CACHE_DIR%/Applications/NordVPN.app'
+    plist_keys:
+      LSMinimumSystemVersion: min_os_ver
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      minimum_os_version: '%min_os_ver%'
+- Processor: MunkiInstallsItemsCreator
+  Arguments:
+    faux_root: '%RECIPE_CACHE_DIR%'
+    installs_item_paths:
+    - /Applications/%NAME%.app
+- Processor: MunkiPkginfoMerger
+- Processor: DmgCreator
+  Arguments:
+    dmg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+    dmg_root: '%RECIPE_CACHE_DIR%/downloads/NordVPN.pkg'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%dmg_path%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

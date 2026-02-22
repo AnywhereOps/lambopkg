@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/recipes/blob/4b5a199119b507053f074f17d7955f1f21f612f0/GoogleChrome/GoogleChrome.pkg.recipe
 # Commit: 4b5a199119b507053f074f17d7955f1f21f612f0
-# Downloaded at: 2026-02-21 05:58:30 UTC
+# Downloaded at: 2026-02-22 01:44:38 UTC
 
 Description: Downloads latest Google Chrome disk image and builds a package.
 Identifier: com.github.autopkg.pkg.googlechrome

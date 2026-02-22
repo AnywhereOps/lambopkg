@@ -1,0 +1,20 @@
+# Downloaded from https://github.com/autopkg/kevinmcox-recipes/blob/b0420a50e4532aa401412eefec8a77683b2d5d81/Mothers Ruin Software/Apparency.download.recipe
+# Commit: b0420a50e4532aa401412eefec8a77683b2d5d81
+# Downloaded at: 2026-02-22 01:48:40 UTC
+
+Description: Downloads the latest version of the Apparency application.
+Identifier: com.github.kevinmcox.download.Apparency
+Input:
+  NAME: Apparency
+  PKG_URL: https://www.mothersruin.com/software/downloads/Apparency.dmg
+MinimumVersion: 1.0.0
+Process:
+- Processor: URLDownloader
+  Arguments:
+    url: '%PKG_URL%'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    strict_verification: true
+    input_path: '%pathname%/Apparency.app'
+    requirement: anchor apple generic and identifier "com.mothersruin.Apparency" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "936EB786NH")

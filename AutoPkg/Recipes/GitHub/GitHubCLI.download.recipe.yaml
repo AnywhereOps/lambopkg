@@ -1,0 +1,17 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/GitHub/GitHubCLI.download.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:32 UTC
+
+Description: "Downloads the latest version of the GitHub command line tool.\n\nValid options for ARCH input variable are \"amd64\" for Intel (defualt) or \"arm64\" for Apple Silicon."
+Identifier: com.github.homebysix.download.GitHubCLI
+Input:
+  ARCH: amd64
+  NAME: GitHub CLI
+MinimumVersion: 1.4.1
+Process:
+- Processor: GitHubReleasesInfoProvider
+  Arguments:
+    asset_regex: gh_[\d\.]+_macOS_%ARCH%\.zip
+    github_repo: cli/cli
+- Processor: URLDownloader
+- Processor: EndOfCheckPhase

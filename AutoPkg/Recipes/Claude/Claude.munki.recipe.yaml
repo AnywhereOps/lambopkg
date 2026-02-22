@@ -1,0 +1,25 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/Claude/Claude.munki.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:45:06 UTC
+
+Description: Downloads the latest version of Claude and imports it into Munki.
+Identifier: com.github.dataJAR-recipes.munki.Claude
+Input:
+  NAME: Claude
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  pkginfo:
+    catalogs:
+    - testing
+    description: Your AI partner on desktop. Fast, focused, and designed for deep work.
+    developer: Anthropic PBC
+    display_name: Claude
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: '1.1'
+ParentRecipe: com.github.almenscorner.download.Claude
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

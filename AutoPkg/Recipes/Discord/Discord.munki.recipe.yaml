@@ -1,0 +1,25 @@
+# Downloaded from https://github.com/autopkg/joshua-d-miller-recipes/blob/8a1767feebc676e376cc661d05f092c654217ce1/Discord/Discord.munki.recipe
+# Commit: 8a1767feebc676e376cc661d05f092c654217ce1
+# Downloaded at: 2026-02-22 01:45:18 UTC
+
+Description: Download the latest version of Discord and imports it into Munki.
+Identifier: com.github.joshua-d-miller.autopkg.munki.Discord
+Input:
+  MUNKI_REPO_SUBDIR: apps/discord
+  NAME: Discord
+  pkginfo:
+    catalogs:
+    - testing
+    display_name: Discord
+    category: Social
+    developer: Discord
+    description: Discord is a freeware proprietary VoIP application designed for gaming communities. Discord runs on Microsoft Windows, macOS, Android, iOS, Linux, and in a web browser. In December 2016, the developers announced that Discord had over 25 million users.
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: 0.3.0
+ParentRecipe: com.github.joshua-d-miller.download.Discord
+Process:
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

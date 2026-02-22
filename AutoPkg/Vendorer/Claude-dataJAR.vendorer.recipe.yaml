@@ -1,0 +1,17 @@
+Description: Obtain upstream Claude recipe from autopkg/dataJAR-recipes
+
+Identifier: com.github.anywhereops.vendorer.Claude
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/dataJAR-recipes
+      folder_path: Claude
+      commit_sha: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+      destination_path: Claude
+      recipe_type: munki
+      required_license: Apache-2.0

@@ -1,0 +1,33 @@
+Identifier: local.munki.OBS
+Input:
+  ARCH: intel
+  MUNKI_REPO_SUBDIR: apps/obs
+  NAME: Open Broadcaster Software
+  RE_PATTERN: href="(.*?%ARCH%.dmg)"
+  SEARCH_URL: https://obsproject.com/download
+  pkginfo:
+    catalogs:
+    - testing
+    category: Multimedia
+    description: Free and open source software for video recording and live streaming.
+      Download and start streaming quickly and easily on Windows, Mac or Linux.
+    developer: Hugh Bailey
+    display_name: Open Broadcaster Software
+    name: '%NAME%'
+    postinstall_script: "#!/bin/sh\n# copy virtual camera plug-in to its needed location\
+      \ to avoid an admin\n# credentials prompt when starting the virtual camera for\
+      \ the first time\n/bin/cp -R /Applications/OBS.app/Contents/Resources/obs-mac-virtualcam.plugin\
+      \ /Library/CoreMediaIO/Plug-Ins/DAL/\n\t\t\t"
+    postuninstall_script: "#!/bin/sh\n# remove virtual camera plug-in\n/bin/rm -r\
+      \ /Library/CoreMediaIO/Plug-Ins/DAL/obs-mac-virtualcam.plugin\n\t\t"
+    unattended_install: true
+ParentRecipe: com.github.joshua-d-miller.autopkg.munki.OBS
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.joshua-d-miller.autopkg.munki.OBS:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/OBS/OBS.munki.recipe.yaml
+      sha256_hash: cab8f192252b57b54784804376630cef1e2adff2df22faddab2cb1994fbeef6e
+    com.github.nstrauss.download.OBS:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/OBS/OBS.download.recipe.yaml
+      sha256_hash: c63db29d61022e41fae61bfcfdc26d2939e346377a6b0b4617f581a3724cdeb7

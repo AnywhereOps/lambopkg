@@ -1,0 +1,16 @@
+Description: Obtain upstream OBS recipe from autopkg/nstrauss-recipes
+
+Identifier: com.github.anywhereops.vendorer.OBS
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/nstrauss-recipes
+      folder_path: OBS
+      commit_sha: e58bfac92f1739258afd8cf246d148e1b60fd986
+      destination_path: OBS
+      recipe_type: munki

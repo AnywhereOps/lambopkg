@@ -1,0 +1,24 @@
+# Downloaded from https://github.com/autopkg/scriptingosx-recipes/blob/8a19293caf528805e0ef5dda9e4edc7295e4eeb6/WhatsAppInc/WhatsApp.download.recipe
+# Commit: 8a19293caf528805e0ef5dda9e4edc7295e4eeb6
+# Downloaded at: 2026-02-22 01:49:15 UTC
+
+Comment: Created with Recipe Robot v1.0.2 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of WhatsApp.
+Identifier: com.scriptingosx.download.WhatsApp
+Input:
+  DOWNLOAD_URL: https://web.whatsapp.com/desktop/mac_native/release/?configuration=Release
+  NAME: WhatsApp
+MinimumVersion: 0.6.1
+Process:
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%.dmg'
+    url: '%DOWNLOAD_URL%'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%pathname%/WhatsApp.app'
+    requirement: identifier "net.whatsapp.WhatsApp" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "57T9237FN3"
+- Processor: AppDmgVersioner
+  Arguments:
+    dmg_path: '%pathname%'

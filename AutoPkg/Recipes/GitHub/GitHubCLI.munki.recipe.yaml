@@ -1,0 +1,40 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/GitHub/GitHubCLI.munki.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:32 UTC
+
+Description: Downloads the latest version of the GitHub command line tool and imports it into Munki.
+Identifier: com.github.homebysix.munki.GitHubCLI
+Input:
+  MUNKI_REPO_SUBDIR: apps/GitHub
+  NAME: GitHub CLI
+  pkginfo:
+    catalogs:
+    - testing
+    description: Command line interface for managing your GitHub projects.
+    developer: GitHub, Inc.
+    display_name: GitHub CLI
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: 1.4.1
+ParentRecipe: com.github.homebysix.pkg.GitHubCLI
+Process:
+- Processor: com.github.homebysix.FindAndReplace/FindAndReplace
+  Arguments:
+    find: amd64
+    input_string: '%ARCH%'
+    replace: x86_64
+- Processor: MunkiInstallsItemsCreator
+  Arguments:
+    faux_root: '%RECIPE_CACHE_DIR%/pkgroot'
+    installs_item_paths:
+    - /usr/local/bin/gh
+- Processor: MunkiPkginfoMerger
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      supported_architectures:
+      - '%output_string%'
+- Processor: MunkiImporter
+  Arguments:
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

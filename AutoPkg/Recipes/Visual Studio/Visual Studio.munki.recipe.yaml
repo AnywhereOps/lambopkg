@@ -1,0 +1,34 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/Visual Studio/Visual Studio.munki.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:49:04 UTC
+
+Description: Downloads the latest version of Visual Studio and imports it into Munki.
+Identifier: com.github.dataJAR-recipes.munki.VisualStudio
+Input:
+  NAME: VisualStudio
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  pkginfo:
+    catalogs:
+    - testing
+    description: "Visual Studio for Mac is a .NET integrated development environment on the Mac that can be used to edit, debug, and build code and then publish an app.\n\nIn addition to a code editor and debugger, Visual Studio for Mac includes compilers, code completion tools, graphical designers, and source control features to ease the software development process."
+    developer: Microsoft Corporation
+    display_name: Visual Studio
+    name: '%NAME%'
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: '1.1'
+ParentRecipe: com.github.dataJAR-recipes.download.VisualStudio
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: '\"minimumSupportedOsVersion\": \"([0-9]*\.[0-9]+)\",'
+    result_output_var_name: min_os_ver
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      minimum_os_version: '%min_os_ver%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

@@ -1,0 +1,26 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/Visual Studio/Visual Studio.download.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:49:04 UTC
+
+Comment: 'manifest URL obtained from this thread on Jamf Nation: https://community.jamf.com/t5/jamf-pro/visual-studio-for-mac-deployment/m-p/292547/highlight/true#M260110'
+Description: "Downloads the latest version of Visual Studio.\n\nFor the ARCH_TYPE variable use \"x64\" for Intel or \"arm64\" for Apple Silicon"
+Identifier: com.github.dataJAR-recipes.download.VisualStudio
+Input:
+  ARCH_TYPE: x64
+  NAME: VisualStudio
+MinimumVersion: '1.1'
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: (https://download\.visualstudio\.microsoft\.com/download/pr/[A-Za-z0-9]+(-[A-Za-z0-9]+)+/[A-Za-z0-9]+/visualstudioformac-([0-9]+(\.[0-9]+)+)-%ARCH_TYPE%\.dmg)
+    result_output_var_name: visualstudioformac_URL
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: URLDownloader
+  Arguments:
+    filename: '%NAME%.dmg'
+    url: '%visualstudioformac_URL%'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg/Visual Studio.app'
+    requirement: identifier "com.microsoft.visual-studio" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = UBF8T346G9

@@ -1,0 +1,12 @@
+# Downloaded from https://github.com/autopkg/rtrouton-recipes/blob/7d4886a0c21b4990c2fe43b23bcaaf8477363734/MicrosoftExcel365/MicrosoftExcel365.install.recipe
+# Commit: 7d4886a0c21b4990c2fe43b23bcaaf8477363734
+# Downloaded at: 2026-02-22 01:46:18 UTC
+
+Description: Downloads the current release version of the Microsoft Excel installer package for Office 365 and installs it.
+Identifier: com.github.rtrouton.install.microsoftexcel365
+Input:
+  NAME: Microsoft Excel
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.rtrouton.pkg.microsoftexcel365
+Process:
+- Processor: Installer

@@ -1,0 +1,12 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/GitHub/GitHubDesktop.install.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:33 UTC
+
+Description: Installs the latest version of GitHub Desktop.
+Identifier: com.github.homebysix.install.GitHubDesktop
+Input:
+  NAME: GitHub Desktop
+MinimumVersion: 1.0.2
+ParentRecipe: com.github.homebysix.pkg.GitHubDesktop
+Process:
+- Processor: Installer

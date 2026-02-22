@@ -1,0 +1,30 @@
+# Downloaded from https://github.com/autopkg/grahampugh-recipes/blob/f718a53ed4392c9988c2ae079cd62c19a5cfd7e0/JamfComplianceEditor/JamfComplianceEditor.download.recipe.yaml
+# Commit: f718a53ed4392c9988c2ae079cd62c19a5cfd7e0
+# Downloaded at: 2026-02-22 01:45:58 UTC
+
+Description: Downloads the current version of Jamf Compliance Editor
+Identifier: com.github.grahampugh.recipes.download.JamfComplianceEditor
+MinimumVersion: "2.3"
+
+Input:
+  NAME: Jamf Compliance Editor
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: Jamf-Concepts/jamf-compliance-editor
+      asset_regex: JamfComplianceEditor\.v.*\.pkg
+
+  - Processor: URLDownloader
+    Arguments:
+      filename: "JamfComplianceEditor-%version%.pkg"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      expected_authority_names:
+        - "Developer ID Installer: JAMF Software (483DWKW443)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+      input_path: "%pathname%"

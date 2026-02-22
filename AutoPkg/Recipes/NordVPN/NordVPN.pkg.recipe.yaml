@@ -1,0 +1,42 @@
+# Downloaded from https://github.com/autopkg/ahousseini-recipes/blob/f492141969d35725e565834657527cebbe2bc519/NordVPN/NordVPN.pkg.recipe
+# Commit: f492141969d35725e565834657527cebbe2bc519
+# Downloaded at: 2026-02-22 01:46:55 UTC
+
+Description: Downloads the latest version of NordVPN and creates a package.
+Identifier: com.github.ahousseini-recipes.pkg.NordVPN
+Input:
+  NAME: NordVPN
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.ahousseini-recipes.download.NordVPN
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/unpack'
+    flat_pkg_path: '%pathname%'
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/version_check'
+    pkg_payload_path: '%RECIPE_CACHE_DIR%/unpack/com.nordvpn.macos.pkg/Payload'
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%RECIPE_CACHE_DIR%/version_check/NordVPN.app/Contents/Info.plist'
+    plist_version_key: CFBundleShortVersionString
+- Processor: PlistReader
+  Arguments:
+    info_path: '%RECIPE_CACHE_DIR%/version_check/NordVPN.app/Contents/Info.plist'
+    plist_keys:
+      CFBundleName: bundlename
+- Processor: PlistReader
+  Arguments:
+    info_path: '%RECIPE_CACHE_DIR%/version_check/NordVPN.app/Contents/Info.plist'
+    plist_keys:
+      CFBundleIdentifier: bundleid
+- Processor: PkgCopier
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg'
+    source_pkg: '%pathname%'
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/unpack'
+    - '%RECIPE_CACHE_DIR%/version_check'

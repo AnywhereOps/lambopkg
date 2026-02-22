@@ -1,0 +1,62 @@
+# Downloaded from https://github.com/autopkg/rtrouton-recipes/blob/7d4886a0c21b4990c2fe43b23bcaaf8477363734/MicrosoftOneDrive/MicrosoftOneDrive.munki.recipe
+# Commit: 7d4886a0c21b4990c2fe43b23bcaaf8477363734
+# Downloaded at: 2026-02-22 01:47:33 UTC
+
+Description: Downloads the latest Microsoft OneDrive installer and imports into Munki.
+Identifier: com.github.rtrouton.munki.microsoftonedrive
+ParentRecipe: com.github.rtrouton.download.microsoftonedrive
+Input:
+  NAME: MicrosoftOnedrive
+  MUNKI_REPO_SUBDIR: apps/Microsoft
+  DERIVE_MIN_OS: ''
+  pkginfo:
+    catalogs:
+    - testing
+    description: Microsoft Onedrive
+    display_name: Microsoft Onedrive
+    developer: Microsoft
+    category: Productivity
+    name: '%NAME%'
+MinimumVersion: 1.0.0
+Process:
+- Processor: FlatPkgUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/downloads/unpack'
+    flat_pkg_path: '%pathname%'
+- Processor: FileFinder
+  Arguments:
+    pattern: '%RECIPE_CACHE_DIR%/downloads/unpack/*OneDrive*.pkg'
+- Processor: PkgRootCreator
+  Arguments:
+    pkgroot: '%RECIPE_CACHE_DIR%/downloads/Applications'
+    pkgdirs:
+      Applications: '0755'
+- Processor: PkgPayloadUnpacker
+  Arguments:
+    destination_path: '%RECIPE_CACHE_DIR%/downloads/Applications'
+    pkg_payload_path: '%found_filename%/Payload'
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%RECIPE_CACHE_DIR%/downloads/Applications/OneDrive.app/Contents/Info.plist'
+    plist_version_key: CFBundleShortVersionString
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      version: '%version%'
+- Processor: MunkiInstallsItemsCreator
+  Arguments:
+    derive_minimum_os_version: '%DERIVE_MIN_OS%'
+    faux_root: '%RECIPE_CACHE_DIR%/downloads/'
+    installs_item_paths:
+    - /Applications/OneDrive.app
+    version_comparison_key: CFBundleShortVersionString
+- Processor: MunkiPkginfoMerger
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+- Processor: PathDeleter
+  Arguments:
+    path_list:
+    - '%RECIPE_CACHE_DIR%/downloads/unpack'
+    - '%RECIPE_CACHE_DIR%/downloads/Applications'

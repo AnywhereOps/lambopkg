@@ -1,0 +1,28 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/GitHub/GitHubDesktop.download.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:33 UTC
+
+Description: "Downloads the latest version of GitHub Desktop.\n\nValid BUILD arguments are:\n- \"darwin\": Downloads GitHub Desktop for Intel Macs\n- \"darwin-arm64\": Downloads GitHub Desktop for Apple Silicon Macs\n\t"
+Identifier: com.github.homebysix.download.GitHubDesktop
+Input:
+  BUILD: darwin
+  NAME: GitHub Desktop
+MinimumVersion: 1.0.2
+Process:
+- Processor: URLDownloader
+  Arguments:
+    filename: GitHubDesktop-%BUILD%.zip
+    url: https://central.github.com/deployments/desktop/desktop/latest/%BUILD%
+- Processor: EndOfCheckPhase
+- Processor: Unarchiver
+  Arguments:
+    archive_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/%NAME%/Applications'
+    purge_destination: true
+- Processor: CodeSignatureVerifier
+  Arguments:
+    input_path: '%RECIPE_CACHE_DIR%/%NAME%/Applications/GitHub Desktop.app'
+    requirement: (identifier "com.github.GitHub" or identifier "com.github.GHAskPass") and anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = VEKTX9H2N7
+- Processor: Versioner
+  Arguments:
+    input_plist_path: '%RECIPE_CACHE_DIR%/%NAME%/Applications/GitHub Desktop.app/Contents/Info.plist'

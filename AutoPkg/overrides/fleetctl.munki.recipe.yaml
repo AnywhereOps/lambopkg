@@ -28,10 +28,10 @@ ParentRecipeTrustInfo:
   parent_recipes:
     com.github.jc0b.download.fleetctl:
       path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.download.recipe.yaml
-      sha256_hash: 6f46b1b16eca6a54dfadfda5d612ccc8c088f5f50fd69e03bb55bda18bf90d91
+      sha256_hash: d5f17feb26293c04743b60d77fb264e89bca05a1390dea843d6df78c5c96c41d
     com.github.jc0b.munki.fleetctl:
       path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.munki.recipe.yaml
-      sha256_hash: f6070f9ec4e00e8cea84d7d46c1e3f8f0c23d8bf9445a8908d5695ad8f5ee451
+      sha256_hash: ee5cfe382afe5015762dce5b8d8be98a7bcdfffafa59b826c0ad3cc0c00b2899
     com.github.jc0b.pkg.fleetctl:
       path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.pkg.recipe.yaml
-      sha256_hash: d736094c8463e31036c72c09aba617f6d062d769b4d1c8bfb86db20cb3ddbbda
+      sha256_hash: 1091643c29e0b7508311e886b5b84dca1ced460ea7a9c886a21a88ace7dc9dfd

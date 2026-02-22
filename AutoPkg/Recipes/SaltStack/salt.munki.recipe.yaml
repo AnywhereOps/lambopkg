@@ -1,6 +1,6 @@
 # Downloaded from https://github.com/autopkg/mosen-recipes/blob/908662c062d02ff949d672eb5ff3234dc69a10e4/SaltStack/salt.munki.recipe
 # Commit: 908662c062d02ff949d672eb5ff3234dc69a10e4
-# Downloaded at: 2026-02-21 05:59:22 UTC
+# Downloaded at: 2026-02-22 01:50:19 UTC
 
 Description: Import SaltStack into munki
 Identifier: com.github.mosen.munki.salt

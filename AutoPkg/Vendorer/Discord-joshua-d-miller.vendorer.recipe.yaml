@@ -1,0 +1,16 @@
+Description: Obtain upstream Discord recipe from autopkg/joshua-d-miller-recipes
+
+Identifier: com.github.anywhereops.vendorer.Discord
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/joshua-d-miller-recipes
+      folder_path: Discord
+      commit_sha: 8a1767feebc676e376cc661d05f092c654217ce1
+      destination_path: Discord
+      recipe_type: munki

@@ -1,0 +1,16 @@
+# Downloaded from https://github.com/autopkg/scriptingosx-recipes/blob/8a19293caf528805e0ef5dda9e4edc7295e4eeb6/WhatsAppInc/WhatsApp.pkg.recipe
+# Commit: 8a19293caf528805e0ef5dda9e4edc7295e4eeb6
+# Downloaded at: 2026-02-22 01:49:16 UTC
+
+Comment: Created with Recipe Robot v1.0.2 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of WhatsApp and creates a package.
+Identifier: com.scriptingosx.pkg.WhatsApp
+Input:
+  NAME: WhatsApp
+MinimumVersion: 1.0.0
+ParentRecipe: com.scriptingosx.download.WhatsApp
+Process:
+- Processor: AppPkgCreator
+  Arguments:
+    app_path: '%pathname%/WhatsApp.app'
+    bundleid: com.whatsapp.WhatsApp

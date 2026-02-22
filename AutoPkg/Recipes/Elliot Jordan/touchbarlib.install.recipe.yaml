@@ -1,0 +1,14 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/Elliot Jordan/touchbarlib.install.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:47:47 UTC
+
+Description: Installs the current release of touchbarlib from Github.
+Identifier: com.github.homebysix.install.touchbarlib
+Input:
+  NAME: touchbarlib
+MinimumVersion: 1.0.0
+ParentRecipe: com.github.homebysix.download.touchbarlib
+Process:
+- Processor: Installer
+  Arguments:
+    pkg_path: '%pathname%'

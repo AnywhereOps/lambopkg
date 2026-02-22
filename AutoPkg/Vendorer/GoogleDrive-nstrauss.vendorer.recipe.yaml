@@ -1,0 +1,16 @@
+Description: Obtain upstream Google Drive recipe from autopkg/nstrauss-recipes
+
+Identifier: com.github.anywhereops.vendorer.GoogleDrive
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/nstrauss-recipes
+      folder_path: Google Drive
+      commit_sha: e58bfac92f1739258afd8cf246d148e1b60fd986
+      destination_path: Google Drive
+      recipe_type: munki

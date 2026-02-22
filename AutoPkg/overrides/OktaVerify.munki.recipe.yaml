@@ -29,10 +29,10 @@ ParentRecipeTrustInfo:
   parent_recipes:
     com.github.nstrauss.download.OktaVerify:
       path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Okta Verify/OktaVerify.download.recipe.yaml
-      sha256_hash: 4902b9ccf63dc415616709f9a2f28ac97f6e08f4549750964ffd2d56c3d2d797
+      sha256_hash: ab5ece9d3f2f7f2bb53f6793075c691d988cfacd6a65f0471105c6fb44ba9435
     com.github.nstrauss.munki.OktaVerify:
       path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Okta Verify/OktaVerify.munki.recipe.yaml
-      sha256_hash: db0bd3ba6fa7b22526ac33f9f271d1314e6be04dea7b2240667d6f48e6061f37
+      sha256_hash: cd4ef5f44b549abc33293c5097a598bed2a979990bee403aceafb5847a3e762f
     com.github.nstrauss.pkg.OktaVerify:
       path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Okta Verify/OktaVerify.pkg.recipe.yaml
-      sha256_hash: e5d20063ec36d71fac946c958de937c4ea363a75b04c88e83abc9f99d51dc793
+      sha256_hash: cd00ace55d1d9d367b5172976f9a9479161ac14e5b7e9f96c6c89d7c6cf35acd

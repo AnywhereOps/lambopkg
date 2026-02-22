@@ -1,0 +1,33 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/Visual Studio/Eclipse Temurin JDK.download.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:49:02 UTC
+
+Comment: 'manifest URL obtained from this thread on Jamf Nation: https://community.jamf.com/t5/jamf-pro/visual-studio-for-mac-deployment/m-p/292547/highlight/true#M260110'
+Description: Downloads the latest version of Eclipse Temurin JDK for Visual Studio.
+Identifier: com.github.dataJAR-recipes.download.Eclipse Temurin JDK
+Input:
+  NAME: EclipseTemurinJDK
+MinimumVersion: '1.1'
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: (https://download\.visualstudio\.microsoft\.com/download/pr/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/[A-Za-z0-9]+/OpenJDK8U-jdk_x64_mac_hotspot_([0-9]+([A-Za-z]+[0-9]+)+)\.pkg)
+    result_output_var_name: EclipseTemurinJDK_URL
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: https://download\.visualstudio\.microsoft\.com/download/pr/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/[A-Za-z0-9]+/OpenJDK8U-jdk_x64_mac_hotspot_(([0-9]+([A-Za-z]+[0-9]+)+))\.pkg
+    result_output_var_name: EclipseTemurinJDK_VERSION
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: URLDownloader
+  Arguments:
+    filename: OpenJDK8U-jdk_x64_mac_hotspot_%EclipseTemurinJDK_VERSION%.pkg
+    url: '%EclipseTemurinJDK_URL%'
+- Processor: EndOfCheckPhase
+- Processor: CodeSignatureVerifier
+  Arguments:
+    expected_authority_names:
+    - 'Developer ID Installer: Eclipse Foundation, Inc. (JCDTMS22B4)'
+    - Developer ID Certification Authority
+    - Apple Root CA
+    input_path: '%RECIPE_CACHE_DIR%/downloads/OpenJDK8U-jdk_x64_mac_hotspot_%EclipseTemurinJDK_VERSION%.pkg'

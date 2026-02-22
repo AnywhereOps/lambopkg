@@ -1,0 +1,17 @@
+Description: Obtain upstream JamfComplianceEditor recipe from autopkg/grahampugh-recipes
+
+Identifier: com.github.anywhereops.vendorer.JamfComplianceEditor
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/grahampugh-recipes
+      folder_path: JamfComplianceEditor
+      commit_sha: f718a53ed4392c9988c2ae079cd62c19a5cfd7e0
+      destination_path: JamfComplianceEditor
+      recipe_type: munki
+      required_license: Apache-2.0

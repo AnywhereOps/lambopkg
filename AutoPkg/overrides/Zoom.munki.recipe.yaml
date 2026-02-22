@@ -1,0 +1,37 @@
+Identifier: local.munki.Zoom
+Input:
+  BUNDLE_ID: us.zoom.xos
+  DOWNLOAD_URL: https://zoom.us/client/latest/ZoomInstallerIT.pkg
+  MUNKI_REPO_SUBDIR: apps/Zoom
+  NAME: Zoom
+  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10
+    (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10
+  pkginfo:
+    blocking_applications:
+    - zoom.us
+    catalogs:
+    - testing
+    description: The Zoom app provides cloud-hosted video conferencing, plus online
+      meetings and group messaging.
+    developer: Zoom Video Communications, Inc.
+    display_name: Zoom
+    minimum_os_version: '10.7'
+    name: '%NAME%'
+    postuninstall_script: |
+      #!/bin/sh
+      rm -rf /Applications/zoom.us.app
+    unattended_install: true
+    unattended_uninstall: true
+ParentRecipe: com.github.homebysix.munki.Zoom
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.hansen-m.download.zoomus:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Zoom/Zoom.download.recipe.yaml
+      sha256_hash: 7371e178645851b24888cc27044763c9b77def32e41a2b6921ad5535754dd907
+    com.github.homebysix.munki.Zoom:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Zoom/Zoom.munki.recipe.yaml
+      sha256_hash: b66e6ba85cd3ae46b645fb67dee0eb8f0d82f74ece1928b31f2b11e1f5789a8e
+    com.github.homebysix.pkg.Zoom:
+      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Zoom/Zoom.pkg.recipe.yaml
+      sha256_hash: e41b89c3c9ecfc7606c6defaa10d88e712a11f27f4628b3f3b2a87b138dd3b90

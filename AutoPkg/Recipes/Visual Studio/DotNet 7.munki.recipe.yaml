@@ -1,0 +1,38 @@
+# Downloaded from https://github.com/autopkg/dataJAR-recipes/blob/4e1be9dc49c30ad4b1ccdd3d0b090522684032e6/Visual Studio/DotNet 7.munki.recipe
+# Commit: 4e1be9dc49c30ad4b1ccdd3d0b090522684032e6
+# Downloaded at: 2026-02-22 01:49:01 UTC
+
+Comment: 'manifest URL obtained from this thread on Jamf Nation: https://community.jamf.com/t5/jamf-pro/visual-studio-for-mac-deployment/m-p/292547/highlight/true#M260110'
+Description: Downloads the latest version of DotNet 7 for Visual Studio and imports it into Munki.
+Identifier: com.github.dataJAR-recipes.munki.DotNet 7
+Input:
+  NAME: DotNet7
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  SUPPORTED_ARCH: ''
+  pkginfo:
+    catalogs:
+    - testing
+    description: "DotNet 7 for Visual Studio\n\nNET is a developer platform with tools and libraries for building any type of app, including web, mobile, desktop, games, IoT, cloud, and microservices."
+    developer: Microsoft Corporation
+    display_name: DotNet 7
+    name: '%NAME%'
+    supported_architectures:
+    - '%SUPPORTED_ARCH%'
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: '1.1'
+ParentRecipe: com.github.dataJAR-recipes.download.DotNet 7
+Process:
+- Processor: URLTextSearcher
+  Arguments:
+    re_pattern: '\"minimumSupportedOsVersion\": \"([0-9]*\.[0-9]+)\",'
+    result_output_var_name: min_os_ver
+    url: https://aka.ms/vsmac/manifest/17-stable
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      minimum_os_version: '%min_os_ver%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%RECIPE_CACHE_DIR%/downloads/dotnet-sdk-7.%DotNet7SDK_VERSION%-osx-%ARCH_TYPE%.pkg'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

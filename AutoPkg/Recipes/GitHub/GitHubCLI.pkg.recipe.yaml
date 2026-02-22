@@ -1,0 +1,47 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/GitHub/GitHubCLI.pkg.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:33 UTC
+
+Description: Downloads the latest version of the GitHub command line tool and creates a package.
+Identifier: com.github.homebysix.pkg.GitHubCLI
+Input:
+  NAME: GitHub CLI
+MinimumVersion: 1.4.1
+ParentRecipe: com.github.homebysix.download.GitHubCLI
+Process:
+- Processor: Unarchiver
+  Arguments:
+    archive_path: '%pathname%'
+    destination_path: '%RECIPE_CACHE_DIR%/unzipped'
+    purge_destination: true
+- Processor: PkgRootCreator
+  Arguments:
+    pkgdirs:
+      usr: '0775'
+      usr/local: '0775'
+      usr/local/bin: '0775'
+      usr/local/share/: '0775'
+      usr/local/share/man: '0775'
+      usr/local/share/man/man1: '0775'
+    pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
+- Processor: Copier
+  Arguments:
+    destination_path: '%pkgroot%/usr/local/bin/gh'
+    source_path: '%RECIPE_CACHE_DIR%/unzipped/*/bin/gh'
+- Processor: Copier
+  Arguments:
+    destination_path: '%pkgroot%/usr/local/share/man/man1'
+    overwrite: true
+    source_path: '%RECIPE_CACHE_DIR%/unzipped/*/share/man/man1'
+- Processor: PkgCreator
+  Arguments:
+    pkg_request:
+      chown:
+      - group: admin
+        mode: '0755'
+        path: usr
+        user: root
+      id: com.github.cli
+      pkgname: GitHubCLI-%version%
+      pkgroot: '%RECIPE_CACHE_DIR%/pkgroot'
+      version: '%version%'

@@ -1,0 +1,35 @@
+# Downloaded from https://github.com/autopkg/homebysix-recipes/blob/72c89c63ec1e18cd8991f2e20038f0c51842ecae/GitHub/GitHubDesktop.munki.recipe
+# Commit: 72c89c63ec1e18cd8991f2e20038f0c51842ecae
+# Downloaded at: 2026-02-22 01:45:34 UTC
+
+Description: Downloads the latest version of GitHub Desktop and imports it into Munki.
+Identifier: com.github.homebysix.munki.GitHubDesktop
+Input:
+  MUNKI_REPO_SUBDIR: apps/GitHub
+  NAME: GitHub Desktop
+  pkginfo:
+    catalogs:
+    - testing
+    description: Desktop app made by GitHub for seamless contribution to git projects.
+    developer: GitHub, Inc.
+    display_name: GitHub Desktop
+    name: '%NAME%'
+    postinstall_script: "#!/bin/bash\n\nDEST_DIR=\"/usr/local/bin\"\n\nif [[ ! -d \"$DEST_DIR\" ]]; then\n    mkdir -p \"$DEST_DIR\"\nfi\n\nln -s \"/Applications/GitHub Desktop.app/Contents/Resources/app/static/github.sh\" \"$DEST_DIR/github\"\n\nexit 0\n"
+    preinstall_script: "#!/bin/bash\n\nDEST_DIR=\"/usr/local/bin\"\n\n# Remove old symbolic links associated with pre-Electron version of GitHub Desktop.\nif [[ -L \"$DEST_DIR/git-lfs\" ]]; then\n    rm -f \"$DEST_DIR/git-lfs\"\nfi\n\nexit 0\n"
+    unattended_install: true
+    unattended_uninstall: true
+MinimumVersion: 1.0.2
+ParentRecipe: com.github.homebysix.download.GitHubDesktop
+Process:
+- Processor: DmgCreator
+  Arguments:
+    dmg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+    dmg_root: '%RECIPE_CACHE_DIR%/%NAME%/Applications'
+- Processor: MunkiPkginfoMerger
+  Arguments:
+    additional_pkginfo:
+      version: '%version%'
+- Processor: MunkiImporter
+  Arguments:
+    pkg_path: '%dmg_path%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'

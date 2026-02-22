@@ -1,0 +1,17 @@
+Description: Obtain upstream Anthropic recipe from autopkg/almenscorner-recipes
+
+Identifier: com.github.anywhereops.vendorer.Anthropic
+
+MinimumVersion: '2.3'
+
+Input: {}
+
+Process:
+  - Processor: AutopkgVendorer
+    Arguments:
+      github_repo: autopkg/almenscorner-recipes
+      folder_path: Anthropic
+      commit_sha: c69534f0253da986346daf26462270710f8501ae
+      destination_path: Anthropic
+      recipe_type: munki
+      required_license: Apache-2.0
