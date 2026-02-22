@@ -64,6 +64,11 @@ jobs:
           fetch-depth: 1
           path: ${{ env.MUNKI_CLONE_DIR }}
 
+      - name: Configure Munki repo push credentials
+        run: |
+          cd ${{ env.MUNKI_CLONE_DIR }}
+          git remote set-url origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${{ env.MUNKI_GH_REPO }}.git"
+
       - name: Setup Cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 #4.3.0
         with:
