@@ -15,7 +15,7 @@ jobs:
       MUNKI_SHA256: "ba52389db369dd123297bfdf30daf37baba44bf967144382363b3b08ab5fab90"
       MUNKI_URL: "https://github.com/munki/munki/releases/download/v5.6.3/munkitools-5.6.3.4401.pkg"
       AUTOPKG_DIR: "${{ github.workspace }}/AutoPkg"
-      MUNKI_REPO: "andrew-kemp-dahlberg/munki/munki_repo"
+      MUNKI_REPO: "AnywhereOps/munkisrv/munkirepo"
 
     permissions:
       contents: write
@@ -54,7 +54,7 @@ jobs:
         with:
           app-id: ${{ env.MUNKISRV_APP_APP_ID }}
           private-key: ${{ env.MUNKISRV_APP_PRIVATE_KEY }}
-          owner: andrew-kemp-dahlberg
+          owner: AnywhereOps
 
       - name: Checkout Munki repo
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0

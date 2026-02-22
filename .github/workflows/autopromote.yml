@@ -39,7 +39,7 @@ jobs:
       with:
         app-id: ${{ env.MUNKISRV_APP_APP_ID }}
         private-key: ${{ env.MUNKISRV_APP_PRIVATE_KEY }}
-        owner: andrew-kemp-dahlberg
+        owner: AnywhereOps
 
     - name: Checkout Munki repo
       uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
