@@ -45,7 +45,7 @@ async def process_recipe(
     logger.info("Processing %s", recipe_name)
 
     now = datetime.now(timezone.utc)
-    branch = f"autopkg/{recipe_name.replace(' ', '-')}-{now:%Y%m%d%H%M%S}"
+    branch = f"autopkg-{recipe_name.replace(' ', '-')}-{now:%Y%m%d%H%M%S}"
     worktree_path = git_repo_root.parent / f"worktree-{recipe_name}-{now:%Y%m%d%H%M%S}"
 
     # Clone prefs and point at worktree's munki subdir
@@ -69,12 +69,10 @@ async def process_recipe(
             logger.info("No changes for %s", recipe_name)
             return
 
-        # Stage files for each imported item
+        # Stage metadata files for git (packages are gitignored, synced to S3 separately)
         munki_repo_path = str(prefs.munki_repo)
         for item in results["munki_imported_items"]:
             files = [f"{munki_repo_path}/pkgsinfo/{item.get('pkginfo_path')}"]
-            if item.get("pkg_repo_path"):
-                files.append(f"{munki_repo_path}/pkgs/{item.get('pkg_repo_path')}")
             if item.get("icon_repo_path"):
                 files.append(f"{munki_repo_path}/icons/{item.get('icon_repo_path')}")
             wt_repo.index.add(files)
