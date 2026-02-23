@@ -29,8 +29,10 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.ahousseini-recipes.download.NordVPN:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/NordVPN/NordVPN.download.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/NordVPN/NordVPN.download.recipe.yaml
       sha256_hash: e686d18ef65b600875fb4d43b07fba4bde69d818932e1a085a17d819370ef29a
     com.github.dataJAR-recipes.munki.NordVPN:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/NordVPN/NordVPN.munki.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/NordVPN/NordVPN.munki.recipe.yaml
       sha256_hash: fc3cde18e18c1a8dc5ac4bbad9635602f3848ea850648ac9475a1f739d584456

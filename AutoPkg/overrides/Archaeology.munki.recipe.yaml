@@ -20,8 +20,10 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.kevinmcox.download.Archaeology:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Archaeology.download.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Archaeology.download.recipe.yaml
       sha256_hash: 12f74d2f27ab909b3f1ebc0f162ec10bef2195289d236b3f9647757ec2c28c39
     com.github.kevinmcox.munki.Archaeology:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Archaeology.munki.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Archaeology.munki.recipe.yaml
       sha256_hash: c43fc900d042e7ea62d5500bad2284c3f070f8c65ab2d87622c67a17d1d2c186

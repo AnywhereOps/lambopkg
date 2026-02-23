@@ -21,17 +21,17 @@ Input:
       /usr/local/bin/fleetctl --version | /usr/bin/awk '/^fleetctl/{print $4}'
 ParentRecipe: com.github.jc0b.munki.fleetctl
 ParentRecipeTrustInfo:
-  non_core_processors:
-    FindAndReplace:
-      path: ''
-      sha256_hash: PROCESSOR FILEPATH NOT FOUND
+  non_core_processors: {}
   parent_recipes:
     com.github.jc0b.download.fleetctl:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.download.recipe.yaml
-      sha256_hash: d5f17feb26293c04743b60d77fb264e89bca05a1390dea843d6df78c5c96c41d
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.download.recipe.yaml
+      sha256_hash: 983ed9200ffaef26656a73dbb4f271c8c652f45dcab5760975c1c6524d16791b
     com.github.jc0b.munki.fleetctl:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.munki.recipe.yaml
-      sha256_hash: ee5cfe382afe5015762dce5b8d8be98a7bcdfffafa59b826c0ad3cc0c00b2899
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.munki.recipe.yaml
+      sha256_hash: bff072f405d379f28236c90178fbb54d61707e56fd0fec4e8bb7b531c9a40ccb
     com.github.jc0b.pkg.fleetctl:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.pkg.recipe.yaml
-      sha256_hash: 1091643c29e0b7508311e886b5b84dca1ced460ea7a9c886a21a88ace7dc9dfd
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Fleet/fleetctl.pkg.recipe.yaml
+      sha256_hash: ec475488fdc4a4561cf34908d4b8eb5482950ef4b86806e73c418b8a85e33506

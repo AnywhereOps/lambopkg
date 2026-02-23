@@ -29,8 +29,10 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.apizz.munki.GoogleDrive:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Google_Drive/GoogleDrive.munki.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Google_Drive/GoogleDrive.munki.recipe.yaml
       sha256_hash: 88e6b9958d69c9f04d0bca055328ccf293eafe569313d2919a9b0d04e796d294
     com.github.nstrauss.download.GoogleDrive:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Google Drive/GoogleDrive.download.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Google Drive/GoogleDrive.download.recipe.yaml
       sha256_hash: da442b3fbd57d3e9fa3c74f777e44814535cff8ccfb52996c43983b14c2042d5

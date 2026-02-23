@@ -17,8 +17,10 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.rtrouton.download.microsoftword365:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftWord365/MicrosoftWord365.download.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/MicrosoftWord365/MicrosoftWord365.download.recipe.yaml
       sha256_hash: 7f9d678a9660e698697c63ea756e7af022dc0bd0d9692b244c82d933a33cd7ee
     com.github.rtrouton.munki.microsoftword365:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftWord365/MicrosoftWord365.munki.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/MicrosoftWord365/MicrosoftWord365.munki.recipe.yaml
       sha256_hash: ac9a6e817c3140989e3a4a86a20cfa65fdb708604972bfba9825f51e1965bc8e

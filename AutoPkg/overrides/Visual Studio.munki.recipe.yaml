@@ -20,8 +20,10 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.dataJAR-recipes.download.VisualStudio:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Visual Studio/Visual Studio.download.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Visual Studio/Visual Studio.download.recipe.yaml
       sha256_hash: a3050c2b410d807e76dabe81f92e720d0f8b790a5950f561aaee42ddb56ccd27
     com.github.dataJAR-recipes.munki.VisualStudio:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/Visual Studio/Visual Studio.munki.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Visual Studio/Visual Studio.munki.recipe.yaml
       sha256_hash: 4e9260a9ed9098aa2ac664dee24fb350f21f360cb16b3b696e95bedf43f29427

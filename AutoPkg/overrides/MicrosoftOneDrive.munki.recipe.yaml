@@ -20,8 +20,10 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.rtrouton.download.microsoftonedrive:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftOneDrive/MicrosoftOneDrive.download.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/MicrosoftOneDrive/MicrosoftOneDrive.download.recipe.yaml
       sha256_hash: 37832cd454fefad177d904eaa56322e9abdda866f6c024d9e5a996f8943de544
     com.github.rtrouton.munki.microsoftonedrive:
-      path: ~/anywhereops/infra/lambo-pkg/AutoPkg/Recipes/MicrosoftOneDrive/MicrosoftOneDrive.munki.recipe.yaml
+      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
+      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/MicrosoftOneDrive/MicrosoftOneDrive.munki.recipe.yaml
       sha256_hash: e431033f8b7754372912a81da70f1c0b0ab4527e4b4aeb26431945e75626b1f4
