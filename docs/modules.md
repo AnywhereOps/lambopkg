@@ -1,10 +1,10 @@
-# Scripts Reference
+# Modules Reference
 
-## autopkg_tools
-::: autopkg_tools
+## runners.autopkg_tools
+::: lambopkg.runners.autopkg_tools
 
-## autopromote
-::: autopromote
+## runners.autopromote
+::: lambopkg.runners.autopromote
 
-## update_trust_info
-::: update_trust_info
+## runners.fix_trust_info
+::: lambopkg.runners.fix_trust_info

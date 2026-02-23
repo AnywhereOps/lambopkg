@@ -20,7 +20,7 @@ except ImportError:
 sys.stdout.reconfigure(line_buffering=True)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-LOG_DIR = PROJECT_ROOT / 'tools/logs'
+LOG_DIR = PROJECT_ROOT / 'logs'
 
 # Regex patterns for YAML and plist formats
 ID_PATTERN = re.compile(r'Identifier:\s*(\S+)|<key>Identifier</key>\s*<string>([^<]+)</string>')

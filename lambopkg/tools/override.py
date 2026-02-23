@@ -17,7 +17,7 @@ except ImportError:
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 RECIPE_REPOS = PROJECT_ROOT / 'AutoPkg/Recipes'
 VENDORER_DIR = PROJECT_ROOT / 'AutoPkg/Vendorer'
-LOG_DIR = PROJECT_ROOT / 'tools/logs'
+LOG_DIR = PROJECT_ROOT / 'logs'
 
 
 def setup_logging():

@@ -1,15 +1,15 @@
-# autopatcher
+# lambopkg
 
-[![Release](https://img.shields.io/github/v/release/AnywhereOps/autopatcher)](https://img.shields.io/github/v/release/AnywhereOps/autopatcher)
-[![Build status](https://img.shields.io/github/actions/workflow/status/AnywhereOps/autopatcher/main.yml?branch=main)](https://github.com/AnywhereOps/autopatcher/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/AnywhereOps/autopatcher/branch/main/graph/badge.svg)](https://codecov.io/gh/AnywhereOps/autopatcher)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/AnywhereOps/autopatcher)](https://img.shields.io/github/commit-activity/m/AnywhereOps/autopatcher)
-[![License](https://img.shields.io/github/license/AnywhereOps/autopatcher)](https://img.shields.io/github/license/AnywhereOps/autopatcher)
+[![Release](https://img.shields.io/github/v/release/AnywhereOps/lambopkg)](https://img.shields.io/github/v/release/AnywhereOps/lambopkg)
+[![Build status](https://img.shields.io/github/actions/workflow/status/AnywhereOps/lambopkg/main.yml?branch=main)](https://github.com/AnywhereOps/lambopkg/actions/workflows/main.yml?query=branch%3Amain)
+[![codecov](https://codecov.io/gh/AnywhereOps/lambopkg/branch/main/graph/badge.svg)](https://codecov.io/gh/AnywhereOps/lambopkg)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/AnywhereOps/lambopkg)](https://img.shields.io/github/commit-activity/m/AnywhereOps/lambopkg)
+[![License](https://img.shields.io/github/license/AnywhereOps/lambopkg)](https://img.shields.io/github/license/AnywhereOps/lambopkg)
 
 This project is for running Autopkg and importing into munki as well as promoting new versions through munki catalogs
 
-- **Github repository**: <https://github.com/AnywhereOps/autopatcher/>
-- **Documentation** <https://AnywhereOps.github.io/autopatcher/>
+- **Github repository**: <https://github.com/AnywhereOps/lambopkg/>
+- **Documentation** <https://AnywhereOps.github.io/lambopkg/>
 
 ## Getting started with your project
 
@@ -21,7 +21,7 @@ First, create a repository on GitHub with the same name as this project, and the
 git init -b main
 git add .
 git commit -m "init commit"
-git remote add origin git@github.com:AnywhereOps/autopatcher.git
+git remote add origin git@github.com:AnywhereOps/lambopkg.git
 git push -u origin main
 ```
 

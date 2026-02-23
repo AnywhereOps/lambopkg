@@ -20,10 +20,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.scriptingosx.download.WhatsApp:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.download.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.download.recipe.yaml
       sha256_hash: f70f4ca17c5b1d7b3e0d8eef2fcc34cde3bb8afe103b87c023b7b611bc6a92b2
     com.scriptingosx.munki.WhatsApp:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.munki.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.munki.recipe.yaml
       sha256_hash: bba470e95d956349092837e114820d8cf8055a42365b5e80d55387264d20d22d

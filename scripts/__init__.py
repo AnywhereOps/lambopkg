@@ -1,1 +1,0 @@
-"""Autopatcher scripts package."""

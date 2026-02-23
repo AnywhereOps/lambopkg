@@ -13,7 +13,7 @@ check: ## Run code quality tools.
 	@echo "🚀 Static type checking: Running ty"
 	@uv run ty check
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
-	@uv run deptry scripts
+	@uv run deptry .
 
 .PHONY: test
 test: ## Test the code with pytest

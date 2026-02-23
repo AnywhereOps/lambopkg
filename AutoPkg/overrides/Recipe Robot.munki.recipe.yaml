@@ -16,10 +16,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.homebysix.download.RecipeRobot:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Elliot Jordan/Recipe Robot.download.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Elliot Jordan/Recipe Robot.download.recipe.yaml
       sha256_hash: ae7a1cb25d5b0927f2967764de8f05169972eb47a98bf8a3534f271208733371
     com.github.homebysix.munki.RecipeRobot:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Elliot Jordan/Recipe Robot.munki.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Elliot Jordan/Recipe Robot.munki.recipe.yaml
       sha256_hash: 1241460c28445b20d4ffa8b63c859a73d758a461e6cf408d4c4fac5d9074319d

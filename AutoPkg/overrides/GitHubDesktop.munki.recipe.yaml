@@ -40,10 +40,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.homebysix.download.GitHubDesktop:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/GitHub/GitHubDesktop.download.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/GitHub/GitHubDesktop.download.recipe.yaml
       sha256_hash: a471f508c4a9a3303404cdf45e96bc89a21b0ad34a7f0be0b856b341e3a4a3bb
     com.github.homebysix.munki.GitHubDesktop:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/GitHub/GitHubDesktop.munki.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/GitHub/GitHubDesktop.munki.recipe.yaml
       sha256_hash: b8b2c83f858c7a242bcb4dceafc11436f99f13434dbda4ab9ddd4256b51b6902

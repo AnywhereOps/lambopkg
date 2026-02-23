@@ -20,10 +20,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.kevinmcox.download.Apparency:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Apparency.download.recipe.yaml
-      sha256_hash: 57eb4ab58ce0d1fdcb1bdf67b2ebddcea2a8831b1bf140eda9b768983bd7cbeb
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Mothers Ruin Software/Apparency.download.recipe.yaml
+      sha256_hash: e83fcde00cac8cf1e14726439f33b6af977bd988611e56a9500afc00cbe5a9d5
     com.github.kevinmcox.munki.Apparency:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Mothers Ruin Software/Apparency.munki.recipe.yaml
-      sha256_hash: bc15a1f4243c635ea0b63e38b48f66d7af616a1d1e1f3d817799c342065d0d96
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Mothers Ruin Software/Apparency.munki.recipe.yaml
+      sha256_hash: c094a2a498f104ca6971995fbfc932a25c60edffa12f6a7e702758ff4f616577

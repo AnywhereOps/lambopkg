@@ -1,10 +1,10 @@
-site_name: autopatcher
-repo_url: https://github.com/AnywhereOps/autopatcher
-site_url: https://AnywhereOps.github.io/autopatcher
+site_name: lambopkg
+repo_url: https://github.com/AnywhereOps/lambopkg
+site_url: https://AnywhereOps.github.io/lambopkg
 site_description: This project is for running Autopkg and importing into munki as well as promoting new versions through munki catalogs
 site_author: AnywhereOps
 edit_uri: edit/main/docs/
-repo_name: AnywhereOps/autopatcher
+repo_name: AnywhereOps/lambopkg
 copyright: Maintained by <a href="https://AnywhereOps.com">AnywhereOps</a>.
 
 nav:
@@ -15,7 +15,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: ["scripts"]
+          paths: ["lambopkg"]
 theme:
   name: material
   feature:
@@ -41,9 +41,9 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/AnywhereOps/autopatcher
+      link: https://github.com/AnywhereOps/lambopkg
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/autopatcher
+      link: https://pypi.org/project/lambopkg
 
 markdown_extensions:
   - toc:

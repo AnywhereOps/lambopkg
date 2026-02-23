@@ -11,9 +11,8 @@ from datetime import datetime
 from pathlib import Path
 
 TOOLS_DIR = Path(__file__).resolve().parent
-LIB_DIR = TOOLS_DIR / 'lib'
-PROJECT_ROOT = TOOLS_DIR.parent
-LOG_DIR = TOOLS_DIR / 'logs'
+PROJECT_ROOT = TOOLS_DIR.parent.parent
+LOG_DIR = PROJECT_ROOT / 'logs'
 
 
 def _find_python() -> str:
@@ -70,7 +69,7 @@ def setup():
 
 def run_script(name: str, args: list[str]) -> tuple[int, list[str]]:
     """Run script, stream output, return (returncode, output_lines)."""
-    cmd = [_find_python(), str(LIB_DIR / f'{name}.py')] + args
+    cmd = [_find_python(), str(TOOLS_DIR / f'{name}.py')] + args
     header = f"\n{'='*60}\n[{name.upper()}] {' '.join(args[:3])}{'...' if len(args) > 3 else ''}\n{'='*60}"
     print(header)
     logging.info(header)

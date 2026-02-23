@@ -1,5 +1,5 @@
 [project]
-name = "autopatcher"
+name = "lambopkg"
 version = "0.0.1"
 description = "This project is for running Autopkg and importing into munki as well as promoting new versions through munki catalogs"
 authors = [{ name = "AnywhereOps", email = "andrew@anywhereops.ai" }]
@@ -30,9 +30,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://AnywhereOps.github.io/autopatcher/"
-Repository = "https://github.com/AnywhereOps/autopatcher"
-Documentation = "https://AnywhereOps.github.io/autopatcher/"
+Homepage = "https://AnywhereOps.github.io/lambopkg/"
+Repository = "https://github.com/AnywhereOps/lambopkg"
+Documentation = "https://AnywhereOps.github.io/lambopkg/"
 
 [dependency-groups]
 dev = [
@@ -53,7 +53,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["scripts"]
+packages = ["lambopkg"]
 
 [tool.ty.environment]
 python = "./.venv"
@@ -66,7 +66,6 @@ testpaths = ["tests"]
 target-version = "py310"
 line-length = 120
 fix = true
-include = ["scripts/**/*.py", "tests/**/*.py"]
 extend-exclude = ["AutoPkg"]
 force-exclude = true
 
@@ -123,4 +122,4 @@ skip_empty = true
 
 [tool.coverage.run]
 branch = true
-source = ["scripts"]
+source = ["lambopkg"]

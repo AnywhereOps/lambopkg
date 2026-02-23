@@ -17,10 +17,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.rtrouton.download.microsoftexcel365:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/MicrosoftExcel365/MicrosoftExcel365.download.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/MicrosoftExcel365/MicrosoftExcel365.download.recipe.yaml
       sha256_hash: 74075f76f431adc45a2c28dd5de408847accea7375a600e7566eca87b5ad32b4
     com.github.rtrouton.munki.microsoftexcel365:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/MicrosoftExcel365/MicrosoftExcel365.munki.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/MicrosoftExcel365/MicrosoftExcel365.munki.recipe.yaml
       sha256_hash: 45183599b9d511273903b31f332a6ef1e8edac27a7c3c0bd1d6e20ee574461f0

@@ -32,7 +32,7 @@
     "Teleport": "8.*"
   },
   "remove_old_catalogs": true,
-  "munki_repo": "munki_repo",
+  "munki_repo": "munkirepo",
   "run_makecatalogs": true,
   "fields_to_copy": [
     "postinstall_script",

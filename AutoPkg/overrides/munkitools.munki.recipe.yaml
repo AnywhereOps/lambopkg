@@ -20,6 +20,5 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.autopkg.munki.munkitools:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/munkitools/munkitools.munki.recipe.yaml
-      sha256_hash: 9f24afd7bcd1c9a81f66544a08eb1892eda22f9be90a414673076c505cf0fe42
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/munkitools/munkitools.munki.recipe.yaml
+      sha256_hash: d1812ff76dc2aea8a9c015802a04aaffd892c9df09f16a24cc56dd4e861532e6

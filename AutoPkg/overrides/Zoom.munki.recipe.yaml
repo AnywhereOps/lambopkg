@@ -27,14 +27,11 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.hansen-m.download.zoomus:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Zoom/Zoom.download.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Zoom/Zoom.download.recipe.yaml
       sha256_hash: 7371e178645851b24888cc27044763c9b77def32e41a2b6921ad5535754dd907
     com.github.homebysix.munki.Zoom:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Zoom/Zoom.munki.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Zoom/Zoom.munki.recipe.yaml
       sha256_hash: b66e6ba85cd3ae46b645fb67dee0eb8f0d82f74ece1928b31f2b11e1f5789a8e
     com.github.homebysix.pkg.Zoom:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/Zoom/Zoom.pkg.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Zoom/Zoom.pkg.recipe.yaml
       sha256_hash: e41b89c3c9ecfc7606c6defaa10d88e712a11f27f4628b3f3b2a87b138dd3b90

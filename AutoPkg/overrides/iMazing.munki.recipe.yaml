@@ -17,10 +17,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.homebysix.download.iMazing:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/iMazing/iMazing.download.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/iMazing/iMazing.download.recipe.yaml
       sha256_hash: ada2ed0df30b475157e19dfa798538943f98b71acb96e71a235204160eea8fd2
     com.github.homebysix.munki.iMazing:
-      git_hash: 0dd23058ab268bf7a81a18a6d56cf061676b3fa4
-      path: ~/work/lambo-pkg/lambo-pkg/AutoPkg/Recipes/iMazing/iMazing.munki.recipe.yaml
+      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/iMazing/iMazing.munki.recipe.yaml
       sha256_hash: 84661cb21a4e67b3840f56da138d676352b9da1c9873964c4db731bb4e71db1c

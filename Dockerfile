@@ -18,4 +18,4 @@ COPY . /app
 # Sync the project
 RUN uv sync --frozen
 
-CMD [ "python", "autopatcher/foo.py" ]
+CMD [ "python", "-m", "lambopkg" ]

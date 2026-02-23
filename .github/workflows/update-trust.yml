@@ -18,8 +18,6 @@ jobs:
     runs-on: macos-latest
 
     env:
-      AUTOPKG_SHA256: "304f51506103b5daae44a977df9f53c0ee43f164813690b674b1d1437c833b03"
-      AUTOPKG_URL: "https://github.com/autopkg/autopkg/releases/download/v2.7.6/autopkg-2.7.6.pkg"
       AUTOPKG_DIR: "${{ github.workspace }}/AutoPkg"
 
     permissions:
@@ -29,36 +27,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
 
-      - name: Install AutoPkg
-        run: |
-          curl -L ${{ env.AUTOPKG_URL }} --output /tmp/autopkg.pkg
-          echo "${{ env.AUTOPKG_SHA256 }} */tmp/autopkg.pkg" | shasum -c
-          if [[ $? != "0" ]]; then exit 1; fi
-          sudo installer -pkg /tmp/autopkg.pkg -target /
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
 
-      - name: Configure AutoPkg
-        run: |
-          defaults write com.github.autopkg RECIPE_OVERRIDE_DIRS "${AUTOPKG_DIR}/Overrides"
-          defaults write com.github.autopkg RECIPE_SEARCH_DIRS "${AUTOPKG_DIR}/Recipes"
-
-      - name: Update trust info for all overrides
-        run: |
-          failures=0
-          for override in "${AUTOPKG_DIR}"/Overrides/*.recipe.yaml "${AUTOPKG_DIR}"/Overrides/*.recipe; do
-            [ -f "$override" ] || continue
-            echo "::group::Updating trust info for $(basename "$override")"
-            if autopkg update-trust-info "$override"; then
-              echo "Success"
-            else
-              echo "::warning::Failed to update trust info for $(basename "$override")"
-              failures=$((failures + 1))
-            fi
-            echo "::endgroup::"
-          done
-          if [ "$failures" -gt 0 ]; then
-            echo "::error::$failures override(s) failed trust info update"
-            exit 1
-          fi
+      - name: Fix trust info paths
+        run: uv run lambopkg/runners/fix_trust_info.py --autopkg-dir "${AUTOPKG_DIR}"
 
       - name: Commit and push if changed
         run: |

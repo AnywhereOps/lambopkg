@@ -6,13 +6,16 @@ on:
   workflow_dispatch:  # Enables manual triggering
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 jobs:
   autopromote:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
+    env:
+      MUNKI_REPO: "AnywhereOps/munkisrv/munkirepo"
 
     steps:
     - name: Configure AWS credentials
@@ -27,6 +30,13 @@ jobs:
         secret-ids: |
           MUNKISRV_APP, ${{ secrets.MUNKISRV_GITHUB_APP_ARN }}
         parse-json-secrets: true
+
+    - name: Set Munki repo vars
+      run: |
+        echo "MUNKI_GH_REPO=$(echo $MUNKI_REPO | cut -d'/' -f1,2)" >> $GITHUB_ENV
+        echo "MUNKI_CLONE_DIR=$(echo $MUNKI_REPO | cut -d'/' -f2)" >> $GITHUB_ENV
+        SUBDIR=$(echo $MUNKI_REPO | cut -d'/' -f3-)
+        echo "MUNKI_DIR=${GITHUB_WORKSPACE}/$(echo $MUNKI_REPO | cut -d'/' -f2)${SUBDIR:+/$SUBDIR}" >> $GITHUB_ENV
 
     - name: Checkout this repo
       uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 #6.0.0
@@ -49,6 +59,10 @@ jobs:
         fetch-depth: 1
         path: ${{ env.MUNKI_CLONE_DIR }}
 
+    - name: Configure Munki repo push credentials
+      run: |
+        cd ${{ env.MUNKI_CLONE_DIR }}
+        git remote set-url origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${{ env.MUNKI_GH_REPO }}.git"
 
     - name: Disable makecatalogs
       run: |
@@ -60,25 +74,27 @@ jobs:
         sudo cp autopromote.json /usr/local/munki/autopromote.json
         echo "export SLACK_TOKEN='${{ secrets.AUTOPROMOTE_SLACK_TOKEN }}'" >> ~/.autopromote.env
         sudo install -m 644 /dev/null /var/log/autopromote.log
-        sudo ln -s munkirepo/ /usr/local/munkirepo
+        sudo ln -s "${MUNKI_DIR}" /usr/local/munkirepo
 
-    - name: Install python dependencies
-      run: |
-        sudo apt-get install -y python3-setuptools
-        pip3 install -r requirements.txt
-        pip3 install packaging
+    - name: Set up the environment
+      uses: ./.github/actions/setup-python-env
 
     - name: Run autopromote
       run: |
-        python3 scripts/autopromote.py
+        uv run lambopkg/runners/autopromote.py
       env:
         SLACK_TOKEN: ${{ secrets.AUTOPROMOTE_SLACK_TOKEN }}
 
     - name: Push changes
       run: |
-        cd munkirepo/
-        git config --global user.name "runner"
-        git config --global user.email "runner@githubactions.local"
-        git checkout -b "autopromote-`date +'%Y-%m-%d'`"
+        cd ${{ env.MUNKI_CLONE_DIR }}
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git checkout -b "autopromote-$(date +'%Y-%m-%d')"
         git add pkgsinfo/
-        if git diff --exit-code; then git commit -m "`date +'%Y-%m-%d'` autopromote" && git push --set-upstream origin "autopromote-`date +'%Y-%m-%d'`"; else echo "Nothing to commit"; fi
+        if ! git diff --staged --quiet; then
+          git commit -m "$(date +'%Y-%m-%d') autopromote"
+          git push --set-upstream origin "autopromote-$(date +'%Y-%m-%d')"
+        else
+          echo "Nothing to commit"
+        fi
