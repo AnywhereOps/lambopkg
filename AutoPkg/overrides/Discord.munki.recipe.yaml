@@ -22,8 +22,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.joshua-d-miller.autopkg.munki.Discord:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Discord/Discord.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/Discord/Discord.munki.recipe.yaml
       sha256_hash: f99d6af6336f7bf9f6a6a81f603bdf9fc550e0e160f98ce74efb2f59aa374d11
     com.github.joshua-d-miller.download.Discord:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Discord/Discord.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/Discord/Discord.download.recipe.yaml
       sha256_hash: f70c85d0ad48b7d51c0dd1ecd3b571eb9a5965b5b6373a3acc215de437ad9e9e

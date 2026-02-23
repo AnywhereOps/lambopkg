@@ -23,8 +23,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.autopkg.download.Spotify:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Spotify/Spotify.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/Spotify/Spotify.download.recipe.yaml
       sha256_hash: 80f243dcb013a665778105eb587e7101e2eefc64110e786d7de1a61ae2016072
     com.github.autopkg.munki.Spotify:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Spotify/Spotify.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/Spotify/Spotify.munki.recipe.yaml
       sha256_hash: 77cd6890b7a8c271054f88d803efa3495a5c0b0d346967ecd9834e05c5ebcb1e

@@ -10,29 +10,14 @@ Input:
     developer: GitHub, Inc.
     display_name: GitHub Desktop
     name: '%NAME%'
-    postinstall_script: |
-      #!/bin/bash
-
-      DEST_DIR="/usr/local/bin"
-
-      if [[ ! -d "$DEST_DIR" ]]; then
-          mkdir -p "$DEST_DIR"
-      fi
-
-      ln -s "/Applications/GitHub Desktop.app/Contents/Resources/app/static/github.sh" "$DEST_DIR/github"
-
-      exit 0
-    preinstall_script: |
-      #!/bin/bash
-
-      DEST_DIR="/usr/local/bin"
-
-      # Remove old symbolic links associated with pre-Electron version of GitHub Desktop.
-      if [[ -L "$DEST_DIR/git-lfs" ]]; then
-          rm -f "$DEST_DIR/git-lfs"
-      fi
-
-      exit 0
+    postinstall_script: "#!/bin/bash\n\nDEST_DIR=\"/usr/local/bin\"\n\nif [[ ! -d\
+      \ \"$DEST_DIR\" ]]; then\n    mkdir -p \"$DEST_DIR\"\nfi\n\nln -s \"/Applications/GitHub\
+      \ Desktop.app/Contents/Resources/app/static/github.sh\" \"$DEST_DIR/github\"\
+      \n\nexit 0\n"
+    preinstall_script: "#!/bin/bash\n\nDEST_DIR=\"/usr/local/bin\"\n\n# Remove old\
+      \ symbolic links associated with pre-Electron version of GitHub Desktop.\nif\
+      \ [[ -L \"$DEST_DIR/git-lfs\" ]]; then\n    rm -f \"$DEST_DIR/git-lfs\"\nfi\n\
+      \nexit 0\n"
     unattended_install: true
     unattended_uninstall: true
 ParentRecipe: com.github.homebysix.munki.GitHubDesktop
@@ -40,8 +25,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.homebysix.download.GitHubDesktop:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/GitHub/GitHubDesktop.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/GitHub/GitHubDesktop.download.recipe.yaml
       sha256_hash: a471f508c4a9a3303404cdf45e96bc89a21b0ad34a7f0be0b856b341e3a4a3bb
     com.github.homebysix.munki.GitHubDesktop:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/GitHub/GitHubDesktop.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/GitHub/GitHubDesktop.munki.recipe.yaml
       sha256_hash: b8b2c83f858c7a242bcb4dceafc11436f99f13434dbda4ab9ddd4256b51b6902

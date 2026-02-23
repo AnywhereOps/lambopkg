@@ -17,8 +17,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.almenscorner.download.Claude:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Anthropic/Claude.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/Anthropic/Claude.download.recipe.yaml
       sha256_hash: 2bcc224d3d7a8cf08d8726e01c65c06fb369c11cae3317a3226075b382f6350a
     com.github.dataJAR-recipes.munki.Claude:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Claude/Claude.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/Claude/Claude.munki.recipe.yaml
       sha256_hash: edb9acd2529e3b0b2b03907bae97386aacc1e88654d2597ef2e961f4269af285

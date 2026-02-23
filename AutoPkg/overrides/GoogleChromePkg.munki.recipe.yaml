@@ -20,8 +20,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.autopkg.download.googlechromepkg:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/GoogleChrome/GoogleChromePkg.download.recipe.yaml
-      sha256_hash: bf6f2a539acadf37b9fb25681fe177e252933ac9bb437b46155b0dce5504e380
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/GoogleChrome/GoogleChromePkg.download.recipe.yaml
+      sha256_hash: e130fb633c2c3192ded2b69ec730b02e0d08665e9625cda2f1a5f63931867acb
     com.github.autopkg.munki.googlechromepkg:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/GoogleChrome/GoogleChromePkg.munki.recipe.yaml
-      sha256_hash: 22cf6df2c4ae220055a373c52524504f75ce1b0438fbe2833bed026c2da3baae
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/GoogleChrome/GoogleChromePkg.munki.recipe.yaml
+      sha256_hash: 91d99fc89b218f9c79c9c3df7c55b9cb66e2dc8879da557687e6eb62476dee6b

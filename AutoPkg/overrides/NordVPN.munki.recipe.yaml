@@ -8,20 +8,25 @@ Input:
     - NordVPNLauncher Sideload.app
     catalogs:
     - testing
-    description: "Get the fastest VPN in the world and enjoy a smooth, safe, and private\
-      \ connection on your Mac. NordVPN\u2019s easy-to-use app will protect all your\
-      \ connected devices from snoopers tracking what you do online.\n\nEven if you\
-      \ think you have nothing to hide \u2014 no one likes to be watched. That\u2019\
-      s why you need a VPN to protect your privacy and keep your online data safe."
+    description: 'Get the fastest VPN in the world and enjoy a smooth, safe, and private
+      connection on your Mac. NordVPN’s easy-to-use app will protect all your connected
+      devices from snoopers tracking what you do online.
+
+
+      Even if you think you have nothing to hide — no one likes to be watched. That’s
+      why you need a VPN to protect your privacy and keep your online data safe.'
     developer: Nordvpn S.A.
     display_name: NordVPN
     name: '%NAME%'
-    postuninstall_script: |-
-      #!/bin/bash
+    postuninstall_script: '#!/bin/bash
+
       #
+
       launchctl unload /Library/LaunchDaemons/com.nordvpn.macos.helper.plist
+
       #
-      rm /Library/LaunchDaemons/com.nordvpn.macos.helper.plist
+
+      rm /Library/LaunchDaemons/com.nordvpn.macos.helper.plist'
     unattended_install: true
     unattended_uninstall: true
 ParentRecipe: com.github.dataJAR-recipes.munki.NordVPN
@@ -29,8 +34,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.ahousseini-recipes.download.NordVPN:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/NordVPN/NordVPN.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/NordVPN/NordVPN.download.recipe.yaml
       sha256_hash: e686d18ef65b600875fb4d43b07fba4bde69d818932e1a085a17d819370ef29a
     com.github.dataJAR-recipes.munki.NordVPN:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/NordVPN/NordVPN.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/NordVPN/NordVPN.munki.recipe.yaml
       sha256_hash: fc3cde18e18c1a8dc5ac4bbad9635602f3848ea850648ac9475a1f739d584456

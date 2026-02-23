@@ -7,10 +7,16 @@ Input:
     catalogs:
     - testing
     category: Communication
-    description: |-
-      WhatsApp Messenger is a cross-platform mobile messaging app which allows you to exchange messages without having to pay for SMS. WhatsApp Messenger is available for iPhone, BlackBerry, Android, Windows Phone and Nokia and yes, those phones can all message each other! Because WhatsApp Messenger uses the same internet data plan that you use for email and web browsing, there is no cost to message and stay in touch with your friends.
+    description: 'WhatsApp Messenger is a cross-platform mobile messaging app which
+      allows you to exchange messages without having to pay for SMS. WhatsApp Messenger
+      is available for iPhone, BlackBerry, Android, Windows Phone and Nokia and yes,
+      those phones can all message each other! Because WhatsApp Messenger uses the
+      same internet data plan that you use for email and web browsing, there is no
+      cost to message and stay in touch with your friends.
 
-      In addition to basic messaging WhatsApp users can create groups, send each other unlimited images, video and audio media messages.
+
+      In addition to basic messaging WhatsApp users can create groups, send each other
+      unlimited images, video and audio media messages.'
     developer: WhatsApp Inc.
     display_name: WhatsApp
     name: '%NAME%'
@@ -20,8 +26,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.scriptingosx.download.WhatsApp:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.download.recipe.yaml
       sha256_hash: f70f4ca17c5b1d7b3e0d8eef2fcc34cde3bb8afe103b87c023b7b611bc6a92b2
     com.scriptingosx.munki.WhatsApp:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/WhatsAppInc/WhatsApp.munki.recipe.yaml
       sha256_hash: bba470e95d956349092837e114820d8cf8055a42365b5e80d55387264d20d22d

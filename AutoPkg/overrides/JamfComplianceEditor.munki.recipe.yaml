@@ -18,11 +18,11 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.grahampugh.recipes.download.JamfComplianceEditor:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/JamfComplianceEditor/JamfComplianceEditor.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/JamfComplianceEditor/JamfComplianceEditor.download.recipe.yaml
       sha256_hash: e4b5fb31b10c35ec6f14cfc2249b8614484ba78d3b4fc6eee2d7b7033078a179
     com.github.grahampugh.recipes.pkg.JamfComplianceEditor:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/JamfComplianceEditor/JamfComplianceEditor.pkg.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/JamfComplianceEditor/JamfComplianceEditor.pkg.recipe.yaml
       sha256_hash: 34c502eb8cd087114279989ee95baae8bae6fdf8f86a6f4cbfd19ac3a835bbbf
     com.github.jc0b.munki.JamfComplianceEditor:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/Jamf/JamfComplianceEditor.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/Jamf/JamfComplianceEditor.munki.recipe.yaml
       sha256_hash: a697e74ff208c008644fcb4ae0c344e9b9556cab068dbfb1297071d3bcbf6c35

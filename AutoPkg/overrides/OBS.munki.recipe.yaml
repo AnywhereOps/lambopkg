@@ -26,8 +26,8 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.joshua-d-miller.autopkg.munki.OBS:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/OBS/OBS.munki.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/OBS/OBS.munki.recipe.yaml
       sha256_hash: cab8f192252b57b54784804376630cef1e2adff2df22faddab2cb1994fbeef6e
     com.github.nstrauss.download.OBS:
-      path: ~/anywhereops/infra/lambopkg/AutoPkg/Recipes/OBS/OBS.download.recipe.yaml
+      path: /Users/runner/work/lambopkg/lambopkg/AutoPkg/Recipes/OBS/OBS.download.recipe.yaml
       sha256_hash: c63db29d61022e41fae61bfcfdc26d2939e346377a6b0b4617f581a3724cdeb7
