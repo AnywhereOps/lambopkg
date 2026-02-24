@@ -77,6 +77,11 @@ async def process_recipe(
                 files.append(f"{munki_repo_path}/icons/{item.get('icon_repo_path')}")
             wt_repo.index.add(files)
 
+        # Catch any untracked icons (some recipes produce icons without setting icon_repo_path)
+        icons_dir = f"{munki_repo_path}/icons"
+        if os.path.isdir(icons_dir):
+            wt_repo.index.add([icons_dir])
+
         # Commit and push
         name = results["munki_imported_items"][0]["name"]
         version = results["munki_imported_items"][0]["version"]

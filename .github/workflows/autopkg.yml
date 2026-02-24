@@ -120,7 +120,7 @@ jobs:
         if: always()
         run: |
           if [ -d "${MUNKI_DIR}/pkgs" ]; then
-            aws s3 sync "${MUNKI_DIR}/pkgs/" s3://${{ secrets.MUNKI_S3_BUCKET }}/repo/pkgs/
+            aws s3 sync "${MUNKI_DIR}/pkgs/" s3://${{ secrets.MUNKI_S3_BUCKET }}/repo/pkgs/ --sse AES256
           else
             echo "No packages to sync"
           fi
